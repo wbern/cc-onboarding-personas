@@ -1,13 +1,14 @@
 ---
 import WizardLayout from '../../layouts/WizardLayout.astro';
 import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
   title="Choose Your Theme"
   currentStep={5}
   totalSteps={7}
-  prevHref="/builder/run"
-  nextHref="/builder/login"
+  prevHref={`${base}builder/run`}
+  nextHref={`${base}builder/login`}
 >
   <h1 class="text-3xl font-bold text-white mb-2">First Launch: Theme</h1>
   <p class="text-slate-400 mb-6">

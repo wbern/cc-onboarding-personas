@@ -1,13 +1,15 @@
 ---
 import WizardLayout from '../../layouts/WizardLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
   title="Platform Check"
   currentStep={1}
   totalSteps={7}
-  prevHref="/"
+  prevHref={`${base}`}
   nextHref={null}
 >
+<div id="page-data" data-base={base} class="hidden" />
   <h1 class="text-3xl font-bold text-white mb-2">Are you using a Mac?</h1>
   <p class="text-slate-400 mb-8">
     This guide currently supports macOS only. We'll add Windows and Linux soon.
@@ -63,7 +65,8 @@ import WizardLayout from '../../layouts/WizardLayout.astro';
     if (nav && !document.getElementById('wizard-next')) {
       const link = document.createElement('a');
       link.id = 'wizard-next';
-      link.href = '/builder/install';
+      const base = document.getElementById('page-data')?.dataset.base || '/';
+      link.href = `${base}builder/install`;
       link.className = 'inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white bg-indigo-600 hover:bg-indigo-500 transition-colors font-medium';
       link.innerHTML = 'Next <span aria-hidden="true">&rarr;</span>';
       nav.appendChild(link);

@@ -1,13 +1,14 @@
 ---
 import WizardLayout from '../../layouts/WizardLayout.astro';
 import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
   title="Log In"
   currentStep={6}
   totalSteps={7}
-  prevHref="/builder/theme"
-  nextHref="/builder/ready"
+  prevHref={`${base}builder/theme`}
+  nextHref={`${base}builder/ready`}
 >
   <h1 class="text-3xl font-bold text-white mb-2">Log In to Your Account</h1>
   <p class="text-slate-400 mb-6">

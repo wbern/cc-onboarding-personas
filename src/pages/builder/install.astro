@@ -4,13 +4,14 @@ import TerminalMockup from '../../components/TerminalMockup.astro';
 import CopyButton from '../../components/CopyButton.tsx';
 
 const installCommand = 'curl -fsSL https://claude.ai/install.sh | bash';
+const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
   title="Install Claude Code"
   currentStep={2}
   totalSteps={7}
-  prevHref="/builder/platform"
-  nextHref="/builder/terminal"
+  prevHref={`${base}builder/platform`}
+  nextHref={`${base}builder/terminal`}
 >
   <h1 class="text-3xl font-bold text-white mb-2">Install Claude Code</h1>
   <p class="text-slate-400 mb-6">

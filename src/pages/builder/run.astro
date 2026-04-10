@@ -1,13 +1,14 @@
 ---
 import WizardLayout from '../../layouts/WizardLayout.astro';
 import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
   title="Run the Installer"
   currentStep={4}
   totalSteps={7}
-  prevHref="/builder/terminal"
-  nextHref="/builder/theme"
+  prevHref={`${base}builder/terminal`}
+  nextHref={`${base}builder/theme`}
 >
   <h1 class="text-3xl font-bold text-white mb-2">Paste and Run</h1>
   <p class="text-slate-400 mb-6">
