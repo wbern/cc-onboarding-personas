@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
   prevHref={`${base}`}
   nextHref={null}
 >
-<div id="page-data" data-base={base} class="hidden" />
+<div id="page-data" data-base={base} data-next={`${base}builder/install`} class="hidden" />
   <h1 class="text-3xl font-bold text-white mb-2">Are you using a Mac?</h1>
   <p class="text-slate-400 mb-8">
     This guide currently supports macOS only. We'll add Windows and Linux soon.
@@ -19,7 +19,7 @@ const base = import.meta.env.BASE_URL;
     <button
       id="btn-yes"
       class="flex-1 py-4 px-6 rounded-xl border-2 text-lg font-medium
-             transition-all duration-200 cursor-pointer
+             transition-all duration-300 cursor-pointer
              border-slate-700 bg-slate-800 text-slate-300
              hover:border-indigo-500 hover:text-white"
     >
@@ -28,7 +28,7 @@ const base = import.meta.env.BASE_URL;
     <button
       id="btn-no"
       class="flex-1 py-4 px-6 rounded-xl border-2 text-lg font-medium
-             transition-all duration-200 cursor-pointer
+             transition-all duration-300 cursor-pointer
              border-slate-700 bg-slate-800 text-slate-300
              hover:border-slate-500 hover:text-white"
     >
@@ -50,41 +50,37 @@ const base = import.meta.env.BASE_URL;
   const btnYes = document.getElementById('btn-yes')!;
   const btnNo = document.getElementById('btn-no')!;
   const notMacMsg = document.getElementById('not-mac-message')!;
-  const nextBtn = document.getElementById('wizard-next');
+  const pageData = document.getElementById('page-data')!;
+  const nextUrl = pageData.dataset.next || '/';
 
-  const selectedClass = ['border-indigo-500', 'bg-indigo-500/10', 'text-white'];
   const isMac = /Mac|macOS/i.test(navigator.userAgent || navigator.platform || '');
 
   function selectYes() {
-    btnYes.classList.add(...selectedClass);
-    btnNo.classList.remove(...selectedClass);
+    // Visual feedback: highlight Yes, dim No
+    btnYes.classList.add('border-indigo-500', 'bg-indigo-500/20', 'text-white', 'scale-105');
+    btnNo.classList.add('opacity-40');
+    btnNo.classList.remove('hover:border-slate-500', 'hover:text-white');
     notMacMsg.classList.add('hidden');
 
-    // Inject next link if not present
-    const nav = document.querySelector('nav');
-    if (nav && !document.getElementById('wizard-next')) {
-      const link = document.createElement('a');
-      link.id = 'wizard-next';
-      const base = document.getElementById('page-data')?.dataset.base || '/';
-      link.href = `${base}builder/install`;
-      link.className = 'inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white bg-indigo-600 hover:bg-indigo-500 transition-colors font-medium';
-      link.innerHTML = 'Next <span aria-hidden="true">&rarr;</span>';
-      nav.appendChild(link);
-    }
+    // Brief pause for feedback, then navigate
+    setTimeout(() => {
+      window.location.href = nextUrl;
+    }, 400);
   }
 
   function selectNo() {
-    btnNo.classList.add(...selectedClass);
-    btnYes.classList.remove(...selectedClass);
+    // Visual feedback: highlight No, dim Yes
+    btnNo.classList.add('border-red-500/50', 'bg-red-500/10', 'text-white');
+    btnYes.classList.add('opacity-40');
+    btnYes.classList.remove('hover:border-indigo-500', 'hover:text-white');
     notMacMsg.classList.remove('hidden');
-    document.getElementById('wizard-next')?.remove();
   }
 
   btnYes.addEventListener('click', selectYes);
   btnNo.addEventListener('click', selectNo);
 
-  // Auto-detect OS
+  // Auto-detect: pre-select but don't auto-navigate
   if (isMac) {
-    selectYes();
+    btnYes.classList.add('border-indigo-500', 'bg-indigo-500/20', 'text-white');
   }
 </script>
