@@ -14,30 +14,29 @@ const { class: className = '' } = Astro.props;
   role="img"
 >
   <!-- Head (circle) -->
-  <circle cx="52" cy="28" r="16" fill="#818cf8" />
+  <circle cx="48" cy="28" r="16" fill="#818cf8" />
 
   <!-- Body (rounded trapezoid) -->
   <path
-    d="M36 52 C36 48, 68 48, 68 52 L72 110 C72 114, 32 114, 32 110 Z"
+    d="M32 52 C32 48, 64 48, 64 52 L68 110 C68 114, 28 114, 28 110 Z"
     fill="#6366f1"
-    rx="4"
   />
 
-  <!-- Hammer handle -->
-  <rect x="82" y="20" width="4" height="56" rx="2" fill="#94a3b8" transform="rotate(12, 84, 48)" />
-
-  <!-- Hammer head -->
-  <rect x="74" y="12" width="22" height="12" rx="3" fill="#e2e8f0" transform="rotate(12, 85, 18)" />
-
-  <!-- Arm holding hammer -->
+  <!-- Arm reaching up to hold hammer -->
   <path
-    d="M68 56 Q78 50, 82 42"
+    d="M64 58 Q76 46, 80 34"
     stroke="#6366f1"
-    stroke-width="6"
+    stroke-width="7"
     stroke-linecap="round"
     fill="none"
   />
 
+  <!-- Hammer handle -->
+  <rect x="78" y="8" width="5" height="48" rx="2.5" fill="#94a3b8" transform="rotate(20, 80, 32)" />
+
+  <!-- Hammer head (chunky block) -->
+  <rect x="64" y="-2" width="36" height="18" rx="3" fill="#e2e8f0" transform="rotate(20, 82, 7)" />
+
   <!-- Base/feet (simple rounded rect) -->
-  <rect x="34" y="110" width="36" height="8" rx="4" fill="#4f46e5" />
+  <rect x="30" y="110" width="36" height="8" rx="4" fill="#4f46e5" />
 </svg>
