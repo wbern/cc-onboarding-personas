@@ -8,7 +8,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "knip": "knip --no-config-hints",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/preact": "^5.1.1",
@@ -16,5 +22,19 @@
     "astro": "^6.1.5",
     "preact": "^10.29.1",
     "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.11",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@playwright/test": "^1.59.1",
+    "@secretlint/secretlint-rule-preset-recommend": "^11.6.0",
+    "@vitest/coverage-v8": "^4.1.4",
+    "husky": "^9.1.7",
+    "knip": "^6.3.1",
+    "lint-staged": "^16.4.0",
+    "secretlint": "^11.6.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4"
   }
 }
