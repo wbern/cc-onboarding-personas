@@ -1,0 +1,40 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'theme.title')}
+  currentStep={5} totalSteps={7}
+  prevHref={`${base}sv/builder/run`}
+  nextHref={`${base}sv/builder/login`}
+  stepLabel="Steg 5 av 7" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'theme.title')}</h1>
+  <p class="text-slate-400 mb-6">
+    {t(locale, 'theme.typeCommand')} <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">claude</code>
+    {t(locale, 'theme.subtitle')}
+  </p>
+  <div class="space-y-6">
+    <TerminalMockup command="claude">
+      <div class="text-slate-400 mt-1">
+        <p class="text-white">{t(locale, 'theme.chooseTheme')}</p>
+        <p class="text-indigo-400">&gt; Dark (default)</p>
+        <p>&nbsp; Light</p>
+        <p>&nbsp; Light High Contrast</p>
+        <p>&nbsp; Dark High Contrast</p>
+      </div>
+    </TerminalMockup>
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
+      <p class="text-slate-300 text-lg">
+        {t(locale, 'theme.pressEnter')}
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+        {t(locale, 'theme.forDarkMode')}
+      </p>
+      <p class="text-slate-500 text-sm mt-1">{t(locale, 'theme.orArrow')}</p>
+    </div>
+  </div>
+</WizardLayout>

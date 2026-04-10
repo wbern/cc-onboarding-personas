@@ -2,9 +2,12 @@ import { useState } from 'preact/hooks';
 
 interface Props {
   text: string;
+  copyLabel?: string;
+  copiedLabel?: string;
+  fallbackLabel?: string;
 }
 
-export default function CopyButton({ text }: Props) {
+export default function CopyButton({ text, copyLabel = 'Copy', copiedLabel = 'Copied!', fallbackLabel = 'Select & copy manually (⌘C)' }: Props) {
   const [state, setState] = useState<'idle' | 'copied' | 'failed'>('idle');
 
   async function handleCopy() {
@@ -44,10 +47,10 @@ export default function CopyButton({ text }: Props) {
       }`}
     >
       {state === 'copied'
-        ? 'Copied!'
+        ? copiedLabel
         : state === 'failed'
-        ? 'Select & copy manually (⌘C)'
-        : 'Copy'}
+        ? fallbackLabel
+        : copyLabel}
     </button>
   );
 }

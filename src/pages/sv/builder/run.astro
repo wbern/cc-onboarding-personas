@@ -1,0 +1,32 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'run.title')}
+  currentStep={4} totalSteps={7}
+  prevHref={`${base}sv/builder/terminal`}
+  nextHref={`${base}sv/builder/theme`}
+  stepLabel="Steg 4 av 7" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'run.title')}</h1>
+  <p class="text-slate-400 mb-6">{t(locale, 'run.subtitle')}</p>
+  <div class="space-y-6">
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300 mb-3">
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">⌘V</kbd>
+        {t(locale, 'run.pasteInstruction')}
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+      </p>
+    </div>
+    <div>
+      <p class="text-sm text-slate-500 mb-2">{t(locale, 'run.shouldSee')}</p>
+      <TerminalMockup command="curl -fsSL https://claude.ai/install.sh | bash" output={t(locale, 'run.installOutput')} />
+    </div>
+    <p class="text-sm text-slate-500">{t(locale, 'run.afterInstall')}</p>
+  </div>
+</WizardLayout>

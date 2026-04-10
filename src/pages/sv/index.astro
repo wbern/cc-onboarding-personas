@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PersonaCard from '../../components/PersonaCard.astro';
+import BuilderSvg from '../../components/BuilderSvg.astro';
+import { t } from '../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title={t(locale, 'landing.title')} lang={locale}>
+  <div class="text-center mb-10">
+    <h1 class="text-4xl font-bold text-white mb-3">
+      {t(locale, 'landing.title')}
+    </h1>
+    <p class="text-lg text-slate-400 max-w-lg mx-auto">
+      {t(locale, 'landing.subtitle')}
+    </p>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-6">
+    <PersonaCard
+      name={t(locale, 'landing.builder.name')}
+      tagline={t(locale, 'landing.builder.tagline')}
+      bullets={[
+        t(locale, 'landing.builder.bullet1'),
+        t(locale, 'landing.builder.bullet2'),
+        t(locale, 'landing.builder.bullet3'),
+        t(locale, 'landing.builder.bullet4'),
+      ]}
+      href={`${base}sv/builder/platform`}
+      available={true}
+      startLabel={t(locale, 'landing.startJourney')}
+    >
+      <BuilderSvg slot="illustration" />
+    </PersonaCard>
+  </div>
+</BaseLayout>

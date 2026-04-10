@@ -1,0 +1,51 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'login.title')}
+  currentStep={6} totalSteps={7}
+  prevHref={`${base}sv/builder/theme`}
+  nextHref={`${base}sv/builder/ready`}
+  stepLabel="Steg 6 av 7" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'login.title')}</h1>
+  <p class="text-slate-400 mb-6">{t(locale, 'login.subtitle')}</p>
+  <div class="space-y-6">
+    <TerminalMockup>
+      <div class="text-slate-400">
+        <p class="text-white">{t(locale, 'login.authQuestion')}</p>
+        <p class="text-indigo-400">&gt; Anthropic (claude.ai account)</p>
+        <p>&nbsp; Anthropic API Key</p>
+        <p>&nbsp; Amazon Bedrock</p>
+        <p>&nbsp; Google Vertex AI</p>
+      </div>
+    </TerminalMockup>
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">1.</span>
+          <p class="text-slate-300">
+            {t(locale, 'login.pressEnter')} <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+            {t(locale, 'login.step1')}
+          </p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">2.</span>
+          <p class="text-slate-300">{t(locale, 'login.step2')}</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">3.</span>
+          <p class="text-slate-300">{t(locale, 'login.step3')}</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-sm text-slate-500">
+      {t(locale, 'login.subscription')} <span class="text-indigo-400">claude.ai</span>.
+    </p>
+  </div>
+</WizardLayout>

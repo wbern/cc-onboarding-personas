@@ -5,9 +5,11 @@ interface Props {
   bullets: string[];
   href: string;
   available?: boolean;
+  startLabel?: string;
+  comingSoonLabel?: string;
 }
 
-const { name, tagline, bullets, href, available = true } = Astro.props;
+const { name, tagline, bullets, href, available = true, startLabel = 'Start your journey', comingSoonLabel = 'Coming soon' } = Astro.props;
 ---
 {available ? (
   <a
@@ -33,7 +35,7 @@ const { name, tagline, bullets, href, available = true } = Astro.props;
         ))}
       </ul>
       <div class="mt-5 text-sm font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors">
-        Start your journey &rarr;
+        {startLabel} &rarr;
       </div>
     </div>
   </a>
@@ -48,7 +50,7 @@ const { name, tagline, bullets, href, available = true } = Astro.props;
       </div>
       <h2 class="text-xl font-bold text-slate-500 mb-1">{name}</h2>
       <p class="text-sm text-slate-600">{tagline}</p>
-      <div class="mt-4 text-xs text-slate-600 uppercase tracking-wider">Coming soon</div>
+      <div class="mt-4 text-xs text-slate-600 uppercase tracking-wider">{comingSoonLabel}</div>
     </div>
   </div>
 )}

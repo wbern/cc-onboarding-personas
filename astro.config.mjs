@@ -6,4 +6,11 @@ export default defineConfig({
   site: 'https://wbern.github.io',
   base: '/cc-onboarding-personas',
   integrations: [preact(), tailwind()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'sv'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

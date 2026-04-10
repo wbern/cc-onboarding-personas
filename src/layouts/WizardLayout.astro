@@ -8,16 +8,21 @@ interface Props {
   totalSteps: number;
   prevHref: string | null;
   nextHref: string | null;
+  stepLabel?: string;
+  backLabel?: string;
+  nextLabel?: string;
+  lang?: string;
 }
 
-const { title, currentStep, totalSteps, prevHref, nextHref } = Astro.props;
+const { title, currentStep, totalSteps, prevHref, nextHref, stepLabel, backLabel, nextLabel, lang = 'en' } = Astro.props;
+const stepText = stepLabel || `Step ${currentStep} of ${totalSteps}`;
 ---
 <BaseLayout title={title}>
   <div class="w-full max-w-2xl mx-auto">
     <!-- Progress indicator -->
     <div class="mb-8">
       <div class="flex items-center justify-between text-sm text-slate-400 mb-2">
-        <span>Step {currentStep} of {totalSteps}</span>
+        <span>{stepText}</span>
         <span class="text-slate-500">{Math.round((currentStep / totalSteps) * 100)}%</span>
       </div>
       <div class="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
@@ -34,6 +39,6 @@ const { title, currentStep, totalSteps, prevHref, nextHref } = Astro.props;
     </div>
 
     <!-- Navigation -->
-    <WizardNav prevHref={prevHref} nextHref={nextHref} />
+    <WizardNav prevHref={prevHref} nextHref={nextHref} backLabel={backLabel} nextLabel={nextLabel} />
   </div>
 </BaseLayout>

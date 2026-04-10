@@ -1,0 +1,27 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+const installCommand = 'curl -fsSL https://claude.ai/install.sh | bash';
+---
+<WizardLayout
+  title={t(locale, 'install.title')}
+  currentStep={2} totalSteps={7}
+  prevHref={`${base}sv/builder/platform`}
+  nextHref={`${base}sv/builder/terminal`}
+  stepLabel="Steg 2 av 7" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'install.title')}</h1>
+  <p class="text-slate-400 mb-6">{t(locale, 'install.subtitle')}</p>
+  <div class="relative mb-6">
+    <TerminalMockup command={installCommand} />
+    <div class="absolute top-2.5 right-3">
+      <CopyButton text={installCommand} copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+    </div>
+  </div>
+  <p class="text-sm text-slate-500">{t(locale, 'install.description')}</p>
+</WizardLayout>

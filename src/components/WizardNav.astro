@@ -2,9 +2,11 @@
 interface Props {
   prevHref: string | null;
   nextHref: string | null;
+  backLabel?: string;
+  nextLabel?: string;
 }
 
-const { prevHref, nextHref } = Astro.props;
+const { prevHref, nextHref, backLabel = 'Back', nextLabel = 'Next' } = Astro.props;
 ---
 <nav class="flex items-center justify-between">
   {prevHref ? (
@@ -14,7 +16,7 @@ const { prevHref, nextHref } = Astro.props;
              text-slate-300 bg-slate-800 border border-slate-700
              hover:bg-slate-700 hover:text-white transition-colors"
     >
-      <span aria-hidden="true">&larr;</span> Back
+      <span aria-hidden="true">&larr;</span> {backLabel}
     </a>
   ) : (
     <div />
@@ -28,7 +30,7 @@ const { prevHref, nextHref } = Astro.props;
              text-white bg-indigo-600 hover:bg-indigo-500
              transition-colors font-medium"
     >
-      Next <span aria-hidden="true">&rarr;</span>
+      {nextLabel} <span aria-hidden="true">&rarr;</span>
     </a>
   ) : (
     <div />
