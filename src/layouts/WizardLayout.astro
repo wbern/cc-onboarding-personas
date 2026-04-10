@@ -1,0 +1,39 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import WizardNav from '../components/WizardNav.astro';
+
+interface Props {
+  title: string;
+  currentStep: number;
+  totalSteps: number;
+  prevHref: string | null;
+  nextHref: string | null;
+}
+
+const { title, currentStep, totalSteps, prevHref, nextHref } = Astro.props;
+---
+<BaseLayout title={title}>
+  <div class="w-full max-w-2xl mx-auto">
+    <!-- Progress indicator -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between text-sm text-slate-400 mb-2">
+        <span>Step {currentStep} of {totalSteps}</span>
+        <span class="text-slate-500">{Math.round((currentStep / totalSteps) * 100)}%</span>
+      </div>
+      <div class="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+        <div
+          class="h-full bg-indigo-500 rounded-full transition-all duration-500"
+          style={`width: ${(currentStep / totalSteps) * 100}%`}
+        />
+      </div>
+    </div>
+
+    <!-- Step content -->
+    <div class="mb-10">
+      <slot />
+    </div>
+
+    <!-- Navigation -->
+    <WizardNav prevHref={prevHref} nextHref={nextHref} />
+  </div>
+</BaseLayout>

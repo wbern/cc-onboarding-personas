@@ -1,0 +1,31 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+import CopyButton from '../../components/CopyButton.tsx';
+
+const installCommand = 'curl -fsSL https://claude.ai/install.sh | bash';
+---
+<WizardLayout
+  title="Install Claude Code"
+  currentStep={2}
+  totalSteps={7}
+  prevHref="/builder/platform"
+  nextHref="/builder/terminal"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Install Claude Code</h1>
+  <p class="text-slate-400 mb-6">
+    Copy this command. You'll paste it into your terminal in the next step.
+  </p>
+
+  <div class="relative mb-6">
+    <TerminalMockup command={installCommand} />
+    <div class="absolute top-2.5 right-3">
+      <CopyButton text={installCommand} client:load />
+    </div>
+  </div>
+
+  <p class="text-sm text-slate-500">
+    This is the official installer from Anthropic. It downloads and sets up
+    Claude Code on your machine.
+  </p>
+</WizardLayout>

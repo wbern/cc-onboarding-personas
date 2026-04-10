@@ -1,0 +1,42 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import KeyVisual from '../../components/KeyVisual.tsx';
+---
+<WizardLayout
+  title="Open Terminal"
+  currentStep={3}
+  totalSteps={7}
+  prevHref="/builder/install"
+  nextHref="/builder/run"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Open Terminal</h1>
+  <p class="text-slate-400 mb-8">
+    You need a terminal to run the install command. Here's how to open one.
+  </p>
+
+  <div class="space-y-8">
+    <!-- Step 1: Spotlight -->
+    <div class="text-center">
+      <p class="text-slate-300 mb-4 text-lg">
+        Press these keys on your keyboard
+        <span class="text-slate-500 text-sm block mt-1">(or click them here)</span>
+      </p>
+      <div class="flex justify-center">
+        <KeyVisual client:load />
+      </div>
+    </div>
+
+    <!-- Step 2: Type Terminal -->
+    <div class="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300 text-lg mb-2">
+        A search bar will appear. Type:
+      </p>
+      <p class="text-2xl font-mono text-white font-bold tracking-wide">
+        Terminal
+      </p>
+      <p class="text-slate-400 mt-2">
+        Then press <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+      </p>
+    </div>
+  </div>
+</WizardLayout>

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-accent: #818cf8;
+  --color-accent-hover: #a5b4fc;
+  --color-success: #34d399;
+  --color-terminal-bg: #0c0c0c;
+  --color-terminal-text: #e0e0e0;
+  --color-terminal-prompt: #34d399;
+}
+
+body {
+  @apply bg-slate-900 text-slate-200 antialiased;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  @apply bg-indigo-500/30;
+}

@@ -1,0 +1,40 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+---
+<WizardLayout
+  title="Choose Your Theme"
+  currentStep={5}
+  totalSteps={7}
+  prevHref="/builder/run"
+  nextHref="/builder/login"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">First Launch: Theme</h1>
+  <p class="text-slate-400 mb-6">
+    Type <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">claude</code>
+    in your terminal and press Enter. The first thing you'll see is a theme picker.
+  </p>
+
+  <div class="space-y-6">
+    <TerminalMockup command="claude">
+      <div class="text-slate-400 mt-1">
+        <p class="text-white">? Choose your theme</p>
+        <p class="text-indigo-400">&gt; Dark (default)</p>
+        <p>&nbsp; Light</p>
+        <p>&nbsp; Light High Contrast</p>
+        <p>&nbsp; Dark High Contrast</p>
+      </div>
+    </TerminalMockup>
+
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
+      <p class="text-slate-300 text-lg">
+        Just press
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+        for dark mode
+      </p>
+      <p class="text-slate-500 text-sm mt-1">
+        Or arrow down to pick another theme — it's up to you.
+      </p>
+    </div>
+  </div>
+</WizardLayout>

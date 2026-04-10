@@ -1,0 +1,50 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+---
+<WizardLayout
+  title="You're In!"
+  currentStep={7}
+  totalSteps={7}
+  prevHref="/builder/login"
+  nextHref={null}
+>
+  <div class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-white mb-3">Congratulations!</h1>
+    <p class="text-xl text-slate-400">
+      Claude Code is up and running. You're ready to build.
+    </p>
+  </div>
+
+  <div class="space-y-6">
+    <TerminalMockup>
+      <div class="text-slate-400">
+        <p class="text-emerald-400">&#10003; Logged in successfully</p>
+        <p class="mt-2 text-white">Welcome to Claude Code!</p>
+        <p class="mt-1">Type a message to start a conversation.</p>
+        <p class="mt-3">
+          <span class="text-indigo-400">claude&gt;</span>
+          <span class="animate-pulse text-white">&#x258C;</span>
+        </p>
+      </div>
+    </TerminalMockup>
+
+    <div class="p-6 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
+      <h2 class="text-lg font-semibold text-white mb-3">What's next?</h2>
+      <ul class="space-y-2 text-slate-300 text-sm">
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Try asking Claude to create a simple project for you</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Explore slash commands — type <code class="px-1 py-0.5 bg-slate-800 rounded">/help</code></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Create a <code class="px-1 py-0.5 bg-slate-800 rounded">CLAUDE.md</code> file to give Claude context about your project</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</WizardLayout>

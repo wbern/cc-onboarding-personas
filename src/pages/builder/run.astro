@@ -1,0 +1,41 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+---
+<WizardLayout
+  title="Run the Installer"
+  currentStep={4}
+  totalSteps={7}
+  prevHref="/builder/terminal"
+  nextHref="/builder/theme"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Paste and Run</h1>
+  <p class="text-slate-400 mb-6">
+    In the Terminal window you just opened, paste the install command and run it.
+  </p>
+
+  <div class="space-y-6">
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300 mb-3">
+        Press <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">⌘V</kbd>
+        to paste, then press
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+      </p>
+    </div>
+
+    <div>
+      <p class="text-sm text-slate-500 mb-2">You should see something like this:</p>
+      <TerminalMockup
+        command="curl -fsSL https://claude.ai/install.sh | bash"
+        output="Installing Claude Code...
+Downloading latest version...
+Installation complete! Run 'claude' to get started."
+      />
+    </div>
+
+    <p class="text-sm text-slate-500">
+      The installation takes a few seconds. Once it finishes, you're ready
+      to launch Claude Code for the first time.
+    </p>
+  </div>
+</WizardLayout>

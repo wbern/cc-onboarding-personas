@@ -1,0 +1,36 @@
+---
+interface Props {
+  prevHref: string | null;
+  nextHref: string | null;
+}
+
+const { prevHref, nextHref } = Astro.props;
+---
+<nav class="flex items-center justify-between">
+  {prevHref ? (
+    <a
+      href={prevHref}
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+             text-slate-300 bg-slate-800 border border-slate-700
+             hover:bg-slate-700 hover:text-white transition-colors"
+    >
+      <span aria-hidden="true">&larr;</span> Back
+    </a>
+  ) : (
+    <div />
+  )}
+
+  {nextHref ? (
+    <a
+      href={nextHref}
+      id="wizard-next"
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+             text-white bg-indigo-600 hover:bg-indigo-500
+             transition-colors font-medium"
+    >
+      Next <span aria-hidden="true">&rarr;</span>
+    </a>
+  ) : (
+    <div />
+  )}
+</nav>
