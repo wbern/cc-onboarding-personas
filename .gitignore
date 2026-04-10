@@ -13,3 +13,9 @@ dist/
 *.log
 .env*
 .DS_Store
+
+# Test artifacts
+tests/e2e/test-results/
+tests/e2e/report/
+tests/e2e/screenshots/
+coverage/
