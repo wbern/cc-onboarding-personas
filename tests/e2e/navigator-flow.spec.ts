@@ -13,14 +13,12 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     });
   });
 
-  test("Step 1: Welcome page celebrates installation with SVG", async ({
+  test("Step 1: Welcome page introduces installation with SVG", async ({
     page,
   }) => {
     await page.goto("/navigator/welcome");
-    await expect(
-      page.getByRole("heading", { name: "You did it!" }),
-    ).toBeVisible();
-    await expect(page.getByText("everything from here is easy")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Welcome!" })).toBeVisible();
+    await expect(page.getByText("install Claude Code together")).toBeVisible();
     await expect(page.getByText("Here's what we'll do together")).toBeVisible();
     // Navigator SVG illustration is present
     await expect(
@@ -34,7 +32,68 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     });
   });
 
-  test("Step 2: Open page shows claude command with copy button", async ({
+  test("Step 2: Platform check page", async ({ page }) => {
+    await page.goto("/navigator/platform");
+    await expect(
+      page.getByRole("heading", { name: "Are you using a Mac?" }),
+    ).toBeVisible();
+    await expect(page.locator("#btn-yes")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/navigator-02-platform.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 3: Terminal page shows key visuals", async ({ page }) => {
+    await page.goto("/navigator/terminal");
+    await expect(
+      page.getByRole("heading", { name: "Open the Terminal app" }),
+    ).toBeVisible();
+    await expect(page.getByText("completely normal")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/navigator-03-terminal.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 4: Install page shows copy command", async ({ page }) => {
+    await page.goto("/navigator/install");
+    await expect(
+      page.getByRole("heading", { name: "Copy this command" }),
+    ).toBeVisible();
+    await expect(
+      page.locator(".text-slate-200", { hasText: "curl -fsSL" }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/navigator-04-install.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 5: Run page shows paste instructions", async ({ page }) => {
+    await page.goto("/navigator/run");
+    await expect(
+      page.getByRole("heading", { name: "Paste and press Enter" }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/navigator-05-run.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 6: Login page shows auth flow", async ({ page }) => {
+    await page.goto("/navigator/login");
+    await expect(
+      page.getByRole("heading", { name: "Log in to your account" }),
+    ).toBeVisible();
+    await expect(page.getByText("Anthropic (claude.ai account)")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/navigator-06-login.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 7: Open page shows claude command with copy button", async ({
     page,
   }) => {
     await page.goto("/navigator/open");
@@ -48,12 +107,12 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     // Help text for finding Terminal
     await expect(page.getByText("Can't find the black window?")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/navigator-02-open.png",
+      path: "tests/e2e/screenshots/en/navigator-07-open.png",
       fullPage: true,
     });
   });
 
-  test("Step 3: Prompt page shows copyable prompt text", async ({ page }) => {
+  test("Step 8: Prompt page shows copyable prompt text", async ({ page }) => {
     await page.goto("/navigator/prompt");
     await expect(
       page.getByRole("heading", {
@@ -65,12 +124,12 @@ test.describe("Navigator Onboarding Exercise — English", () => {
       page.getByText("Create a personal webpage about me"),
     ).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/navigator-03-prompt.png",
+      path: "tests/e2e/screenshots/en/navigator-08-prompt.png",
       fullPage: true,
     });
   });
 
-  test("Step 4: Watch page has transparency and error framing", async ({
+  test("Step 9: Watch page has transparency and error framing", async ({
     page,
   }) => {
     await page.goto("/navigator/watch");
@@ -79,7 +138,7 @@ test.describe("Navigator Onboarding Exercise — English", () => {
         name: "Claude is building your webpage",
       }),
     ).toBeVisible();
-    // Transparency section (Craftsman-inspired)
+    // Transparency section
     await expect(
       page.getByText("What Claude is doing right now"),
     ).toBeVisible();
@@ -92,12 +151,12 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     ).toBeVisible();
     await expect(page.getByText("If you see red or yellow text")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/navigator-04-watch.png",
+      path: "tests/e2e/screenshots/en/navigator-09-watch.png",
       fullPage: true,
     });
   });
 
-  test("Step 5: Result page shows open command", async ({ page }) => {
+  test("Step 10: Result page shows open command", async ({ page }) => {
     await page.goto("/navigator/result");
     await expect(
       page.getByRole("heading", { name: "Open your new webpage" }),
@@ -106,12 +165,12 @@ test.describe("Navigator Onboarding Exercise — English", () => {
       page.locator(".text-slate-200", { hasText: "open index.html" }),
     ).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/navigator-05-result.png",
+      path: "tests/e2e/screenshots/en/navigator-10-result.png",
       fullPage: true,
     });
   });
 
-  test("Step 6: Celebrate page shows accomplishments and personalization", async ({
+  test("Step 11: Celebrate page shows accomplishments and personalization", async ({
     page,
   }) => {
     await page.goto("/navigator/celebrate");
@@ -126,21 +185,21 @@ test.describe("Navigator Onboarding Exercise — English", () => {
         'svg[aria-label="The Navigator — a figure holding a compass"]',
       ),
     ).toBeVisible();
-    // Accomplishment framing (Strategist-inspired)
+    // Accomplishment framing
     await expect(
       page.getByText("Look what you just accomplished"),
     ).toBeVisible();
     await expect(
       page.getByText("You gave an instruction in plain English"),
     ).toBeVisible();
-    // Personalization micro-exercise (Builder-inspired)
+    // Personalization micro-exercise
     await expect(page.getByText("Make it yours")).toBeVisible();
     await expect(page.getByText("Change the background color")).toBeVisible();
     // Next step ideas still present
     await expect(page.getByText("Want to try more?")).toBeVisible();
     await expect(page.getByText("Write a thank-you email")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/navigator-06-celebrate.png",
+      path: "tests/e2e/screenshots/en/navigator-11-celebrate.png",
       fullPage: true,
     });
   });
@@ -157,6 +216,26 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     await page.waitForURL("**/navigator/welcome");
 
     // Welcome → click Let's go
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/navigator/platform");
+
+    // Platform → click Yes
+    await page.locator("#btn-yes").click();
+    await page.waitForURL("**/navigator/terminal", { timeout: 2000 });
+
+    // Terminal → click Next
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/navigator/install");
+
+    // Install → click Next
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/navigator/run");
+
+    // Run → click Next
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/navigator/login");
+
+    // Login → click Next
     await page.locator("#wizard-next").click();
     await page.waitForURL("**/navigator/open");
 
@@ -205,20 +284,50 @@ test.describe("Navigator Onboarding Exercise — Swedish", () => {
     });
   });
 
-  test("Step 3: Prompt page in Swedish", async ({ page }) => {
-    await page.goto("/sv/navigator/prompt");
-    await expect(page.locator("h1").first()).toBeVisible();
+  test("Step 2: Platform page in Swedish", async ({ page }) => {
+    await page.goto("/sv/navigator/platform");
+    await expect(page.locator("#btn-yes")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/sv/navigator-03-prompt.png",
+      path: "tests/e2e/screenshots/sv/navigator-02-platform.png",
       fullPage: true,
     });
   });
 
-  test("Step 6: Celebrate page in Swedish", async ({ page }) => {
+  test("Step 3: Terminal page in Swedish", async ({ page }) => {
+    await page.goto("/sv/navigator/terminal");
+    await expect(page.locator("h1").first()).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/navigator-03-terminal.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 4: Install page in Swedish", async ({ page }) => {
+    await page.goto("/sv/navigator/install");
+    await expect(page.locator("h1").first()).toBeVisible();
+    await expect(
+      page.locator(".text-slate-200", { hasText: "curl -fsSL" }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/navigator-04-install.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 8: Prompt page in Swedish", async ({ page }) => {
+    await page.goto("/sv/navigator/prompt");
+    await expect(page.locator("h1").first()).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/navigator-08-prompt.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 11: Celebrate page in Swedish", async ({ page }) => {
     await page.goto("/sv/navigator/celebrate");
     await expect(page.locator("h1").first()).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/sv/navigator-06-celebrate.png",
+      path: "tests/e2e/screenshots/sv/navigator-11-celebrate.png",
       fullPage: true,
     });
   });
@@ -237,9 +346,9 @@ test.describe("Navigator Navigation", () => {
     const style1 = await progressBar.getAttribute("style");
 
     await page.goto("/navigator/result");
-    const style5 = await progressBar.getAttribute("style");
+    const style10 = await progressBar.getAttribute("style");
 
-    // Step 5 should have wider progress bar than step 1
-    expect(style1).not.toEqual(style5);
+    // Step 10 should have wider progress bar than step 1
+    expect(style1).not.toEqual(style10);
   });
 });

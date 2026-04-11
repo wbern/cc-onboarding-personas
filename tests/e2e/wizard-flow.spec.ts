@@ -293,7 +293,46 @@ test.describe("Craftsman Onboarding Wizard", () => {
     });
   });
 
-  test("Step 2: Exercise page shows buggy code", async ({ page }) => {
+  test("Step 2: Platform check page", async ({ page }) => {
+    await page.goto("/craftsman/platform");
+    await expect(
+      page.getByRole("heading", { name: "macOS only (for now)" }),
+    ).toBeVisible();
+    await expect(page.locator("#btn-yes")).toBeVisible();
+    await expect(page.locator("#btn-no")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-02-platform.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 3: Install page shows copy command", async ({ page }) => {
+    await page.goto("/craftsman/install");
+    await expect(
+      page.getByRole("heading", { name: "Install Claude Code" }),
+    ).toBeVisible();
+    await expect(
+      page.locator(".text-slate-200", { hasText: "curl -fsSL" }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-03-install.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 4: Login page shows auth options", async ({ page }) => {
+    await page.goto("/craftsman/login");
+    await expect(
+      page.getByRole("heading", { name: "Authenticate" }),
+    ).toBeVisible();
+    await expect(page.getByText("Anthropic (claude.ai account)")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-04-login.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 5: Exercise page shows buggy code", async ({ page }) => {
     await page.goto("/craftsman/exercise");
     await expect(
       page.getByRole("heading", { name: "Debug this" }),
@@ -301,12 +340,12 @@ test.describe("Craftsman Onboarding Wizard", () => {
     await expect(page.getByText("task_queue.py")).toBeVisible();
     await expect(page.getByText("process_with_retry")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/craftsman-02-exercise.png",
+      path: "tests/e2e/screenshots/en/craftsman-05-exercise.png",
       fullPage: true,
     });
   });
 
-  test("Step 2: Exercise page shows expected terminal output", async ({
+  test("Step 5: Exercise page shows expected terminal output", async ({
     page,
   }) => {
     await page.goto("/craftsman/exercise");
@@ -318,13 +357,13 @@ test.describe("Craftsman Onboarding Wizard", () => {
     ).toBeVisible();
   });
 
-  test("Step 2: Exercise page shows time comparison", async ({ page }) => {
+  test("Step 5: Exercise page shows time comparison", async ({ page }) => {
     await page.goto("/craftsman/exercise");
     await expect(page.locator("#time-manual")).toHaveText("~10 min");
     await expect(page.locator("#time-claude")).toHaveText("~15 sec");
   });
 
-  test("Step 2: Bug hints are collapsed by default", async ({ page }) => {
+  test("Step 5: Bug hints are collapsed by default", async ({ page }) => {
     await page.goto("/craftsman/exercise");
     const details = page.locator("details");
     await expect(details).not.toHaveAttribute("open");
@@ -334,7 +373,7 @@ test.describe("Craftsman Onboarding Wizard", () => {
     await expect(page.getByText("Shared state without locking")).toBeVisible();
   });
 
-  test("Step 3: Verify page shows evaluation criteria", async ({ page }) => {
+  test("Step 6: Verify page shows evaluation criteria", async ({ page }) => {
     await page.goto("/craftsman/verify");
     await expect(
       page.getByRole("heading", { name: "Check the work" }),
@@ -342,7 +381,7 @@ test.describe("Craftsman Onboarding Wizard", () => {
     await expect(page.getByText("How to judge the output")).toBeVisible();
     await expect(page.getByText("Form your own opinion")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/craftsman-03-verify.png",
+      path: "tests/e2e/screenshots/en/craftsman-06-verify.png",
       fullPage: true,
     });
   });
@@ -358,7 +397,19 @@ test.describe("Craftsman Onboarding Wizard", () => {
     await craftsmanCard.click();
     await page.waitForURL("**/craftsman/why");
 
-    // Why → click "Try the exercise"
+    // Why → click Next
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/craftsman/platform");
+
+    // Platform → click Yes
+    await page.locator("#btn-yes").click();
+    await page.waitForURL("**/craftsman/install", { timeout: 2000 });
+
+    // Install → click Next
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/craftsman/login");
+
+    // Login → click "Try the exercise"
     await page.locator("#wizard-next").click();
     await page.waitForURL("**/craftsman/exercise");
 
@@ -404,19 +455,51 @@ test.describe("Craftsman Onboarding Wizard — Swedish", () => {
     });
   });
 
-  test("Step 2: Exercise page in Swedish", async ({ page }) => {
+  test("Step 2: Platform page in Swedish", async ({ page }) => {
+    await page.goto("/sv/craftsman/platform");
+    await expect(page.locator("#btn-yes")).toBeVisible();
+    await expect(page.locator("#btn-no")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-02-platform.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 3: Install page in Swedish", async ({ page }) => {
+    await page.goto("/sv/craftsman/install");
+    await expect(page.locator("h1").first()).toBeVisible();
+    await expect(
+      page.locator(".text-slate-200", { hasText: "curl -fsSL" }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-03-install.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 4: Login page in Swedish", async ({ page }) => {
+    await page.goto("/sv/craftsman/login");
+    await expect(page.locator("h1").first()).toBeVisible();
+    await expect(page.getByText("Anthropic (claude.ai account)")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-04-login.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 5: Exercise page in Swedish", async ({ page }) => {
     await page.goto("/sv/craftsman/exercise");
     await expect(
       page.getByRole("heading", { name: "Felsök det här" }),
     ).toBeVisible();
     await expect(page.getByText("task_queue.py")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/sv/craftsman-02-exercise.png",
+      path: "tests/e2e/screenshots/sv/craftsman-05-exercise.png",
       fullPage: true,
     });
   });
 
-  test("Step 2: Exercise page shows time comparison in Swedish", async ({
+  test("Step 5: Exercise page shows time comparison in Swedish", async ({
     page,
   }) => {
     await page.goto("/sv/craftsman/exercise");
@@ -424,14 +507,14 @@ test.describe("Craftsman Onboarding Wizard — Swedish", () => {
     await expect(page.locator("#time-claude")).toHaveText("~15 sek");
   });
 
-  test("Step 3: Verify page in Swedish", async ({ page }) => {
+  test("Step 6: Verify page in Swedish", async ({ page }) => {
     await page.goto("/sv/craftsman/verify");
     await expect(
       page.getByRole("heading", { name: "Kontrollera arbetet" }),
     ).toBeVisible();
     await expect(page.getByText("Bilda din egen uppfattning")).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/sv/craftsman-03-verify.png",
+      path: "tests/e2e/screenshots/sv/craftsman-06-verify.png",
       fullPage: true,
     });
   });
