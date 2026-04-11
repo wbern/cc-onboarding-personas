@@ -1,0 +1,90 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const exercisePrompt = 'Build a single-page HTML app with a button that counts clicks';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'exercise.title')}
+  currentStep={7} totalSteps={8}
+  prevHref={`${base}sv/builder/login`}
+  nextHref={`${base}sv/builder/ready`}
+  stepLabel="Steg 7 av 8" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'exercise.title')}</h1>
+  <p class="text-slate-400 mb-6">{t(locale, 'exercise.subtitle')}</p>
+
+  <div class="space-y-6">
+    <div>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">1.</span>
+        <p class="text-slate-300">{t(locale, 'exercise.step1')}</p>
+      </div>
+      <div class="relative">
+        <TerminalMockup command="mkdir my-project && cd my-project && claude" />
+        <div class="absolute top-2.5 right-3">
+          <CopyButton text="mkdir my-project && cd my-project && claude" copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">2.</span>
+        <p class="text-slate-300">
+          {t(locale, 'exercise.step2Prefix')} <code class="px-1.5 py-0.5 bg-slate-800 rounded text-indigo-400">claude&gt;</code> {t(locale, 'exercise.step2Suffix')}
+        </p>
+      </div>
+      <div class="relative">
+        <TerminalMockup>
+          <div class="text-slate-400">
+            <p>
+              <span class="text-indigo-400">claude&gt;</span>
+              <span class="text-white"> {exercisePrompt}</span>
+            </p>
+          </div>
+        </TerminalMockup>
+        <div class="absolute top-2.5 right-3">
+          <CopyButton text={exercisePrompt} copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">3.</span>
+        <p class="text-slate-300">{t(locale, 'exercise.step3')}</p>
+      </div>
+      <TerminalMockup>
+        <div class="text-slate-400">
+          <p class="text-white">{t(locale, 'exercise.mockResponse')}</p>
+          <p class="mt-2">
+            <span class="text-emerald-400">{t(locale, 'exercise.mockCreated')}</span> index.html
+          </p>
+          <p class="mt-1 text-slate-500">{t(locale, 'exercise.mockDescription')}</p>
+        </div>
+      </TerminalMockup>
+    </div>
+
+    <div>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">4.</span>
+        <p class="text-slate-300">{t(locale, 'exercise.step4')}</p>
+      </div>
+      <div class="relative">
+        <TerminalMockup command="open index.html" />
+        <div class="absolute top-2.5 right-3">
+          <CopyButton text="open index.html" copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+        </div>
+      </div>
+    </div>
+
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300">{t(locale, 'exercise.summary')}</p>
+    </div>
+  </div>
+</WizardLayout>

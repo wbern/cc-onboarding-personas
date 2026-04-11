@@ -110,11 +110,25 @@ test.describe("Builder Onboarding Wizard — English", () => {
     });
   });
 
-  test("Step 7: Ready page shows completion", async ({ page }) => {
+  test("Step 7: Exercise page shows first build exercise", async ({ page }) => {
+    await page.goto("/builder/exercise");
+    await expect(
+      page.getByRole("heading", { name: "Your First Build" }),
+    ).toBeVisible();
+    await expect(
+      page.locator(".text-slate-200", { hasText: "mkdir my-project" }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/07-exercise.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 8: Ready page shows completion", async ({ page }) => {
     await page.goto("/builder/ready");
     await expect(page.locator("h1").first()).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/en/07-ready.png",
+      path: "tests/e2e/screenshots/en/08-ready.png",
       fullPage: true,
     });
   });
@@ -148,6 +162,10 @@ test.describe("Builder Onboarding Wizard — English", () => {
     await page.waitForURL("**/builder/login");
 
     // Login → click Next
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/builder/exercise");
+
+    // Exercise → click Next
     await page.locator("#wizard-next").click();
     await page.waitForURL("**/builder/ready");
 
@@ -192,11 +210,20 @@ test.describe("Builder Onboarding Wizard — Swedish", () => {
     });
   });
 
-  test("Step 7: Ready page in Swedish", async ({ page }) => {
+  test("Step 7: Exercise page in Swedish", async ({ page }) => {
+    await page.goto("/sv/builder/exercise");
+    await expect(page.locator("h1").first()).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/07-exercise.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 8: Ready page in Swedish", async ({ page }) => {
     await page.goto("/sv/builder/ready");
     await expect(page.locator("h1").first()).toBeVisible();
     await page.screenshot({
-      path: "tests/e2e/screenshots/sv/07-ready.png",
+      path: "tests/e2e/screenshots/sv/08-ready.png",
       fullPage: true,
     });
   });

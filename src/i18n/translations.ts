@@ -82,6 +82,21 @@ export const translations = {
     "login.pressEnter": "Press",
     "login.authQuestion": "? How would you like to authenticate?",
 
+    // Exercise
+    "exercise.title": "Your First Build",
+    "exercise.subtitle": "You're set up. Time to build something real.",
+    "exercise.step1": "Create a project folder and open Claude Code:",
+    "exercise.step2Prefix": "At the",
+    "exercise.step2Suffix": "prompt, type this:",
+    "exercise.step3": "Watch Claude build it. You'll see something like:",
+    "exercise.mockResponse": "I'll create a click counter app for you.",
+    "exercise.mockCreated": "Created",
+    "exercise.mockDescription":
+      "A single-page app with a styled button that tracks and displays the click count.",
+    "exercise.step4": "Open the file to see your work:",
+    "exercise.summary":
+      "That's the core workflow: describe what you want, Claude builds it. You just shipped your first thing with Claude Code.",
+
     // Ready
     "ready.title": "Congratulations!",
     "ready.subtitle": "Claude Code is up and running. You're ready to build.",
@@ -177,6 +192,21 @@ export const translations = {
       "Du behöver en Claude Pro-, Max-, Team- eller Enterprise-prenumeration. Om du inte har en ännu kan du registrera dig på",
     "login.pressEnter": "Tryck på",
     "login.authQuestion": "? Hur vill du autentisera?",
+
+    // Exercise
+    "exercise.title": "Ditt första bygge",
+    "exercise.subtitle": "Allt är klart. Dags att bygga något på riktigt.",
+    "exercise.step1": "Skapa en projektmapp och starta Claude Code:",
+    "exercise.step2Prefix": "Vid",
+    "exercise.step2Suffix": "prompten, skriv detta:",
+    "exercise.step3": "Se Claude bygga det. Du kommer se något i stil med:",
+    "exercise.mockResponse": "Jag skapar en klickräknar-app åt dig.",
+    "exercise.mockCreated": "Skapad",
+    "exercise.mockDescription":
+      "En ensidesapp med en stilren knapp som räknar och visar antal klick.",
+    "exercise.step4": "Öppna filen för att se ditt resultat:",
+    "exercise.summary":
+      "Det är hela arbetsflödet: beskriv vad du vill ha, Claude bygger det. Du har precis levererat din första grej med Claude Code.",
 
     // Ready
     "ready.title": "Grattis!",
