@@ -1,0 +1,44 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="Run the Installer"
+  currentStep={5}
+  totalSteps={11}
+  prevHref={`${base}navigator/install`}
+  nextHref={`${base}navigator/login`}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">Paste and press Enter</h1>
+  <p class="text-slate-300 mb-6">
+    Click inside the black window (Terminal), then paste what you copied.
+  </p>
+
+  <div class="space-y-6">
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300 mb-3">
+        Press <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">&#8984;V</kbd>
+        to paste, then press
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+      </p>
+    </div>
+
+    <div>
+      <p class="text-sm text-slate-500 mb-2">You should see something like this:</p>
+      <TerminalMockup
+        command="curl -fsSL https://claude.ai/install.sh | bash"
+        output="Installing Claude Code...
+Downloading latest version...
+Installation complete! Run 'claude' to get started."
+      />
+    </div>
+
+    <div class="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+      <p class="text-sm text-slate-300">
+        This takes a few seconds. When it says "Installation complete," you're
+        ready for the next step. Nothing can go wrong here.
+      </p>
+    </div>
+  </div>
+</WizardLayout>

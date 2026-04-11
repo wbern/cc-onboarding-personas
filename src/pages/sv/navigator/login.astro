@@ -1,0 +1,64 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'navigator.login.title')}
+  currentStep={6}
+  totalSteps={11}
+  prevHref={`${base}sv/navigator/run`}
+  nextHref={`${base}sv/navigator/open`}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '6').replace('{total}', '11')}
+  lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">{t(locale, 'navigator.login.title')}</h1>
+  <p class="text-slate-300 mb-6">
+    {t(locale, 'navigator.login.subtitle')}
+  </p>
+
+  <div class="space-y-6">
+    <TerminalMockup>
+      <div class="text-slate-400">
+        <p class="text-white">{t(locale, 'login.authQuestion')}</p>
+        <p class="text-indigo-400">&gt; Anthropic (claude.ai account)</p>
+        <p>&nbsp; Anthropic API Key</p>
+        <p>&nbsp; Amazon Bedrock</p>
+        <p>&nbsp; Google Vertex AI</p>
+      </div>
+    </TerminalMockup>
+
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">1.</span>
+          <p class="text-slate-300">
+            {t(locale, 'navigator.login.step1')}
+          </p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">2.</span>
+          <p class="text-slate-300">
+            {t(locale, 'navigator.login.step2')}
+          </p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">3.</span>
+          <p class="text-slate-300">
+            {t(locale, 'navigator.login.step3')}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-sm text-slate-500">
+      {t(locale, 'navigator.login.subscription')}
+      <span class="text-indigo-400">claude.ai</span>.
+    </p>
+  </div>
+</WizardLayout>

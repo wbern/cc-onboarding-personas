@@ -1,0 +1,88 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'craftsman.platform.title')}
+  currentStep={2}
+  totalSteps={6}
+  prevHref={`${base}sv/craftsman/why`}
+  nextHref={null}
+  backLabel={t(locale, 'nav.back')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '2').replace('{total}', '6')}
+  lang={locale}
+>
+<div id="page-data" data-base={base} data-next={`${base}sv/craftsman/install`} class="hidden" />
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'craftsman.platform.title')}</h1>
+  <p class="text-slate-400 mb-8">
+    {t(locale, 'craftsman.platform.subtitle')}
+  </p>
+
+  <div class="flex gap-4 mb-8" id="platform-buttons">
+    <button
+      id="btn-yes"
+      class="flex-1 py-4 px-6 rounded-xl border-2 text-lg font-medium
+             transition-all duration-300 cursor-pointer
+             border-slate-700 bg-slate-800 text-slate-300
+             hover:border-indigo-500 hover:text-white"
+    >
+      {t(locale, 'platform.yes')}
+    </button>
+    <button
+      id="btn-no"
+      class="flex-1 py-4 px-6 rounded-xl border-2 text-lg font-medium
+             transition-all duration-300 cursor-pointer
+             border-slate-700 bg-slate-800 text-slate-300
+             hover:border-slate-500 hover:text-white"
+    >
+      {t(locale, 'platform.no')}
+    </button>
+  </div>
+
+  <div id="not-mac-message" class="hidden text-center p-6 rounded-xl bg-slate-800 border border-slate-700">
+    <p class="text-slate-300 text-lg mb-2">
+      {t(locale, 'platform.notMac')}
+    </p>
+    <p class="text-slate-500 text-sm">
+      {t(locale, 'platform.notMacSub')}
+    </p>
+  </div>
+</WizardLayout>
+
+<script>
+  const btnYes = document.getElementById('btn-yes')!;
+  const btnNo = document.getElementById('btn-no')!;
+  const notMacMsg = document.getElementById('not-mac-message')!;
+  const pageData = document.getElementById('page-data')!;
+  const nextUrl = pageData.dataset.next || '/';
+
+  const isMac = /Mac|macOS/i.test(navigator.userAgent || navigator.platform || '');
+
+  function selectYes() {
+    btnYes.classList.add('border-indigo-500', 'bg-indigo-500/20', 'text-white', 'scale-105');
+    btnNo.classList.add('opacity-40');
+    btnNo.classList.remove('hover:border-slate-500', 'hover:text-white');
+    notMacMsg.classList.add('hidden');
+
+    setTimeout(() => {
+      window.location.href = nextUrl;
+    }, 400);
+  }
+
+  function selectNo() {
+    btnNo.classList.add('border-red-500/50', 'bg-red-500/10', 'text-white');
+    btnYes.classList.add('opacity-40');
+    btnYes.classList.remove('hover:border-indigo-500', 'hover:text-white');
+    notMacMsg.classList.remove('hidden');
+  }
+
+  btnYes.addEventListener('click', selectYes);
+  btnNo.addEventListener('click', selectNo);
+
+  if (isMac) {
+    btnYes.classList.add('border-indigo-500', 'bg-indigo-500/20', 'text-white');
+  }
+</script>

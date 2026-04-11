@@ -1,0 +1,43 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="Log In"
+  currentStep={4}
+  totalSteps={6}
+  prevHref={`${base}craftsman/install`}
+  nextHref={`${base}craftsman/exercise`}
+  nextLabel="Try the exercise"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Authenticate</h1>
+  <p class="text-slate-400 mb-6">
+    Run <code class="px-1.5 py-0.5 rounded bg-slate-700 text-sm text-white">claude</code>
+    to launch. It will prompt for authentication and open your browser.
+  </p>
+
+  <div class="space-y-6">
+    <TerminalMockup>
+      <div class="text-slate-400">
+        <p class="text-white">? How would you like to authenticate?</p>
+        <p class="text-indigo-400">&gt; Anthropic (claude.ai account)</p>
+        <p>&nbsp; Anthropic API Key</p>
+        <p>&nbsp; Amazon Bedrock</p>
+        <p>&nbsp; Google Vertex AI</p>
+      </div>
+    </TerminalMockup>
+
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <div class="space-y-2 text-sm text-slate-300">
+        <p>1. Select "Anthropic" (Enter)</p>
+        <p>2. Authenticate in the browser window that opens</p>
+        <p>3. Return to the terminal &mdash; it confirms the session</p>
+      </div>
+    </div>
+
+    <p class="text-sm text-slate-500">
+      Requires a Claude Pro, Max, Team, or Enterprise subscription.
+    </p>
+  </div>
+</WizardLayout>

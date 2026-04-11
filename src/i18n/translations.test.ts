@@ -21,11 +21,11 @@ describe("t()", () => {
   });
 
   it("returns English navigator translation", () => {
-    expect(t("en", "navigator.welcome.title")).toBe("You did it!");
+    expect(t("en", "navigator.welcome.title")).toBe("Welcome!");
   });
 
   it("returns Swedish navigator translation", () => {
-    expect(t("sv", "navigator.welcome.title")).toBe("Du klarade det!");
+    expect(t("sv", "navigator.welcome.title")).toBe("Välkommen!");
   });
 
   it("returns English navigator landing translation", () => {

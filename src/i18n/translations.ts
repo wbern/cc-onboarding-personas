@@ -212,6 +212,27 @@ export const translations = {
     "landing.craftsman.bullet4":
       "Looking for a force multiplier, not an autopilot",
 
+    // Craftsman — Platform
+    "craftsman.platform.title": "macOS only (for now)",
+    "craftsman.platform.subtitle":
+      "Claude Code currently runs on macOS. Windows and Linux support is in progress.",
+
+    // Craftsman — Install
+    "craftsman.install.title": "Install Claude Code",
+    "craftsman.install.subtitle": "Open a terminal and run this.",
+    "craftsman.install.description":
+      "Official installer from Anthropic. Takes a few seconds.",
+
+    // Craftsman — Login
+    "craftsman.login.title": "Authenticate",
+    "craftsman.login.subtitle":
+      "Run claude to launch. It will prompt for authentication and open your browser.",
+    "craftsman.login.step1": 'Select "Anthropic" (Enter)',
+    "craftsman.login.step2": "Authenticate in the browser window that opens",
+    "craftsman.login.step3": "Return to the terminal — it confirms the session",
+    "craftsman.login.subscription":
+      "Requires a Claude Pro, Max, Team, or Enterprise subscription.",
+
     // Craftsman — Why
     "craftsman.why.title": "See it work before you trust it",
     "craftsman.why.subtitle":
@@ -305,9 +326,61 @@ export const translations = {
     "landing.strategist.bullet4": "Upgrades only when the math checks out",
 
     // Navigator — Welcome
-    "navigator.welcome.title": "You did it!",
+    "navigator.welcome.title": "Welcome!",
     "navigator.welcome.subtitle":
       "Claude Code is installed on your computer. That was the hardest part — everything from here is easy.",
+    "navigator.welcome.introSubtitle":
+      "We're going to install Claude Code together, step by step. Everything is copy-and-paste — no experience needed.",
+    "navigator.welcome.introPlanBody":
+      "First, we'll install Claude Code on your computer. Then you'll ask Claude to build you a personal webpage — with zero coding. The whole thing takes about five minutes.",
+
+    // Navigator — Platform
+    "navigator.platform.title": "Are you using a Mac?",
+    "navigator.platform.subtitle":
+      "Right now, Claude Code works on Mac computers. If that's what you have, you're all set.",
+    "navigator.platform.notMac":
+      "No worries — support for other computers is coming soon.",
+    "navigator.platform.notMacSub":
+      "Check back later and we'll have you set up in no time.",
+
+    // Navigator — Terminal
+    "navigator.terminal.title": "Open the Terminal app",
+    "navigator.terminal.subtitle":
+      "Terminal is a small app on your Mac that lets you type instructions. If this looks unfamiliar, that's completely normal.",
+    "navigator.terminal.pressKeys": "Press these two keys at the same time",
+    "navigator.terminal.orClick": "(or click them here)",
+    "navigator.terminal.searchAppears": "A search bar will appear. Type:",
+    "navigator.terminal.thenPress": "Then press",
+    "navigator.terminal.doneNote":
+      "A black window will appear. This is Terminal. Leave it open — we'll use it in the next step.",
+
+    // Navigator — Install
+    "navigator.install.title": "Copy this command",
+    "navigator.install.subtitle":
+      "Click the copy button below. You'll paste it into the black window in the next step.",
+    "navigator.install.safetyNote":
+      "This is safe to use. It's the official installer from the company that makes Claude. It sets up Claude Code on your computer.",
+
+    // Navigator — Run
+    "navigator.run.title": "Paste and press Enter",
+    "navigator.run.subtitle":
+      "Click inside the black window (Terminal), then paste what you copied.",
+    "navigator.run.pasteInstruction": "Press \u2318V to paste, then press",
+    "navigator.run.shouldSee": "You should see something like this:",
+    "navigator.run.doneNote":
+      'This takes a few seconds. When it says "Installation complete," you\'re ready for the next step. Nothing can go wrong here.',
+
+    // Navigator — Login
+    "navigator.login.title": "Log in to your account",
+    "navigator.login.subtitle":
+      "Type claude in the black window and press Enter. Your browser will open so you can log in.",
+    "navigator.login.step1": "Press Enter to pick the first option",
+    "navigator.login.step2":
+      "Your web browser will open — log in with your account",
+    "navigator.login.step3":
+      "Come back to the black window — it will say you're logged in",
+    "navigator.login.subscription":
+      "You'll need a Claude Pro, Max, Team, or Enterprise subscription. If you don't have one yet, you can sign up at",
     "navigator.welcome.planTitle": "Here's what we'll do together",
     "navigator.welcome.planBody":
       "You're going to ask Claude to build you a personal webpage. In about two minutes, you'll have a real webpage you can open in your browser — made by you, with zero coding.",
@@ -605,6 +678,28 @@ export const translations = {
     "landing.craftsman.bullet4":
       "Letar efter en kraftmultiplikator, inte en autopilot",
 
+    // Craftsman — Platform
+    "craftsman.platform.title": "Bara macOS (tills vidare)",
+    "craftsman.platform.subtitle":
+      "Claude Code körs för närvarande på macOS. Stöd för Windows och Linux är på gång.",
+
+    // Craftsman — Install
+    "craftsman.install.title": "Installera Claude Code",
+    "craftsman.install.subtitle": "Öppna en terminal och kör detta.",
+    "craftsman.install.description":
+      "Officiell installerare från Anthropic. Tar några sekunder.",
+
+    // Craftsman — Login
+    "craftsman.login.title": "Autentisera",
+    "craftsman.login.subtitle":
+      "Kör claude för att starta. Den frågar om autentisering och öppnar din webbläsare.",
+    "craftsman.login.step1": 'Välj "Anthropic" (Enter)',
+    "craftsman.login.step2": "Autentisera i webbläsarfönstret som öppnas",
+    "craftsman.login.step3":
+      "Gå tillbaka till terminalen — den bekräftar sessionen",
+    "craftsman.login.subscription":
+      "Kräver en Claude Pro-, Max-, Team- eller Enterprise-prenumeration.",
+
     // Craftsman — Why
     "craftsman.why.title": "Se det fungera innan du litar på det",
     "craftsman.why.subtitle":
@@ -700,9 +795,62 @@ export const translations = {
     "landing.strategist.bullet4": "Uppgraderar bara när matten stämmer",
 
     // Navigator — Welcome
-    "navigator.welcome.title": "Du klarade det!",
+    "navigator.welcome.title": "Välkommen!",
     "navigator.welcome.subtitle":
       "Claude Code är installerat på din dator. Det var den svåraste delen — allt härifrån är enkelt.",
+    "navigator.welcome.introSubtitle":
+      "Vi ska installera Claude Code tillsammans, steg för steg. Allt är kopiera-och-klistra — ingen erfarenhet behövs.",
+    "navigator.welcome.introPlanBody":
+      "Först installerar vi Claude Code på din dator. Sen ber du Claude bygga en personlig webbsida åt dig — utan kodning. Hela processen tar ungefär fem minuter.",
+
+    // Navigator — Platform
+    "navigator.platform.title": "Använder du en Mac?",
+    "navigator.platform.subtitle":
+      "Just nu fungerar Claude Code på Mac-datorer. Om det är vad du har är du redo.",
+    "navigator.platform.notMac":
+      "Inga problem — stöd för andra datorer kommer snart.",
+    "navigator.platform.notMacSub":
+      "Kom tillbaka senare så har vi dig igång på nolltid.",
+
+    // Navigator — Terminal
+    "navigator.terminal.title": "Öppna Terminal-appen",
+    "navigator.terminal.subtitle":
+      "Terminal är en liten app på din Mac som låter dig skriva instruktioner. Om det här ser okänt ut är det helt normalt.",
+    "navigator.terminal.pressKeys": "Tryck på dessa två tangenter samtidigt",
+    "navigator.terminal.orClick": "(eller klicka på dem här)",
+    "navigator.terminal.searchAppears": "En sökruta visas. Skriv:",
+    "navigator.terminal.thenPress": "Tryck sedan på",
+    "navigator.terminal.doneNote":
+      "Ett svart fönster visas. Det är Terminal. Låt det vara öppet — vi använder det i nästa steg.",
+
+    // Navigator — Install
+    "navigator.install.title": "Kopiera det här kommandot",
+    "navigator.install.subtitle":
+      "Klicka på kopieringsknappen nedan. Du klistrar in det i det svarta fönstret i nästa steg.",
+    "navigator.install.safetyNote":
+      "Det här är säkert att använda. Det är den officiella installeraren från företaget som gör Claude. Den konfigurerar Claude Code på din dator.",
+
+    // Navigator — Run
+    "navigator.run.title": "Klistra in och tryck Enter",
+    "navigator.run.subtitle":
+      "Klicka i det svarta fönstret (Terminal), klistra sedan in det du kopierade.",
+    "navigator.run.pasteInstruction":
+      "Tryck \u2318V för att klistra in, tryck sedan på",
+    "navigator.run.shouldSee": "Du bör se något liknande:",
+    "navigator.run.doneNote":
+      'Det tar några sekunder. När det står "Installation complete" är du redo för nästa steg. Inget kan gå fel här.',
+
+    // Navigator — Login
+    "navigator.login.title": "Logga in på ditt konto",
+    "navigator.login.subtitle":
+      "Skriv claude i det svarta fönstret och tryck Enter. Din webbläsare öppnas så att du kan logga in.",
+    "navigator.login.step1":
+      "Tryck Enter för att välja det första alternativet",
+    "navigator.login.step2": "Din webbläsare öppnas — logga in med ditt konto",
+    "navigator.login.step3":
+      "Gå tillbaka till det svarta fönstret — det står att du är inloggad",
+    "navigator.login.subscription":
+      "Du behöver en Claude Pro-, Max-, Team- eller Enterprise-prenumeration. Om du inte har en ännu kan du registrera dig på",
     "navigator.welcome.planTitle": "Här är vad vi ska göra tillsammans",
     "navigator.welcome.planBody":
       "Du kommer att be Claude bygga en personlig webbsida åt dig. Om ungefär två minuter har du en riktig webbsida du kan öppna i din webbläsare — gjord av dig, utan kodning.",

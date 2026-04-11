@@ -1,0 +1,62 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="Log In"
+  currentStep={6}
+  totalSteps={11}
+  prevHref={`${base}navigator/run`}
+  nextHref={`${base}navigator/open`}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">Log in to your account</h1>
+  <p class="text-slate-300 mb-6">
+    Type <code class="px-1.5 py-0.5 rounded bg-slate-700 text-sm text-white">claude</code>
+    in the black window and press
+    <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>.
+    Your browser will open so you can log in.
+  </p>
+
+  <div class="space-y-6">
+    <TerminalMockup>
+      <div class="text-slate-400">
+        <p class="text-white">? How would you like to authenticate?</p>
+        <p class="text-indigo-400">&gt; Anthropic (claude.ai account)</p>
+        <p>&nbsp; Anthropic API Key</p>
+        <p>&nbsp; Amazon Bedrock</p>
+        <p>&nbsp; Google Vertex AI</p>
+      </div>
+    </TerminalMockup>
+
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">1.</span>
+          <p class="text-slate-300">
+            Press <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+            to pick the first option
+          </p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">2.</span>
+          <p class="text-slate-300">
+            Your web browser will open &mdash; log in with your account
+          </p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-indigo-400 mt-0.5 text-lg">3.</span>
+          <p class="text-slate-300">
+            Come back to the black window &mdash; it will say you're logged in
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-sm text-slate-500">
+      You'll need a Claude Pro, Max, Team, or Enterprise subscription.
+      If you don't have one yet, you can sign up at
+      <span class="text-indigo-400">claude.ai</span>.
+    </p>
+  </div>
+</WizardLayout>

@@ -61,13 +61,13 @@ const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
   title={t(locale, 'craftsman.exercise.title')}
-  currentStep={2}
-  totalSteps={3}
-  prevHref={`${base}sv/craftsman/why`}
+  currentStep={5}
+  totalSteps={6}
+  prevHref={`${base}sv/craftsman/login`}
   nextHref={`${base}sv/craftsman/verify`}
   backLabel={t(locale, 'nav.back')}
   nextLabel={t(locale, 'nav.next')}
-  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '2').replace('{total}', '3')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '5').replace('{total}', '6')}
   lang={locale}
 >
   <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'craftsman.exercise.title')}</h1>

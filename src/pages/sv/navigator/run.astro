@@ -1,0 +1,47 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'navigator.run.title')}
+  currentStep={5}
+  totalSteps={11}
+  prevHref={`${base}sv/navigator/install`}
+  nextHref={`${base}sv/navigator/login`}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '5').replace('{total}', '11')}
+  lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">{t(locale, 'navigator.run.title')}</h1>
+  <p class="text-slate-300 mb-6">
+    {t(locale, 'navigator.run.subtitle')}
+  </p>
+
+  <div class="space-y-6">
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300 mb-3">
+        {t(locale, 'navigator.run.pasteInstruction')}
+        <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+      </p>
+    </div>
+
+    <div>
+      <p class="text-sm text-slate-500 mb-2">{t(locale, 'navigator.run.shouldSee')}</p>
+      <TerminalMockup
+        command="curl -fsSL https://claude.ai/install.sh | bash"
+        output={t(locale, 'run.installOutput')}
+      />
+    </div>
+
+    <div class="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+      <p class="text-sm text-slate-300">
+        {t(locale, 'navigator.run.doneNote')}
+      </p>
+    </div>
+  </div>
+</WizardLayout>

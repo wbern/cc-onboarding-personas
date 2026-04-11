@@ -1,0 +1,48 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'craftsman.login.title')}
+  currentStep={4}
+  totalSteps={6}
+  prevHref={`${base}sv/craftsman/install`}
+  nextHref={`${base}sv/craftsman/exercise`}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '4').replace('{total}', '6')}
+  lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'craftsman.login.title')}</h1>
+  <p class="text-slate-400 mb-6">
+    {t(locale, 'craftsman.login.subtitle')}
+  </p>
+
+  <div class="space-y-6">
+    <TerminalMockup>
+      <div class="text-slate-400">
+        <p class="text-white">{t(locale, 'login.authQuestion')}</p>
+        <p class="text-indigo-400">&gt; Anthropic (claude.ai account)</p>
+        <p>&nbsp; Anthropic API Key</p>
+        <p>&nbsp; Amazon Bedrock</p>
+        <p>&nbsp; Google Vertex AI</p>
+      </div>
+    </TerminalMockup>
+
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <div class="space-y-2 text-sm text-slate-300">
+        <p>1. {t(locale, 'craftsman.login.step1')}</p>
+        <p>2. {t(locale, 'craftsman.login.step2')}</p>
+        <p>3. {t(locale, 'craftsman.login.step3')}</p>
+      </div>
+    </div>
+
+    <p class="text-sm text-slate-500">
+      {t(locale, 'craftsman.login.subscription')}
+    </p>
+  </div>
+</WizardLayout>

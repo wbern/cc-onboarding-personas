@@ -1,0 +1,54 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import KeyVisual from '../../../components/KeyVisual.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'navigator.terminal.title')}
+  currentStep={3}
+  totalSteps={11}
+  prevHref={`${base}sv/navigator/platform`}
+  nextHref={`${base}sv/navigator/install`}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '3').replace('{total}', '11')}
+  lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">{t(locale, 'navigator.terminal.title')}</h1>
+  <p class="text-slate-300 mb-8">
+    {t(locale, 'navigator.terminal.subtitle')}
+  </p>
+
+  <div class="space-y-8">
+    <div class="text-center">
+      <p class="text-slate-300 mb-4 text-lg">
+        {t(locale, 'navigator.terminal.pressKeys')}
+        <span class="text-slate-500 text-sm block mt-1">{t(locale, 'navigator.terminal.orClick')}</span>
+      </p>
+      <div class="flex justify-center">
+        <KeyVisual client:load />
+      </div>
+    </div>
+
+    <div class="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700">
+      <p class="text-slate-300 text-lg mb-2">
+        {t(locale, 'navigator.terminal.searchAppears')}
+      </p>
+      <p class="text-2xl font-mono text-white font-bold tracking-wide">
+        Terminal
+      </p>
+      <p class="text-slate-400 mt-2">
+        {t(locale, 'navigator.terminal.thenPress')} <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>
+      </p>
+    </div>
+
+    <div class="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-center">
+      <p class="text-sm text-slate-300">
+        {t(locale, 'navigator.terminal.doneNote')}
+      </p>
+    </div>
+  </div>
+</WizardLayout>
