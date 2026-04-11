@@ -296,6 +296,14 @@ export const translations = {
     "landing.navigator.bullet3": "Wants to direct the AI, not learn to code",
     "landing.navigator.bullet4": "Values clear guidance over technical depth",
 
+    // Strategist — Landing
+    "landing.strategist.name": "The Strategist",
+    "landing.strategist.tagline": "Finds the smartest path to every result",
+    "landing.strategist.bullet1": "Researches every option before committing",
+    "landing.strategist.bullet2": "Finds creative ways to get more from less",
+    "landing.strategist.bullet3": "Tracks ROI on tools like a portfolio",
+    "landing.strategist.bullet4": "Upgrades only when the math checks out",
+
     // Navigator — Welcome
     "navigator.welcome.title": "You did it!",
     "navigator.welcome.subtitle":
@@ -681,6 +689,15 @@ export const translations = {
     "landing.navigator.bullet3": "Vill styra AI:n, inte lära sig koda",
     "landing.navigator.bullet4":
       "Värdesätter tydlig vägledning framför tekniskt djup",
+
+    // Strategist — Landing
+    "landing.strategist.name": "Strategen",
+    "landing.strategist.tagline":
+      "Hittar den smartaste vägen till varje resultat",
+    "landing.strategist.bullet1": "Undersöker varje alternativ innan beslut",
+    "landing.strategist.bullet2": "Hittar kreativa sätt att få mer av mindre",
+    "landing.strategist.bullet3": "Spårar ROI på verktyg som en portfölj",
+    "landing.strategist.bullet4": "Uppgraderar bara när matten stämmer",
 
     // Navigator — Welcome
     "navigator.welcome.title": "Du klarade det!",

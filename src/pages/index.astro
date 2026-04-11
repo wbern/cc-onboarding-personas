@@ -4,6 +4,7 @@ import PersonaCard from '../components/PersonaCard.astro';
 import BuilderSvg from '../components/BuilderSvg.astro';
 import CraftsmanSvg from '../components/CraftsmanSvg.astro';
 import NavigatorSvg from '../components/NavigatorSvg.astro';
+import StrategistSvg from '../components/StrategistSvg.astro';
 ---
 <BaseLayout title="Choose Your Path">
   <div class="text-center mb-10">
@@ -59,6 +60,21 @@ import NavigatorSvg from '../components/NavigatorSvg.astro';
       available={true}
     >
       <NavigatorSvg slot="illustration" />
+    </PersonaCard>
+
+    <PersonaCard
+      name="The Strategist"
+      tagline="Finds the smartest path to every result"
+      bullets={[
+        'Researches every option before committing',
+        'Finds creative ways to get more from less',
+        'Tracks ROI on tools like a portfolio',
+        'Upgrades only when the math checks out',
+      ]}
+      href={`${import.meta.env.BASE_URL}strategist/exercise`}
+      available={true}
+    >
+      <StrategistSvg slot="illustration" />
     </PersonaCard>
   </div>
 </BaseLayout>
