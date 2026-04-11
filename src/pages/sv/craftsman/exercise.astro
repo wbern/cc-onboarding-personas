@@ -1,7 +1,10 @@
 ---
-import WizardLayout from '../../layouts/WizardLayout.astro';
-import TerminalMockup from '../../components/TerminalMockup.astro';
-import CopyButton from '../../components/CopyButton.tsx';
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
 
 const buggyCode = `// task_queue.py — a priority task queue with a subtle bug
 import threading
@@ -57,19 +60,19 @@ class TaskQueue:
 const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
-  title="The Exercise"
+  title={t(locale, 'craftsman.exercise.title')}
   currentStep={2}
   totalSteps={3}
-  prevHref={`${base}craftsman/why`}
-  nextHref={`${base}craftsman/verify`}
-  nextLabel="How to verify"
+  prevHref={`${base}sv/craftsman/why`}
+  nextHref={`${base}sv/craftsman/verify`}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '2').replace('{total}', '3')}
+  lang={locale}
 >
-  <h1 class="text-3xl font-bold text-white mb-2">Debug this</h1>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'craftsman.exercise.title')}</h1>
   <p class="text-slate-400 mb-6">
-    Below is a priority task queue with retry logic. It has at least two bugs
-    &mdash; one causes infinite loops under specific failure patterns, the other
-    is a concurrency issue. Copy the code, save it to a file, and ask Claude Code
-    to find the bugs.
+    {t(locale, 'craftsman.exercise.subtitle')}
   </p>
 
   <div class="space-y-6">
@@ -79,23 +82,29 @@ const base = import.meta.env.BASE_URL;
         <pre class="text-slate-300 text-xs leading-relaxed overflow-x-auto"><code>{buggyCode}</code></pre>
       </TerminalMockup>
       <div class="absolute top-2.5 right-3">
-        <CopyButton text={buggyCode} client:load />
+        <CopyButton
+          text={buggyCode}
+          copyLabel={t(locale, 'copy.button')}
+          copiedLabel={t(locale, 'copy.copied')}
+          fallbackLabel={t(locale, 'copy.fallback')}
+          client:load
+        />
       </div>
     </div>
 
     <!-- Instructions -->
     <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
-      <h2 class="text-lg font-semibold text-white mb-3">The exercise</h2>
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'craftsman.exercise.heading')}</h2>
       <ol class="space-y-3 text-sm text-slate-300">
         <li class="flex items-start gap-3">
           <span class="text-amber-400 shrink-0 font-mono">1.</span>
-          <span>Save the code above to a file:
+          <span>{t(locale, 'craftsman.exercise.step1prefix')}
             <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">task_queue.py</code>
           </span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-amber-400 shrink-0 font-mono">2.</span>
-          <span>Open Claude Code in the same directory and ask:
+          <span>{t(locale, 'craftsman.exercise.step2prefix')}
             <code class="block mt-1 px-2 py-1 bg-slate-800 rounded text-amber-300">
               find the bugs in task_queue.py and explain each one
             </code>
@@ -103,87 +112,68 @@ const base = import.meta.env.BASE_URL;
         </li>
         <li class="flex items-start gap-3">
           <span class="text-amber-400 shrink-0 font-mono">3.</span>
-          <span>Read the analysis. Check whether it found the real issues
-            &mdash; not just surface-level style complaints.</span>
+          <span>{t(locale, 'craftsman.exercise.step3')}</span>
         </li>
       </ol>
     </div>
 
-    <!-- What to expect (transparency, not hand-holding) -->
+    <!-- What to expect -->
     <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
-      <h2 class="text-lg font-semibold text-white mb-3">What you'll see in the terminal</h2>
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'craftsman.exercise.expectTitle')}</h2>
       <p class="text-slate-400 text-sm mb-3">
-        Claude reads the file, traces the logic, and reports back. The output
-        shows exactly which files it read &mdash; no hidden context.
+        {t(locale, 'craftsman.exercise.expectBody')}
       </p>
       <TerminalMockup>
         <div class="text-slate-400 space-y-1 text-xs">
           <p><span class="text-indigo-400">claude&gt;</span> <span class="text-white">find the bugs in task_queue.py and explain each one</span></p>
-          <p class="mt-2"><span class="text-slate-500">Reading</span> task_queue.py</p>
-          <p class="mt-2 text-white">I found two bugs in this code:</p>
-          <p class="mt-1"><span class="text-amber-400">Bug 1:</span> <span class="text-slate-300">Infinite retry loop in drain()...</span></p>
-          <p><span class="text-amber-400">Bug 2:</span> <span class="text-slate-300">Race condition on self.completed...</span></p>
-          <p class="mt-2 text-slate-500">Would you like me to fix these? <span class="text-white">[y/n]</span></p>
+          <p class="mt-2"><span class="text-slate-500">Läser</span> task_queue.py</p>
+          <p class="mt-2 text-white">Jag hittade två buggar i den här koden:</p>
+          <p class="mt-1"><span class="text-amber-400">Bugg 1:</span> <span class="text-slate-300">Oändlig retry-loop i drain()...</span></p>
+          <p><span class="text-amber-400">Bugg 2:</span> <span class="text-slate-300">Kapplöpningsproblem på self.completed...</span></p>
+          <p class="mt-2 text-slate-500">Vill du att jag fixar dessa? <span class="text-white">[y/n]</span></p>
         </div>
       </TerminalMockup>
       <p class="text-slate-500 text-xs mt-3">
-        If Claude asks to create or modify files, it shows the diff first.
-        You approve or reject each change &mdash; same workflow as reviewing a PR.
+        {t(locale, 'craftsman.exercise.expectFooter')}
       </p>
     </div>
 
-    <!-- Time context (measurable, not hype) -->
+    <!-- Time comparison -->
     <div class="grid grid-cols-2 gap-4" id="time-comparison">
       <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
-        <p class="text-sm text-slate-500 mb-1">Manual review</p>
+        <p class="text-sm text-slate-500 mb-1">{t(locale, 'craftsman.exercise.manualReview')}</p>
         <p class="text-2xl font-bold text-slate-300" id="time-manual">~10 min</p>
-        <p class="text-xs text-slate-600 mt-1">Read, trace logic, identify bugs</p>
+        <p class="text-xs text-slate-600 mt-1">{t(locale, 'craftsman.exercise.manualDetail')}</p>
       </div>
       <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center">
         <p class="text-sm text-amber-400 mb-1">Claude Code</p>
-        <p class="text-2xl font-bold text-white" id="time-claude">~15 sec</p>
-        <p class="text-xs text-slate-400 mt-1">Reads file, reports analysis</p>
+        <p class="text-2xl font-bold text-white" id="time-claude">~15 sek</p>
+        <p class="text-xs text-slate-400 mt-1">{t(locale, 'craftsman.exercise.claudeDetail')}</p>
       </div>
     </div>
     <p class="text-xs text-slate-500 -mt-4">
-      Speed is easy to measure. The harder question: was the analysis thorough?
-      That's what step 3 is for.
+      {t(locale, 'craftsman.exercise.timeNote')}
     </p>
 
     <!-- Hints (collapsed) -->
     <details class="rounded-xl bg-slate-800/30 border border-slate-700">
       <summary class="cursor-pointer px-5 py-3 text-sm text-slate-400 hover:text-slate-300">
-        What are the actual bugs? (verify after Claude Code responds)
+        {t(locale, 'craftsman.exercise.hintsLabel')}
       </summary>
       <div class="px-5 pb-4 space-y-3 text-sm text-slate-400">
         <div>
-          <p class="text-white font-medium">Bug 1: Infinite retry loop</p>
-          <p>
-            When a task fails, <code class="px-1 bg-slate-800 rounded">process_with_retry</code>
-            pushes it back onto the queue with a new priority. But
-            <code class="px-1 bg-slate-800 rounded">drain()</code> keeps popping and retrying,
-            so a permanently-failing task gets re-queued and re-processed
-            indefinitely &mdash; the retry counter resets each time
-            <code class="px-1 bg-slate-800 rounded">drain</code> pops it as a "new" task.
-          </p>
+          <p class="text-white font-medium">{t(locale, 'craftsman.exercise.bug1Title')}</p>
+          <p>{t(locale, 'craftsman.exercise.bug1Body')}</p>
         </div>
         <div>
-          <p class="text-white font-medium">Bug 2: Shared state without locking</p>
-          <p>
-            <code class="px-1 bg-slate-800 rounded">self.completed</code> is appended to
-            inside <code class="px-1 bg-slate-800 rounded">process_with_retry</code>
-            without holding the lock. If multiple threads call
-            <code class="px-1 bg-slate-800 rounded">drain()</code> concurrently, the list
-            can be corrupted.
-          </p>
+          <p class="text-white font-medium">{t(locale, 'craftsman.exercise.bug2Title')}</p>
+          <p>{t(locale, 'craftsman.exercise.bug2Body')}</p>
         </div>
       </div>
     </details>
 
     <p class="text-sm text-slate-500">
-      The point isn't whether Claude Code gets it perfectly right. It's whether
-      the analysis is good enough to be useful &mdash; the kind of insight you'd
-      value from a sharp colleague reviewing your code.
+      {t(locale, 'craftsman.exercise.closingNote')}
     </p>
   </div>
 </WizardLayout>

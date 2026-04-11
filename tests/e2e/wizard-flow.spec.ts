@@ -306,6 +306,24 @@ test.describe("Craftsman Onboarding Wizard", () => {
     });
   });
 
+  test("Step 2: Exercise page shows expected terminal output", async ({
+    page,
+  }) => {
+    await page.goto("/craftsman/exercise");
+    await expect(
+      page.getByText("What you'll see in the terminal"),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Claude reads the file, traces the logic"),
+    ).toBeVisible();
+  });
+
+  test("Step 2: Exercise page shows time comparison", async ({ page }) => {
+    await page.goto("/craftsman/exercise");
+    await expect(page.locator("#time-manual")).toHaveText("~10 min");
+    await expect(page.locator("#time-claude")).toHaveText("~15 sec");
+  });
+
   test("Step 2: Bug hints are collapsed by default", async ({ page }) => {
     await page.goto("/craftsman/exercise");
     const details = page.locator("details");
@@ -351,6 +369,69 @@ test.describe("Craftsman Onboarding Wizard", () => {
     await expect(page.locator("h1").first()).toBeVisible();
     await page.screenshot({
       path: "tests/e2e/screenshots/en/craftsman-full-flow-complete.png",
+      fullPage: true,
+    });
+  });
+});
+
+test.describe("Craftsman Onboarding Wizard — Swedish", () => {
+  test("Landing page shows Craftsman persona card in Swedish", async ({
+    page,
+  }) => {
+    await page.goto("/sv/");
+    await expect(page.getByText("Hantverkaren")).toBeVisible();
+    await expect(
+      page.getByText("Förtjänat varje rad. Utvärderar varje verktyg."),
+    ).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-00-landing.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 1: Why page in Swedish", async ({ page }) => {
+    await page.goto("/sv/craftsman/why");
+    await expect(
+      page.getByRole("heading", {
+        name: "Se det fungera innan du litar på det",
+      }),
+    ).toBeVisible();
+    await expect(page.getByText("Vad som händer under huven")).toBeVisible();
+    await expect(page.getByText("Var det brister")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-01-why.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 2: Exercise page in Swedish", async ({ page }) => {
+    await page.goto("/sv/craftsman/exercise");
+    await expect(
+      page.getByRole("heading", { name: "Felsök det här" }),
+    ).toBeVisible();
+    await expect(page.getByText("task_queue.py")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-02-exercise.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 2: Exercise page shows time comparison in Swedish", async ({
+    page,
+  }) => {
+    await page.goto("/sv/craftsman/exercise");
+    await expect(page.locator("#time-manual")).toHaveText("~10 min");
+    await expect(page.locator("#time-claude")).toHaveText("~15 sek");
+  });
+
+  test("Step 3: Verify page in Swedish", async ({ page }) => {
+    await page.goto("/sv/craftsman/verify");
+    await expect(
+      page.getByRole("heading", { name: "Kontrollera arbetet" }),
+    ).toBeVisible();
+    await expect(page.getByText("Bilda din egen uppfattning")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/craftsman-03-verify.png",
       fullPage: true,
     });
   });

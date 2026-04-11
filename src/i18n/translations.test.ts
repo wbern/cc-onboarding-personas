@@ -35,4 +35,20 @@ describe("t()", () => {
   it("returns Swedish navigator landing translation", () => {
     expect(t("sv", "landing.navigator.name")).toBe("Navigatören");
   });
+
+  it("returns English craftsman landing translation", () => {
+    expect(t("en", "landing.craftsman.name")).toBe("The Craftsman");
+  });
+
+  it("returns Swedish craftsman landing translation", () => {
+    expect(t("sv", "landing.craftsman.name")).toBe("Hantverkaren");
+  });
+
+  it("returns English craftsman exercise translation", () => {
+    expect(t("en", "craftsman.exercise.title")).toBe("Debug this");
+  });
+
+  it("returns Swedish craftsman exercise translation", () => {
+    expect(t("sv", "craftsman.exercise.title")).toBe("Felsök det här");
+  });
 });

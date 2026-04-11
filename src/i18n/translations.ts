@@ -163,6 +163,91 @@ export const translations = {
     "ready.tip4": "Create a REST API with Express that serves a to-do list",
     "ready.createA": "Create a",
 
+    // Craftsman — Landing
+    "landing.craftsman.name": "The Craftsman",
+    "landing.craftsman.tagline": "Earned every line. Evaluates every tool.",
+    "landing.craftsman.bullet1": "Years of mastery — values quality over speed",
+    "landing.craftsman.bullet2":
+      "Evaluates tools by what they cost, not just what they promise",
+    "landing.craftsman.bullet3":
+      "Wants control, transparency, and the ability to verify",
+    "landing.craftsman.bullet4":
+      "Looking for a force multiplier, not an autopilot",
+
+    // Craftsman — Why
+    "craftsman.why.title": "See it work before you trust it",
+    "craftsman.why.subtitle":
+      'No hype. No "10x productivity" claims. Here\'s what actually happens when you point Claude Code at a real problem.',
+    "craftsman.why.hoodTitle": "What happens under the hood",
+    "craftsman.why.hoodBody":
+      "When you ask Claude Code to debug something, it reads your files, traces the logic, and proposes changes as diffs you review before applying. Nothing is modified without your explicit approval.",
+    "craftsman.why.verifyTitle": "What you can verify",
+    "craftsman.why.verify1":
+      "Every file it reads is listed in the output. No hidden context. You see exactly what it saw.",
+    "craftsman.why.verify2":
+      "Changes are shown as diffs before applying. Same workflow you use for human code reviews.",
+    "craftsman.why.verify3":
+      "You approve or reject every modification. Nothing touches your codebase without explicit consent.",
+    "craftsman.why.verify4":
+      "It works inside your existing tools — Git, your terminal, your editor. No new ecosystem to buy into.",
+    "craftsman.why.limitsTitle": "Where it falls short",
+    "craftsman.why.limitsBody":
+      "It can produce incorrect code. It doesn't always catch every edge case. It works best when you treat its output the way you'd treat a pull request from a colleague — read the diff, verify the logic, run the tests. The goal isn't blind trust. It's informed evaluation.",
+
+    // Craftsman — Exercise
+    "craftsman.exercise.title": "Debug this",
+    "craftsman.exercise.subtitle":
+      "Below is a priority task queue with retry logic. It has at least two bugs — one causes infinite loops under specific failure patterns, the other is a concurrency issue. Copy the code, save it to a file, and ask Claude Code to find the bugs.",
+    "craftsman.exercise.heading": "The exercise",
+    "craftsman.exercise.step1prefix": "Save the code above to a file:",
+    "craftsman.exercise.step2prefix":
+      "Open Claude Code in the same directory and ask:",
+    "craftsman.exercise.step3":
+      "Read the analysis. Check whether it found the real issues — not just surface-level style complaints.",
+    "craftsman.exercise.expectTitle": "What you'll see in the terminal",
+    "craftsman.exercise.expectBody":
+      "Claude reads the file, traces the logic, and reports back. The output shows exactly which files it read — no hidden context.",
+    "craftsman.exercise.expectFooter":
+      "If Claude asks to create or modify files, it shows the diff first. You approve or reject each change — same workflow as reviewing a PR.",
+    "craftsman.exercise.manualReview": "Manual review",
+    "craftsman.exercise.manualDetail": "Read, trace logic, identify bugs",
+    "craftsman.exercise.claudeDetail": "Reads file, reports analysis",
+    "craftsman.exercise.timeNote":
+      "Speed is easy to measure. The harder question: was the analysis thorough? That's what step 3 is for.",
+    "craftsman.exercise.hintsLabel":
+      "What are the actual bugs? (verify after Claude Code responds)",
+    "craftsman.exercise.bug1Title": "Bug 1: Infinite retry loop",
+    "craftsman.exercise.bug1Body":
+      'When a task fails, process_with_retry pushes it back onto the queue with a new priority. But drain() keeps popping and retrying, so a permanently-failing task gets re-queued and re-processed indefinitely — the retry counter resets each time drain pops it as a "new" task.',
+    "craftsman.exercise.bug2Title": "Bug 2: Shared state without locking",
+    "craftsman.exercise.bug2Body":
+      "self.completed is appended to inside process_with_retry without holding the lock. If multiple threads call drain() concurrently, the list can be corrupted.",
+    "craftsman.exercise.closingNote":
+      "The point isn't whether Claude Code gets it perfectly right. It's whether the analysis is good enough to be useful — the kind of insight you'd value from a sharp colleague reviewing your code.",
+
+    // Craftsman — Verify
+    "craftsman.verify.title": "Check the work",
+    "craftsman.verify.subtitle":
+      "You've seen Claude Code analyze real code. Now evaluate what you got.",
+    "craftsman.verify.judgeTitle": "How to judge the output",
+    "craftsman.verify.judge1":
+      "Did it find the real bugs? Not style nits or theoretical issues — the actual logic errors that would cause failures in production.",
+    "craftsman.verify.judge2":
+      "Were the explanations accurate? Check the reasoning. A correct fix with wrong reasoning is a red flag. A tool you can't audit is a tool you can't trust.",
+    "craftsman.verify.judge3":
+      "Were the proposed fixes sound? Would you accept this diff in a code review? Would you need to rewrite it, or is it close to what you'd write yourself?",
+    "craftsman.verify.judge4":
+      "Did it miss anything? No tool is perfect. Note what it caught and what it didn't. That calibration is the whole point of this exercise.",
+    "craftsman.verify.nextTitle": "If that was useful, try these next",
+    "craftsman.verify.next1Label": "Explain unfamiliar code",
+    "craftsman.verify.next2Label": "Review a diff critically",
+    "craftsman.verify.next3Label": "Refactor with constraints",
+    "craftsman.verify.closingTitle": "Form your own opinion",
+    "craftsman.verify.closingBody":
+      "You've seen what Claude Code does, how it does it, and where it falls short. The rest is up to you. Use it where it earns its place in your workflow. Ignore it where it doesn't. That's the right approach.",
+    "craftsman.verify.closingRef":
+      "/help lists available commands, CLAUDE.md gives Claude Code context about your project, and Esc cancels any operation mid-flight.",
+
     // Navigator — Landing
     "landing.navigator.name": "The Navigator",
     "landing.navigator.tagline": "Focused on results, not the tech behind them",
@@ -423,6 +508,93 @@ export const translations = {
     "ready.tip4":
       "Skapa ett REST API med Express som serverar en att göra-lista",
     "ready.createA": "Skapa en",
+
+    // Craftsman — Landing
+    "landing.craftsman.name": "Hantverkaren",
+    "landing.craftsman.tagline":
+      "Förtjänat varje rad. Utvärderar varje verktyg.",
+    "landing.craftsman.bullet1":
+      "Års av mästerskap — värderar kvalitet över hastighet",
+    "landing.craftsman.bullet2":
+      "Utvärderar verktyg utifrån vad de kostar, inte bara vad de lovar",
+    "landing.craftsman.bullet3":
+      "Vill ha kontroll, transparens och möjlighet att verifiera",
+    "landing.craftsman.bullet4":
+      "Letar efter en kraftmultiplikator, inte en autopilot",
+
+    // Craftsman — Why
+    "craftsman.why.title": "Se det fungera innan du litar på det",
+    "craftsman.why.subtitle":
+      'Ingen hype. Inga "10x produktivitet"-påståenden. Här är vad som faktiskt händer när du pekar Claude Code mot ett riktigt problem.',
+    "craftsman.why.hoodTitle": "Vad som händer under huven",
+    "craftsman.why.hoodBody":
+      "När du ber Claude Code felsöka något läser den dina filer, spårar logiken och föreslår ändringar som diffar du granskar innan du tillämpar. Inget ändras utan ditt uttryckliga godkännande.",
+    "craftsman.why.verifyTitle": "Vad du kan verifiera",
+    "craftsman.why.verify1":
+      "Varje fil den läser listas i utdatan. Ingen dold kontext. Du ser exakt vad den såg.",
+    "craftsman.why.verify2":
+      "Ändringar visas som diffar innan de tillämpas. Samma arbetsflöde som du använder för mänskliga kodgranskningar.",
+    "craftsman.why.verify3":
+      "Du godkänner eller avvisar varje ändring. Inget rör din kodbas utan uttryckligt samtycke.",
+    "craftsman.why.verify4":
+      "Det fungerar i dina befintliga verktyg — Git, din terminal, din editor. Inget nytt ekosystem att köpa in dig i.",
+    "craftsman.why.limitsTitle": "Var det brister",
+    "craftsman.why.limitsBody":
+      "Det kan producera felaktig kod. Det fångar inte alltid alla kantfall. Det fungerar bäst när du behandlar dess utdata som du skulle behandla en pull request från en kollega — läs diffen, verifiera logiken, kör testerna. Målet är inte blind tillit. Det är informerad utvärdering.",
+
+    // Craftsman — Exercise
+    "craftsman.exercise.title": "Felsök det här",
+    "craftsman.exercise.subtitle":
+      "Nedan finns en prioritetskö med retry-logik. Den har minst två buggar — en orsakar oändliga loopar vid specifika felmönster, den andra är ett samtidighetsproblem. Kopiera koden, spara den i en fil och be Claude Code hitta buggarna.",
+    "craftsman.exercise.heading": "Övningen",
+    "craftsman.exercise.step1prefix": "Spara koden ovan i en fil:",
+    "craftsman.exercise.step2prefix":
+      "Öppna Claude Code i samma katalog och fråga:",
+    "craftsman.exercise.step3":
+      "Läs analysen. Kontrollera om den hittade de riktiga problemen — inte bara stilmässiga anmärkningar.",
+    "craftsman.exercise.expectTitle": "Vad du ser i terminalen",
+    "craftsman.exercise.expectBody":
+      "Claude läser filen, spårar logiken och rapporterar tillbaka. Utdatan visar exakt vilka filer den läste — ingen dold kontext.",
+    "craftsman.exercise.expectFooter":
+      "Om Claude vill skapa eller ändra filer visar den diffen först. Du godkänner eller avvisar varje ändring — samma arbetsflöde som att granska en PR.",
+    "craftsman.exercise.manualReview": "Manuell granskning",
+    "craftsman.exercise.manualDetail": "Läs, spåra logik, identifiera buggar",
+    "craftsman.exercise.claudeDetail": "Läser fil, rapporterar analys",
+    "craftsman.exercise.timeNote":
+      "Hastighet är lätt att mäta. Den svårare frågan: var analysen grundlig? Det är vad steg 3 är till för.",
+    "craftsman.exercise.hintsLabel":
+      "Vilka är de faktiska buggarna? (verifiera efter att Claude Code svarar)",
+    "craftsman.exercise.bug1Title": "Bugg 1: Oändlig retry-loop",
+    "craftsman.exercise.bug1Body":
+      'När en uppgift misslyckas lägger process_with_retry tillbaka den i kön med ny prioritet. Men drain() fortsätter att poppa och köra om, så en permanent misslyckande uppgift läggs tillbaka och bearbetas om i oändlighet — retry-räknaren nollställs varje gång drain poppar den som en "ny" uppgift.',
+    "craftsman.exercise.bug2Title": "Bugg 2: Delat tillstånd utan låsning",
+    "craftsman.exercise.bug2Body":
+      "self.completed appendas till inuti process_with_retry utan att hålla låset. Om flera trådar anropar drain() samtidigt kan listan korrumperas.",
+    "craftsman.exercise.closingNote":
+      "Poängen är inte om Claude Code får det helt rätt. Det är om analysen är tillräckligt bra för att vara användbar — den typ av insikt du skulle värdera från en skarp kollega som granskar din kod.",
+
+    // Craftsman — Verify
+    "craftsman.verify.title": "Kontrollera arbetet",
+    "craftsman.verify.subtitle":
+      "Du har sett Claude Code analysera riktig kod. Utvärdera nu vad du fick.",
+    "craftsman.verify.judgeTitle": "Hur du bedömer resultatet",
+    "craftsman.verify.judge1":
+      "Hittade den de riktiga buggarna? Inte stilpetitesser eller teoretiska problem — de faktiska logikfelen som skulle orsaka haveri i produktion.",
+    "craftsman.verify.judge2":
+      "Var förklaringarna korrekta? Kontrollera resonemanget. En korrekt fix med fel resonemang är en varningsflagga. Ett verktyg du inte kan granska är ett verktyg du inte kan lita på.",
+    "craftsman.verify.judge3":
+      "Var de föreslagna fixarna sunda? Skulle du acceptera den här diffen i en kodgranskning? Skulle du behöva skriva om den, eller är den nära det du själv skulle skrivit?",
+    "craftsman.verify.judge4":
+      "Missade den något? Inget verktyg är perfekt. Notera vad den fångade och vad den inte fångade. Den kalibreringen är hela poängen med den här övningen.",
+    "craftsman.verify.nextTitle": "Om det var användbart, prova dessa härnäst",
+    "craftsman.verify.next1Label": "Förklara okänd kod",
+    "craftsman.verify.next2Label": "Granska en diff kritiskt",
+    "craftsman.verify.next3Label": "Refaktorera med begränsningar",
+    "craftsman.verify.closingTitle": "Bilda din egen uppfattning",
+    "craftsman.verify.closingBody":
+      "Du har sett vad Claude Code gör, hur det gör det och var det brister. Resten är upp till dig. Använd det där det förtjänar sin plats i ditt arbetsflöde. Ignorera det där det inte gör det. Det är rätt tillvägagångssätt.",
+    "craftsman.verify.closingRef":
+      "/help listar tillgängliga kommandon, CLAUDE.md ger Claude Code kontext om ditt projekt, och Esc avbryter alla operationer.",
 
     // Navigator — Landing
     "landing.navigator.name": "Navigatören",

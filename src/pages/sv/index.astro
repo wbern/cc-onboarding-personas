@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PersonaCard from '../../components/PersonaCard.astro';
 import BuilderSvg from '../../components/BuilderSvg.astro';
+import CraftsmanSvg from '../../components/CraftsmanSvg.astro';
 import NavigatorSvg from '../../components/NavigatorSvg.astro';
 import { t } from '../../i18n/translations';
 
@@ -33,6 +34,22 @@ const base = import.meta.env.BASE_URL;
       startLabel={t(locale, 'landing.startJourney')}
     >
       <BuilderSvg slot="illustration" />
+    </PersonaCard>
+
+    <PersonaCard
+      name={t(locale, 'landing.craftsman.name')}
+      tagline={t(locale, 'landing.craftsman.tagline')}
+      bullets={[
+        t(locale, 'landing.craftsman.bullet1'),
+        t(locale, 'landing.craftsman.bullet2'),
+        t(locale, 'landing.craftsman.bullet3'),
+        t(locale, 'landing.craftsman.bullet4'),
+      ]}
+      href={`${base}sv/craftsman/why`}
+      available={true}
+      startLabel={t(locale, 'landing.startJourney')}
+    >
+      <CraftsmanSvg slot="illustration" />
     </PersonaCard>
 
     <PersonaCard

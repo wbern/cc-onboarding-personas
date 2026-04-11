@@ -1,0 +1,93 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'craftsman.verify.title')}
+  currentStep={3}
+  totalSteps={3}
+  prevHref={`${base}sv/craftsman/exercise`}
+  nextHref={null}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '3').replace('{total}', '3')}
+  lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'craftsman.verify.title')}</h1>
+  <p class="text-slate-400 mb-8">
+    {t(locale, 'craftsman.verify.subtitle')}
+  </p>
+
+  <div class="space-y-8">
+    <!-- Evaluation criteria -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'craftsman.verify.judgeTitle')}</h2>
+      <ul class="space-y-3 text-sm text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span>{t(locale, 'craftsman.verify.judge1')}</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span>{t(locale, 'craftsman.verify.judge2')}</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span>{t(locale, 'craftsman.verify.judge3')}</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span>{t(locale, 'craftsman.verify.judge4')}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- What to try next -->
+    <div>
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'craftsman.verify.nextTitle')}</h2>
+      <div class="space-y-3">
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">{t(locale, 'craftsman.verify.next1Label')}</p>
+          <TerminalMockup>
+            <p class="text-slate-300 text-xs">
+              <span class="text-emerald-400 select-none">$ </span>claude 'förklara livscykeln i src/server/ — spåra en förfrågan från ingång till svar'
+            </p>
+          </TerminalMockup>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">{t(locale, 'craftsman.verify.next2Label')}</p>
+          <TerminalMockup>
+            <p class="text-slate-300 text-xs">
+              <span class="text-emerald-400 select-none">$ </span>git diff HEAD~1 | claude 'granska den här diffen — fokusera på korrekthet, inte stil'
+            </p>
+          </TerminalMockup>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">{t(locale, 'craftsman.verify.next3Label')}</p>
+          <TerminalMockup>
+            <p class="text-slate-300 text-xs">
+              <span class="text-emerald-400 select-none">$ </span>claude 'refaktorera src/auth.ts — extrahera tokenvalideringen till en ren funktion, behåll samma publika API'
+            </p>
+          </TerminalMockup>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="p-6 rounded-xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20">
+      <h2 class="text-lg font-semibold text-white mb-2">{t(locale, 'craftsman.verify.closingTitle')}</h2>
+      <p class="text-slate-400 text-sm">
+        {t(locale, 'craftsman.verify.closingBody')}
+      </p>
+      <p class="text-slate-500 text-sm mt-3">
+        {t(locale, 'craftsman.verify.closingRef')}
+      </p>
+    </div>
+  </div>
+</WizardLayout>
