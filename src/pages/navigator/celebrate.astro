@@ -1,0 +1,49 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="You Built a Webpage!"
+  currentStep={6}
+  totalSteps={6}
+  prevHref={`${base}navigator/result`}
+  nextHref={null}
+>
+  <div class="text-center mb-8">
+    <div class="text-5xl mb-4" aria-hidden="true">&#127775;</div>
+    <h1 class="text-4xl font-bold text-white mb-3">You just built a webpage!</h1>
+    <p class="text-lg text-slate-300">
+      No coding. No complicated setup. Just you and Claude, working together.
+    </p>
+  </div>
+
+  <div class="p-6 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6">
+    <h2 class="text-lg font-semibold text-white mb-3">Want to try more?</h2>
+    <p class="text-slate-300 text-sm mb-4">
+      You can ask Claude to do all kinds of things. Here are some ideas
+      to paste into Claude Code:
+    </p>
+    <ul class="space-y-3 text-sm">
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10148;</span>
+        <span class="text-slate-300">"Write a thank-you email to my team for a great product launch"</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10148;</span>
+        <span class="text-slate-300">"Create a simple budget tracker spreadsheet as a CSV file"</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10148;</span>
+        <span class="text-slate-300">"Help me organize my Desktop folder by sorting files into subfolders"</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-5 rounded-xl bg-slate-800 border border-slate-700 text-center">
+    <p class="text-slate-300 text-sm">
+      Remember: you can always close the black window to stop Claude.
+      Nothing will break. When you're ready to use it again, just open
+      Terminal and type <code class="px-1.5 py-0.5 rounded bg-slate-700 text-xs text-white">claude</code>.
+    </p>
+  </div>
+</WizardLayout>

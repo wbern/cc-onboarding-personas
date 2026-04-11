@@ -1,0 +1,46 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+<svg
+  viewBox="0 0 120 140"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={['w-32 h-36', className]}
+  aria-label="The Navigator — a figure holding a compass"
+  role="img"
+>
+  <!-- Head (circle) -->
+  <circle cx="48" cy="28" r="16" fill="#34d399" />
+
+  <!-- Body (rounded trapezoid) -->
+  <path
+    d="M32 52 C32 48, 64 48, 64 52 L68 110 C68 114, 28 114, 28 110 Z"
+    fill="#10b981"
+  />
+
+  <!-- Arm reaching out holding compass -->
+  <path
+    d="M64 62 Q78 56, 84 48"
+    stroke="#10b981"
+    stroke-width="7"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Compass body (circle) -->
+  <circle cx="88" cy="40" r="14" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+
+  <!-- Compass needle -->
+  <polygon points="88,28 85,42 91,42" fill="#ef4444" />
+  <polygon points="88,52 85,42 91,42" fill="#94a3b8" />
+
+  <!-- Compass center dot -->
+  <circle cx="88" cy="40" r="2" fill="#475569" />
+
+  <!-- Base/feet (simple rounded rect) -->
+  <rect x="30" y="110" width="36" height="8" rx="4" fill="#059669" />
+</svg>

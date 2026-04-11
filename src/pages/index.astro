@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PersonaCard from '../components/PersonaCard.astro';
 import BuilderSvg from '../components/BuilderSvg.astro';
 import CraftsmanSvg from '../components/CraftsmanSvg.astro';
+import NavigatorSvg from '../components/NavigatorSvg.astro';
 ---
 <BaseLayout title="Choose Your Path">
   <div class="text-center mb-10">
@@ -43,6 +44,21 @@ import CraftsmanSvg from '../components/CraftsmanSvg.astro';
       available={true}
     >
       <CraftsmanSvg slot="illustration" />
+    </PersonaCard>
+
+    <PersonaCard
+      name="The Navigator"
+      tagline="Focused on results, not the tech behind them"
+      bullets={[
+        'Uses technology to get things done, not as a hobby',
+        'Prefers tools that just work — like their Mac',
+        'Wants to direct the AI, not learn to code',
+        'Values clear guidance over technical depth',
+      ]}
+      href={`${import.meta.env.BASE_URL}navigator/welcome`}
+      available={true}
+    >
+      <NavigatorSvg slot="illustration" />
     </PersonaCard>
   </div>
 </BaseLayout>

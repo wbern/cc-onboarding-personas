@@ -1,0 +1,49 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const openCommand = 'claude';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'navigator.open.title')}
+  currentStep={2} totalSteps={6}
+  prevHref={`${base}sv/navigator/welcome`}
+  nextHref={`${base}sv/navigator/prompt`}
+  stepLabel="Steg 2 av 6" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">{t(locale, 'navigator.open.title')}</h1>
+  <p class="text-slate-300 mb-6">
+    {t(locale, 'navigator.open.subtitle')}
+    <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>.
+  </p>
+
+  <div class="relative mb-6">
+    <TerminalMockup command={openCommand} />
+    <div class="absolute top-2.5 right-3">
+      <CopyButton text={openCommand} copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+    </div>
+  </div>
+
+  <div class="p-5 rounded-xl bg-slate-800 border border-slate-700 mb-4">
+    <p class="text-sm text-slate-300 mb-3">
+      <strong class="text-white">{t(locale, 'navigator.open.cantFind')}</strong>
+    </p>
+    <ol class="text-sm text-slate-400 space-y-2 list-decimal list-inside">
+      <li>
+        Tryck <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">&#8984;</kbd>
+        + <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">Space</kbd>
+        {t(locale, 'navigator.open.step1')}
+      </li>
+      <li>
+        Skriv <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">Terminal</kbd>
+        {t(locale, 'navigator.open.step2')} <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">Enter</kbd>
+      </li>
+    </ol>
+  </div>
+
+  <p class="text-sm text-slate-500">{t(locale, 'navigator.open.readyNote')}</p>
+</WizardLayout>

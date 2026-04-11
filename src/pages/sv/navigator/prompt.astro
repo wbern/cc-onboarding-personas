@@ -1,0 +1,41 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const promptText = 'Create a personal webpage about me called index.html. Use a fun, colorful design with a welcome message, an "About Me" section with placeholder text I can edit later, and a "Fun Facts" section with 3 bullet points. Make it look modern and friendly.';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'navigator.prompt.title')}
+  currentStep={3} totalSteps={6}
+  prevHref={`${base}sv/navigator/open`}
+  nextHref={`${base}sv/navigator/watch`}
+  stepLabel="Steg 3 av 6" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">{t(locale, 'navigator.prompt.title')}</h1>
+  <p class="text-slate-300 mb-6">
+    {t(locale, 'navigator.prompt.subtitle')}
+    <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>.
+  </p>
+
+  <div class="relative mb-6">
+    <TerminalMockup>
+      <div>
+        <span class="text-indigo-400">you&gt;</span>
+        <span class="text-slate-200 ml-2">{promptText}</span>
+      </div>
+    </TerminalMockup>
+    <div class="absolute top-2.5 right-3">
+      <CopyButton text={promptText} copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+    </div>
+  </div>
+
+  <div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
+    <p class="text-sm text-slate-300">
+      <strong class="text-white">{t(locale, 'navigator.prompt.copyNote')}</strong>
+    </p>
+  </div>
+</WizardLayout>

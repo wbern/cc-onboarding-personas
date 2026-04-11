@@ -1,0 +1,52 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="While Claude Works"
+  currentStep={4}
+  totalSteps={6}
+  prevHref={`${base}navigator/prompt`}
+  nextHref={`${base}navigator/result`}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">Claude is building your webpage</h1>
+  <p class="text-slate-300 mb-6">
+    You'll see text flowing across the screen. This is completely normal
+    — it's Claude writing your webpage in real time.
+  </p>
+
+  <TerminalMockup>
+    <div class="space-y-2 text-slate-400">
+      <p><span class="text-indigo-400">claude&gt;</span> <span class="text-slate-300">I'll create a personal webpage for you...</span></p>
+      <p class="text-emerald-400">&#10003; Created index.html</p>
+      <p class="text-slate-300">I've created your personal webpage! The file is called</p>
+      <p class="text-slate-300">index.html and it's saved in your current folder.</p>
+    </div>
+  </TerminalMockup>
+
+  <div class="mt-6 space-y-4">
+    <div class="p-4 rounded-lg bg-slate-800 border border-slate-700">
+      <p class="text-sm text-slate-300">
+        <strong class="text-amber-400">If you see a question asking for permission</strong>
+        — that's Claude being polite. It's asking if it's okay to create the file.
+        Type <kbd class="px-1.5 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">y</kbd>
+        and press <kbd class="px-1.5 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">Enter</kbd>
+        to say yes.
+      </p>
+    </div>
+
+    <div class="p-4 rounded-lg bg-slate-800 border border-slate-700">
+      <p class="text-sm text-slate-300">
+        <strong class="text-amber-400">If you see red or yellow text</strong>
+        — this happens sometimes and it's not a problem. Claude often
+        figures things out on its own. Wait for it to finish.
+      </p>
+    </div>
+
+    <p class="text-sm text-slate-400">
+      When Claude says it's done creating the file, move to the next step.
+      This usually takes less than 30 seconds.
+    </p>
+  </div>
+</WizardLayout>

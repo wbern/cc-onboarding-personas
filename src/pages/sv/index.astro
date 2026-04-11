@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PersonaCard from '../../components/PersonaCard.astro';
 import BuilderSvg from '../../components/BuilderSvg.astro';
+import NavigatorSvg from '../../components/NavigatorSvg.astro';
 import { t } from '../../i18n/translations';
 
 const locale = 'sv';
@@ -32,6 +33,22 @@ const base = import.meta.env.BASE_URL;
       startLabel={t(locale, 'landing.startJourney')}
     >
       <BuilderSvg slot="illustration" />
+    </PersonaCard>
+
+    <PersonaCard
+      name={t(locale, 'landing.navigator.name')}
+      tagline={t(locale, 'landing.navigator.tagline')}
+      bullets={[
+        t(locale, 'landing.navigator.bullet1'),
+        t(locale, 'landing.navigator.bullet2'),
+        t(locale, 'landing.navigator.bullet3'),
+        t(locale, 'landing.navigator.bullet4'),
+      ]}
+      href={`${base}sv/navigator/welcome`}
+      available={true}
+      startLabel={t(locale, 'landing.startJourney')}
+    >
+      <NavigatorSvg slot="illustration" />
     </PersonaCard>
   </div>
 </BaseLayout>

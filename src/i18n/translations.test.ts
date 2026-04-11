@@ -19,4 +19,20 @@ describe("t()", () => {
     // @ts-expect-error — testing fallback for unknown key
     expect(t("en", "nonexistent.key")).toBe("nonexistent.key");
   });
+
+  it("returns English navigator translation", () => {
+    expect(t("en", "navigator.welcome.title")).toBe("You did it!");
+  });
+
+  it("returns Swedish navigator translation", () => {
+    expect(t("sv", "navigator.welcome.title")).toBe("Du klarade det!");
+  });
+
+  it("returns English navigator landing translation", () => {
+    expect(t("en", "landing.navigator.name")).toBe("The Navigator");
+  });
+
+  it("returns Swedish navigator landing translation", () => {
+    expect(t("sv", "landing.navigator.name")).toBe("Navigatören");
+  });
 });

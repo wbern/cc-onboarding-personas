@@ -1,0 +1,48 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+import CopyButton from '../../components/CopyButton.tsx';
+
+const openCommand = 'open index.html';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="See Your Webpage"
+  currentStep={5}
+  totalSteps={6}
+  prevHref={`${base}navigator/watch`}
+  nextHref={`${base}navigator/celebrate`}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">Open your new webpage</h1>
+  <p class="text-slate-300 mb-6">
+    Claude created a file called <code class="px-1.5 py-0.5 rounded bg-slate-700 text-sm text-white">index.html</code>.
+    Let's open it in your browser so you can see what you made.
+  </p>
+
+  <p class="text-slate-300 mb-3">
+    Paste this into Claude Code and press
+    <kbd class="px-2 py-0.5 rounded bg-slate-700 border border-slate-600 text-sm text-white">Enter</kbd>:
+  </p>
+
+  <div class="relative mb-6">
+    <TerminalMockup command={openCommand} />
+    <div class="absolute top-2.5 right-3">
+      <CopyButton text={openCommand} client:load />
+    </div>
+  </div>
+
+  <div class="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+    <p class="text-sm text-slate-300">
+      <strong class="text-white">Your browser will open automatically</strong>
+      with the webpage Claude built for you. Take a look — that's yours!
+    </p>
+  </div>
+
+  <div class="mt-4 p-4 rounded-lg bg-slate-800 border border-slate-700">
+    <p class="text-sm text-slate-300">
+      <strong class="text-amber-400">If nothing opens</strong>
+      — find the file called <code class="px-1 py-0.5 rounded bg-slate-700 text-xs text-white">index.html</code>
+      in your Finder and double-click it. It will open in your browser.
+    </p>
+  </div>
+</WizardLayout>

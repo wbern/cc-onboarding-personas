@@ -1,0 +1,46 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'navigator.watch.title')}
+  currentStep={4} totalSteps={6}
+  prevHref={`${base}sv/navigator/prompt`}
+  nextHref={`${base}sv/navigator/result`}
+  stepLabel="Steg 4 av 6" backLabel={t(locale, 'nav.back')} nextLabel={t(locale, 'nav.next')} lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-3">{t(locale, 'navigator.watch.title')}</h1>
+  <p class="text-slate-300 mb-6">{t(locale, 'navigator.watch.subtitle')}</p>
+
+  <TerminalMockup>
+    <div class="space-y-2 text-slate-400">
+      <p><span class="text-indigo-400">claude&gt;</span> <span class="text-slate-300">Jag skapar en personlig webbsida åt dig...</span></p>
+      <p class="text-emerald-400">&#10003; Skapade index.html</p>
+      <p class="text-slate-300">Jag har skapat din personliga webbsida! Filen heter</p>
+      <p class="text-slate-300">index.html och är sparad i din nuvarande mapp.</p>
+    </div>
+  </TerminalMockup>
+
+  <div class="mt-6 space-y-4">
+    <div class="p-4 rounded-lg bg-slate-800 border border-slate-700">
+      <p class="text-sm text-slate-300">
+        <strong class="text-amber-400">{t(locale, 'navigator.watch.permissionTip')}</strong>
+        Skriv <kbd class="px-1.5 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">y</kbd>
+        och tryck <kbd class="px-1.5 py-0.5 rounded bg-slate-700 border border-slate-600 text-xs text-white">Enter</kbd>
+        för att säga ja.
+      </p>
+    </div>
+
+    <div class="p-4 rounded-lg bg-slate-800 border border-slate-700">
+      <p class="text-sm text-slate-300">
+        <strong class="text-amber-400">{t(locale, 'navigator.watch.errorTip')}</strong>
+      </p>
+    </div>
+
+    <p class="text-sm text-slate-400">{t(locale, 'navigator.watch.doneNote')}</p>
+  </div>
+</WizardLayout>

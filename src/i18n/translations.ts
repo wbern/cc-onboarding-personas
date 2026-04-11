@@ -144,6 +144,80 @@ export const translations = {
     "ready.tip2": "Explore slash commands — type",
     "ready.tip3": "file to give Claude context about your project",
     "ready.createA": "Create a",
+
+    // Navigator — Landing
+    "landing.navigator.name": "The Navigator",
+    "landing.navigator.tagline": "Focused on results, not the tech behind them",
+    "landing.navigator.bullet1":
+      "Uses technology to get things done, not as a hobby",
+    "landing.navigator.bullet2":
+      "Prefers tools that just work — like their Mac",
+    "landing.navigator.bullet3": "Wants to direct the AI, not learn to code",
+    "landing.navigator.bullet4": "Values clear guidance over technical depth",
+
+    // Navigator — Welcome
+    "navigator.welcome.title": "You did it!",
+    "navigator.welcome.subtitle":
+      "Claude Code is installed on your computer. That was the hardest part — everything from here is easy.",
+    "navigator.welcome.planTitle": "Here's what we'll do together",
+    "navigator.welcome.planBody":
+      "You're going to ask Claude to build you a personal webpage. In about two minutes, you'll have a real webpage you can open in your browser — made by you, with zero coding.",
+    "navigator.welcome.safetyNote":
+      "Every step is copy-and-paste. You can close this window at any time — nothing will break.",
+
+    // Navigator — Open
+    "navigator.open.title": "Open Claude Code",
+    "navigator.open.subtitle":
+      "Open the black window you used to install Claude Code (it's called Terminal). Then paste this and press",
+    "navigator.open.cantFind": "Can't find the black window?",
+    "navigator.open.step1": "on your keyboard",
+    "navigator.open.step2": "and press",
+    "navigator.open.readyNote":
+      "You should see Claude Code start up with a welcome message. Once it's ready, move to the next step.",
+
+    // Navigator — Prompt
+    "navigator.prompt.title": "Ask Claude to build your webpage",
+    "navigator.prompt.subtitle":
+      "Copy the message below and paste it into Claude Code. Then press",
+    "navigator.prompt.copyNote":
+      "That's it — just paste and press Enter. Claude will read your request and start building the webpage for you. You don't need to type anything else.",
+
+    // Navigator — Watch
+    "navigator.watch.title": "Claude is building your webpage",
+    "navigator.watch.subtitle":
+      "You'll see text flowing across the screen. This is completely normal — it's Claude writing your webpage in real time.",
+    "navigator.watch.permissionTip":
+      "If you see a question asking for permission — that's Claude being polite. It's asking if it's okay to create the file.",
+    "navigator.watch.errorTip":
+      "If you see red or yellow text — this happens sometimes and it's not a problem. Claude often figures things out on its own. Wait for it to finish.",
+    "navigator.watch.doneNote":
+      "When Claude says it's done creating the file, move to the next step. This usually takes less than 30 seconds.",
+
+    // Navigator — Result
+    "navigator.result.title": "Open your new webpage",
+    "navigator.result.subtitle":
+      "Claude created a file called index.html. Let's open it in your browser so you can see what you made.",
+    "navigator.result.instruction": "Paste this into Claude Code and press",
+    "navigator.result.browserNote":
+      "Your browser will open automatically with the webpage Claude built for you. Take a look — that's yours!",
+    "navigator.result.fallback":
+      "If nothing opens — find the file called index.html in your Finder and double-click it. It will open in your browser.",
+
+    // Navigator — Celebrate
+    "navigator.celebrate.title": "You just built a webpage!",
+    "navigator.celebrate.subtitle":
+      "No coding. No complicated setup. Just you and Claude, working together.",
+    "navigator.celebrate.moreTitle": "Want to try more?",
+    "navigator.celebrate.moreBody":
+      "You can ask Claude to do all kinds of things. Here are some ideas to paste into Claude Code:",
+    "navigator.celebrate.idea1":
+      "Write a thank-you email to my team for a great product launch",
+    "navigator.celebrate.idea2":
+      "Create a simple budget tracker spreadsheet as a CSV file",
+    "navigator.celebrate.idea3":
+      "Help me organize my Desktop folder by sorting files into subfolders",
+    "navigator.celebrate.safetyReminder":
+      "Remember: you can always close the black window to stop Claude. Nothing will break. When you're ready to use it again, just open Terminal and type claude.",
   },
   sv: {
     // Landing page
@@ -292,6 +366,80 @@ export const translations = {
     "ready.tip2": "Utforska snedstreckskommandon — skriv",
     "ready.tip3": "-fil för att ge Claude kontext om ditt projekt",
     "ready.createA": "Skapa en",
+
+    // Navigator — Landing
+    "landing.navigator.name": "Navigatören",
+    "landing.navigator.tagline": "Fokuserad på resultat, inte tekniken bakom",
+    "landing.navigator.bullet1":
+      "Använder teknik för att få saker gjorda, inte som hobby",
+    "landing.navigator.bullet2":
+      "Föredrar verktyg som bara fungerar — som sin Mac",
+    "landing.navigator.bullet3": "Vill styra AI:n, inte lära sig koda",
+    "landing.navigator.bullet4":
+      "Värdesätter tydlig vägledning framför tekniskt djup",
+
+    // Navigator — Welcome
+    "navigator.welcome.title": "Du klarade det!",
+    "navigator.welcome.subtitle":
+      "Claude Code är installerat på din dator. Det var den svåraste delen — allt härifrån är enkelt.",
+    "navigator.welcome.planTitle": "Här är vad vi ska göra tillsammans",
+    "navigator.welcome.planBody":
+      "Du kommer att be Claude bygga en personlig webbsida åt dig. Om ungefär två minuter har du en riktig webbsida du kan öppna i din webbläsare — gjord av dig, utan kodning.",
+    "navigator.welcome.safetyNote":
+      "Varje steg är kopiera-och-klistra. Du kan stänga det här fönstret när som helst — inget går sönder.",
+
+    // Navigator — Open
+    "navigator.open.title": "Öppna Claude Code",
+    "navigator.open.subtitle":
+      "Öppna det svarta fönstret du använde för att installera Claude Code (det heter Terminal). Klistra sedan in detta och tryck",
+    "navigator.open.cantFind": "Hittar du inte det svarta fönstret?",
+    "navigator.open.step1": "på tangentbordet",
+    "navigator.open.step2": "och tryck",
+    "navigator.open.readyNote":
+      "Du bör se Claude Code starta med ett välkomstmeddelande. När det är klart, gå till nästa steg.",
+
+    // Navigator — Prompt
+    "navigator.prompt.title": "Be Claude bygga din webbsida",
+    "navigator.prompt.subtitle":
+      "Kopiera meddelandet nedan och klistra in det i Claude Code. Tryck sedan på",
+    "navigator.prompt.copyNote":
+      "Det är allt — klistra in och tryck Enter. Claude läser din förfrågan och börjar bygga webbsidan åt dig. Du behöver inte skriva något annat.",
+
+    // Navigator — Watch
+    "navigator.watch.title": "Claude bygger din webbsida",
+    "navigator.watch.subtitle":
+      "Du kommer att se text flöda över skärmen. Det här är helt normalt — det är Claude som skriver din webbsida i realtid.",
+    "navigator.watch.permissionTip":
+      "Om du ser en fråga om tillåtelse — det är Claude som är artig. Den frågar om det är okej att skapa filen.",
+    "navigator.watch.errorTip":
+      "Om du ser röd eller gul text — det händer ibland och det är inget problem. Claude löser ofta saker på egen hand. Vänta tills den är klar.",
+    "navigator.watch.doneNote":
+      "När Claude säger att filen är skapad, gå till nästa steg. Det tar vanligtvis mindre än 30 sekunder.",
+
+    // Navigator — Result
+    "navigator.result.title": "Öppna din nya webbsida",
+    "navigator.result.subtitle":
+      "Claude skapade en fil som heter index.html. Låt oss öppna den i din webbläsare så att du kan se vad du har skapat.",
+    "navigator.result.instruction": "Klistra in detta i Claude Code och tryck",
+    "navigator.result.browserNote":
+      "Din webbläsare öppnas automatiskt med webbsidan som Claude byggde åt dig. Ta en titt — den är din!",
+    "navigator.result.fallback":
+      "Om inget öppnas — hitta filen som heter index.html i Finder och dubbelklicka på den. Den öppnas i din webbläsare.",
+
+    // Navigator — Celebrate
+    "navigator.celebrate.title": "Du har precis byggt en webbsida!",
+    "navigator.celebrate.subtitle":
+      "Ingen kodning. Ingen komplicerad installation. Bara du och Claude, som arbetar tillsammans.",
+    "navigator.celebrate.moreTitle": "Vill du prova mer?",
+    "navigator.celebrate.moreBody":
+      "Du kan be Claude göra alla möjliga saker. Här är några idéer att klistra in i Claude Code:",
+    "navigator.celebrate.idea1":
+      "Skriv ett tackmail till mitt team för en fantastisk produktlansering",
+    "navigator.celebrate.idea2": "Skapa en enkel budgetspårare som en CSV-fil",
+    "navigator.celebrate.idea3":
+      "Hjälp mig organisera mitt skrivbord genom att sortera filer i undermappar",
+    "navigator.celebrate.safetyReminder":
+      "Kom ihåg: du kan alltid stänga det svarta fönstret för att stoppa Claude. Inget går sönder. När du är redo att använda det igen, öppna bara Terminal och skriv claude.",
   },
 } as const;
 
