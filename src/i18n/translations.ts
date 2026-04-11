@@ -97,6 +97,42 @@ export const translations = {
     "exercise.summary":
       "That's the core workflow: describe what you want, Claude builds it. You just shipped your first thing with Claude Code.",
 
+    // Strategist exercise
+    "strategist.exercise.title": "60-Second ROI Test",
+    "strategist.exercise.subtitle":
+      "One real task. Measurable result. You decide if it's worth it.",
+    "strategist.exercise.heading": "The exercise",
+    "strategist.exercise.instruction":
+      "Open your terminal in any project folder and start Claude Code. Then paste this prompt:",
+    "strategist.exercise.resultHeading": "What you'll get",
+    "strategist.exercise.resultDescription":
+      "Claude Code reads your project and responds with something like:",
+    "strategist.exercise.sampleTitle": "Project Summary",
+    "strategist.exercise.entryPoints": "Entry points",
+    "strategist.exercise.analyzed": "Analyzed 147 files in 28 seconds.",
+    "strategist.exercise.manualApproach": "Manual approach",
+    "strategist.exercise.manualDetail": "Read files, trace imports, take notes",
+    "strategist.exercise.claudeDetail": "Paste prompt, get structured answer",
+    "strategist.exercise.costHeading": "What this costs",
+    "strategist.exercise.freeTier": "Free tier",
+    "strategist.exercise.freeDescription":
+      "enough uses daily to evaluate properly",
+    "strategist.exercise.proTier": "Pro ($20/mo)",
+    "strategist.exercise.proDescription":
+      "unlimited use, faster model, longer context window",
+    "strategist.exercise.maxTier": "Max ($100/mo or $200/mo)",
+    "strategist.exercise.maxDescription":
+      "more usage, background agents, extended thinking",
+    "strategist.exercise.upgradeNote":
+      "You'll know when you need to upgrade — it's when you hit the limit mid-task, not before.",
+    "strategist.exercise.nextSteps": "Next steps",
+    "strategist.exercise.next1":
+      "Try the prompt above on your actual project right now",
+    "strategist.exercise.next2":
+      "Ask Claude Code to do something you'd normally spend 10+ minutes on",
+    "strategist.exercise.next3":
+      "Bookmark this page or share it with your team",
+
     // Ready
     "ready.title": "Congratulations!",
     "ready.subtitle": "Claude Code is up and running. You're ready to build.",
@@ -207,6 +243,43 @@ export const translations = {
     "exercise.step4": "Öppna filen för att se ditt resultat:",
     "exercise.summary":
       "Det är hela arbetsflödet: beskriv vad du vill ha, Claude bygger det. Du har precis levererat din första grej med Claude Code.",
+
+    // Strategist exercise
+    "strategist.exercise.title": "60-sekunders ROI-test",
+    "strategist.exercise.subtitle":
+      "En riktig uppgift. Mätbart resultat. Du bestämmer om det är värt det.",
+    "strategist.exercise.heading": "Övningen",
+    "strategist.exercise.instruction":
+      "Öppna din terminal i valfri projektmapp och starta Claude Code. Klistra sedan in den här prompten:",
+    "strategist.exercise.resultHeading": "Vad du får",
+    "strategist.exercise.resultDescription":
+      "Claude Code läser ditt projekt och svarar med något i stil med:",
+    "strategist.exercise.sampleTitle": "Projektsammanfattning",
+    "strategist.exercise.entryPoints": "Ingångspunkter",
+    "strategist.exercise.analyzed": "Analyserade 147 filer på 28 sekunder.",
+    "strategist.exercise.manualApproach": "Manuell metod",
+    "strategist.exercise.manualDetail": "Läs filer, spåra importer, anteckna",
+    "strategist.exercise.claudeDetail":
+      "Klistra in prompt, få strukturerat svar",
+    "strategist.exercise.costHeading": "Vad det kostar",
+    "strategist.exercise.freeTier": "Gratis",
+    "strategist.exercise.freeDescription":
+      "tillräckligt med daglig användning för att utvärdera ordentligt",
+    "strategist.exercise.proTier": "Pro (200 kr/mån)",
+    "strategist.exercise.proDescription":
+      "obegränsad användning, snabbare modell, längre kontextfönster",
+    "strategist.exercise.maxTier": "Max (1 000 kr/mån eller 2 000 kr/mån)",
+    "strategist.exercise.maxDescription":
+      "mer användning, bakgrundsagenter, utökat tänkande",
+    "strategist.exercise.upgradeNote":
+      "Du vet när du behöver uppgradera — det är när du når gränsen mitt i en uppgift, inte innan.",
+    "strategist.exercise.nextSteps": "Nästa steg",
+    "strategist.exercise.next1":
+      "Testa prompten ovan på ditt riktiga projekt nu",
+    "strategist.exercise.next2":
+      "Be Claude Code göra något du normalt lägger 10+ minuter på",
+    "strategist.exercise.next3":
+      "Bokmärk den här sidan eller dela den med ditt team",
 
     // Ready
     "ready.title": "Grattis!",

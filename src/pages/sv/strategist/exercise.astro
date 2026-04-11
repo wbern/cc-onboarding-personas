@@ -1,0 +1,139 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import StrategistSvg from '../../../components/StrategistSvg.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const prompt = 'Sammanfatta den här kodbasen: vad gör den, vilken teknikstack används, och vilka är de viktigaste ingångspunkterna?';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'strategist.exercise.title')}
+  currentStep={1}
+  totalSteps={1}
+  prevHref={null}
+  nextHref={null}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '1').replace('{total}', '1')}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  lang={locale}
+>
+  <div class="flex items-center gap-4 mb-6">
+    <StrategistSvg class="w-16 h-18 shrink-0" />
+    <div>
+      <h1 class="text-3xl font-bold text-white mb-1">{t(locale, 'strategist.exercise.title')}</h1>
+      <p class="text-slate-400">
+        {t(locale, 'strategist.exercise.subtitle')}
+      </p>
+    </div>
+  </div>
+
+  <div class="space-y-8">
+    <!-- The exercise -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-2">{t(locale, 'strategist.exercise.heading')}</h2>
+      <p class="text-slate-300 text-sm mb-3">
+        {t(locale, 'strategist.exercise.instruction')}
+      </p>
+      <div class="relative">
+        <TerminalMockup>
+          <div class="text-slate-400">
+            <div class="flex gap-2">
+              <span class="text-emerald-400 select-none">$</span>
+              <span class="text-slate-200">claude</span>
+            </div>
+            <p class="mt-2">
+              <span class="text-indigo-400">claude&gt;</span>
+              <span class="text-white ml-1" id="exercise-prompt">{prompt}</span>
+            </p>
+          </div>
+        </TerminalMockup>
+        <div class="absolute top-2.5 right-3">
+          <CopyButton
+            text={prompt}
+            copyLabel={t(locale, 'copy.button')}
+            copiedLabel={t(locale, 'copy.copied')}
+            fallbackLabel={t(locale, 'copy.fallback')}
+            client:load
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- What you'll see -->
+    <div>
+      <h2 class="text-lg font-semibold text-white mb-2">{t(locale, 'strategist.exercise.resultHeading')}</h2>
+      <p class="text-sm text-slate-500 mb-2">{t(locale, 'strategist.exercise.resultDescription')}</p>
+      <TerminalMockup>
+        <div class="text-slate-400">
+          <p class="text-white font-medium">{t(locale, 'strategist.exercise.sampleTitle')}</p>
+          <p class="mt-2">Det här är en React + TypeScript e-handelsapp byggd med Next.js 14.</p>
+          <p class="mt-1"><span class="text-slate-500">Stack:</span> React 18, TypeScript 5.3, Tailwind CSS, Prisma ORM, PostgreSQL</p>
+          <p class="mt-2"><span class="text-slate-500">{t(locale, 'strategist.exercise.entryPoints')}:</span></p>
+          <p class="ml-2">src/app/layout.tsx <span class="text-slate-600">— rotlayout</span></p>
+          <p class="ml-2">src/app/page.tsx <span class="text-slate-600">— startsida</span></p>
+          <p class="ml-2">src/app/api/ <span class="text-slate-600">— 12 API-rutter</span></p>
+          <p class="ml-2">prisma/schema.prisma <span class="text-slate-600">— datamodell (8 tabeller)</span></p>
+          <p class="mt-2 text-slate-500 text-xs">{t(locale, 'strategist.exercise.analyzed')}</p>
+        </div>
+      </TerminalMockup>
+    </div>
+
+    <!-- Time comparison -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
+        <p class="text-sm text-slate-500 mb-1">{t(locale, 'strategist.exercise.manualApproach')}</p>
+        <p class="text-2xl font-bold text-slate-300" id="time-manual">~15 min</p>
+        <p class="text-xs text-slate-600 mt-1">{t(locale, 'strategist.exercise.manualDetail')}</p>
+      </div>
+      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+        <p class="text-sm text-indigo-400 mb-1">Claude Code</p>
+        <p class="text-2xl font-bold text-white" id="time-claude">~30 sek</p>
+        <p class="text-xs text-slate-400 mt-1">{t(locale, 'strategist.exercise.claudeDetail')}</p>
+      </div>
+    </div>
+
+    <!-- Free vs paid -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'strategist.exercise.costHeading')}</h2>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-start gap-2 text-slate-300">
+          <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+          <span><strong class="text-white">{t(locale, 'strategist.exercise.freeTier')}</strong> — {t(locale, 'strategist.exercise.freeDescription')}</span>
+        </li>
+        <li class="flex items-start gap-2 text-slate-300">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#10148;</span>
+          <span><strong class="text-white">{t(locale, 'strategist.exercise.proTier')}</strong> — {t(locale, 'strategist.exercise.proDescription')}</span>
+        </li>
+        <li class="flex items-start gap-2 text-slate-300">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#10148;</span>
+          <span><strong class="text-white">{t(locale, 'strategist.exercise.maxTier')}</strong> — {t(locale, 'strategist.exercise.maxDescription')}</span>
+        </li>
+      </ul>
+      <p class="text-xs text-slate-500 mt-3">
+        {t(locale, 'strategist.exercise.upgradeNote')}
+      </p>
+    </div>
+
+    <!-- Next steps -->
+    <div class="p-6 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'strategist.exercise.nextSteps')}</h2>
+      <ul class="space-y-2 text-slate-300 text-sm">
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>{t(locale, 'strategist.exercise.next1')}</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>{t(locale, 'strategist.exercise.next2')}</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>{t(locale, 'strategist.exercise.next3')}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</WizardLayout>

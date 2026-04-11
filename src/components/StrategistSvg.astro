@@ -1,0 +1,43 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+<svg
+  viewBox="0 0 120 140"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={['w-32 h-36', className]}
+  aria-label="The Strategist — a figure holding a magnifying glass"
+  role="img"
+>
+  <!-- Head (circle) -->
+  <circle cx="48" cy="28" r="16" fill="#818cf8" />
+
+  <!-- Body (rounded trapezoid) -->
+  <path
+    d="M32 52 C32 48, 64 48, 64 52 L68 110 C68 114, 28 114, 28 110 Z"
+    fill="#6366f1"
+  />
+
+  <!-- Arm reaching out holding magnifying glass -->
+  <path
+    d="M64 62 Q78 54, 86 42"
+    stroke="#6366f1"
+    stroke-width="7"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Magnifying glass handle -->
+  <rect x="82" y="30" width="5" height="24" rx="2.5" fill="#94a3b8" transform="rotate(-25, 84, 42)" />
+
+  <!-- Magnifying glass lens (circle with ring) -->
+  <circle cx="92" cy="18" r="14" stroke="#e2e8f0" stroke-width="4" fill="none" />
+  <circle cx="92" cy="18" r="6" fill="#818cf8" opacity="0.3" />
+
+  <!-- Base/feet (simple rounded rect) -->
+  <rect x="30" y="110" width="36" height="8" rx="4" fill="#4f46e5" />
+</svg>

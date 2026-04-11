@@ -314,6 +314,80 @@ test.describe("Craftsman Onboarding Wizard", () => {
   });
 });
 
+test.describe("Strategist Exercise — English", () => {
+  test("Exercise page renders with title and prompt", async ({ page }) => {
+    await page.goto("/strategist/exercise");
+    await expect(
+      page.getByRole("heading", { name: "60-Second ROI Test" }),
+    ).toBeVisible();
+    await expect(page.locator("#exercise-prompt")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/strategist-exercise.png",
+      fullPage: true,
+    });
+  });
+
+  test("Exercise page shows time comparison", async ({ page }) => {
+    await page.goto("/strategist/exercise");
+    await expect(page.locator("#time-manual")).toHaveText("~15 min");
+    await expect(page.locator("#time-claude")).toHaveText("~30 sec");
+  });
+
+  test("Exercise page shows pricing tiers", async ({ page }) => {
+    await page.goto("/strategist/exercise");
+    await expect(page.getByText("Free tier")).toBeVisible();
+    await expect(page.getByText("Pro ($20/mo)")).toBeVisible();
+    await expect(page.getByText("Max ($100/mo or $200/mo)")).toBeVisible();
+  });
+
+  test("Exercise page shows copy button", async ({ page }) => {
+    await page.goto("/strategist/exercise");
+    await expect(page.getByRole("button", { name: "Copy" })).toBeVisible();
+  });
+
+  test("Exercise page shows terminal mockup with sample output", async ({
+    page,
+  }) => {
+    await page.goto("/strategist/exercise");
+    await expect(page.getByText("Project Summary")).toBeVisible();
+    await expect(page.getByText("src/app/layout.tsx")).toBeVisible();
+  });
+
+  test("Exercise page shows next steps", async ({ page }) => {
+    await page.goto("/strategist/exercise");
+    await expect(page.getByText("Next steps")).toBeVisible();
+    await expect(
+      page.getByText("Bookmark this page or share it with your team"),
+    ).toBeVisible();
+  });
+});
+
+test.describe("Strategist Exercise — Swedish", () => {
+  test("Exercise page renders in Swedish", async ({ page }) => {
+    await page.goto("/sv/strategist/exercise");
+    await expect(
+      page.getByRole("heading", { name: "60-sekunders ROI-test" }),
+    ).toBeVisible();
+    await expect(page.locator("#exercise-prompt")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/sv/strategist-exercise.png",
+      fullPage: true,
+    });
+  });
+
+  test("Exercise page shows Swedish time comparison", async ({ page }) => {
+    await page.goto("/sv/strategist/exercise");
+    await expect(page.locator("#time-manual")).toHaveText("~15 min");
+    await expect(page.locator("#time-claude")).toHaveText("~30 sek");
+  });
+
+  test("Exercise page shows Swedish pricing tiers", async ({ page }) => {
+    await page.goto("/sv/strategist/exercise");
+    await expect(page.getByText("Gratis")).toBeVisible();
+    await expect(page.getByText("Pro (200 kr/mån)")).toBeVisible();
+  });
+});
+
 test.describe("Navigation", () => {
   test("Back button navigates to previous step", async ({ page }) => {
     await page.goto("/builder/install");
