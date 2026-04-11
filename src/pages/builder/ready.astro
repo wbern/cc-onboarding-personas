@@ -18,6 +18,16 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <div class="space-y-6">
+    <!-- What you just did -->
+    <div class="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+      <h2 class="text-lg font-semibold text-white mb-2">Look what you just did</h2>
+      <p class="text-sm text-slate-300">
+        You installed a tool, described what you wanted in plain English,
+        and shipped a working app — all from the terminal. That's the entire
+        Claude Code workflow. Everything from here is just bigger projects.
+      </p>
+    </div>
+
     <TerminalMockup>
       <div class="text-slate-400">
         <p class="text-emerald-400">&#10003; Logged in successfully</p>
@@ -31,11 +41,15 @@ const base = import.meta.env.BASE_URL;
     </TerminalMockup>
 
     <div class="p-6 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
-      <h2 class="text-lg font-semibold text-white mb-3">What's next?</h2>
+      <h2 class="text-lg font-semibold text-white mb-3">What to build next</h2>
       <ul class="space-y-2 text-slate-300 text-sm">
         <li class="flex items-start gap-2">
           <span class="text-indigo-400 shrink-0">&#10148;</span>
-          <span>Try asking Claude to create a simple project for you</span>
+          <span>"Build a markdown note-taking app that saves to local files"</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>"Create a REST API with Express that serves a to-do list"</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-indigo-400 shrink-0">&#10148;</span>

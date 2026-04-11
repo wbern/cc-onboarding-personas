@@ -124,6 +124,31 @@ test.describe("Builder Onboarding Wizard — English", () => {
     });
   });
 
+  test("Step 7: Exercise page shows pre-emptive error framing", async ({
+    page,
+  }) => {
+    await page.goto("/builder/exercise");
+    await expect(page.getByText("If Claude asks for permission")).toBeVisible();
+    await expect(page.getByText("Red or yellow text?")).toBeVisible();
+  });
+
+  test("Step 7: Exercise page shows fallback instruction", async ({ page }) => {
+    await page.goto("/builder/exercise");
+    await expect(page.getByText("If nothing opens")).toBeVisible();
+  });
+
+  test("Step 7: Exercise page has iteration tips in collapsed details", async ({
+    page,
+  }) => {
+    await page.goto("/builder/exercise");
+    const details = page.locator("details");
+    await expect(details).not.toHaveAttribute("open");
+    await details.locator("summary").click();
+    await expect(
+      page.getByText("Add a reset button that sets the count back to zero"),
+    ).toBeVisible();
+  });
+
   test("Step 8: Ready page shows completion", async ({ page }) => {
     await page.goto("/builder/ready");
     await expect(page.locator("h1").first()).toBeVisible();
@@ -131,6 +156,23 @@ test.describe("Builder Onboarding Wizard — English", () => {
       path: "tests/e2e/screenshots/en/08-ready.png",
       fullPage: true,
     });
+  });
+
+  test("Step 8: Ready page shows 'look what you just did' recap", async ({
+    page,
+  }) => {
+    await page.goto("/builder/ready");
+    await expect(page.getByText("Look what you just did")).toBeVisible();
+    await expect(page.getByText("shipped a working app")).toBeVisible();
+  });
+
+  test("Step 8: Ready page shows concrete build suggestions", async ({
+    page,
+  }) => {
+    await page.goto("/builder/ready");
+    await expect(page.getByText("What to build next")).toBeVisible();
+    await expect(page.getByText("markdown note-taking app")).toBeVisible();
+    await expect(page.getByText("REST API with Express")).toBeVisible();
   });
 
   test("Full wizard flow — navigate forward through all steps", async ({

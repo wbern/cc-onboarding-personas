@@ -96,6 +96,20 @@ export const translations = {
     "exercise.step4": "Open the file to see your work:",
     "exercise.summary":
       "That's the core workflow: describe what you want, Claude builds it. You just shipped your first thing with Claude Code.",
+    "exercise.permissionTip":
+      "If Claude asks for permission — type y and press Enter. It's confirming before creating files.",
+    "exercise.errorTip":
+      "Red or yellow text? Normal. Claude works through issues on its own. Wait for it to finish.",
+    "exercise.fallback":
+      "If nothing opens — find index.html in your my-project folder and double-click it.",
+    "exercise.iterateToggle": "Want to keep going? Try iterating on it.",
+    "exercise.iterateIntro": "Go back to the claude> prompt and try:",
+    "exercise.iterateIdea1":
+      "Add a reset button that sets the count back to zero",
+    "exercise.iterateIdea2": "Make it dark mode with a gradient background",
+    "exercise.iterateIdea3": "Add a history of the last 5 click timestamps",
+    "exercise.iterateOutro":
+      "Each prompt builds on what's already there. That's how real projects grow.",
 
     // Strategist exercise
     "strategist.exercise.title": "60-Second ROI Test",
@@ -136,13 +150,17 @@ export const translations = {
     // Ready
     "ready.title": "Congratulations!",
     "ready.subtitle": "Claude Code is up and running. You're ready to build.",
+    "ready.lookBack": "Look what you just did",
+    "ready.lookBackBody":
+      "You installed a tool, described what you wanted in plain English, and shipped a working app — all from the terminal. That's the entire Claude Code workflow. Everything from here is just bigger projects.",
     "ready.loggedIn": "✓ Logged in successfully",
     "ready.welcome": "Welcome to Claude Code!",
     "ready.typeMessage": "Type a message to start a conversation.",
-    "ready.whatsNext": "What's next?",
-    "ready.tip1": "Try asking Claude to create a simple project for you",
+    "ready.whatsNext": "What to build next",
+    "ready.tip1": "Build a markdown note-taking app that saves to local files",
     "ready.tip2": "Explore slash commands — type",
     "ready.tip3": "file to give Claude context about your project",
+    "ready.tip4": "Create a REST API with Express that serves a to-do list",
     "ready.createA": "Create a",
 
     // Navigator — Landing
@@ -317,6 +335,21 @@ export const translations = {
     "exercise.step4": "Öppna filen för att se ditt resultat:",
     "exercise.summary":
       "Det är hela arbetsflödet: beskriv vad du vill ha, Claude bygger det. Du har precis levererat din första grej med Claude Code.",
+    "exercise.permissionTip":
+      "Om Claude ber om tillstånd — skriv y och tryck Enter. Den bekräftar innan den skapar filer.",
+    "exercise.errorTip":
+      "Röd eller gul text? Normalt. Claude löser problem på egen hand. Vänta tills den är klar.",
+    "exercise.fallback":
+      "Om inget öppnas — hitta index.html i din my-project-mapp och dubbelklicka på den.",
+    "exercise.iterateToggle": "Vill du fortsätta? Prova att iterera på det.",
+    "exercise.iterateIntro": "Gå tillbaka till claude>-prompten och prova:",
+    "exercise.iterateIdea1":
+      "Lägg till en återställningsknapp som nollställer räknaren",
+    "exercise.iterateIdea2": "Gör den i mörkt läge med en gradientbakgrund",
+    "exercise.iterateIdea3":
+      "Lägg till en historik över de senaste 5 klicktidsstämplarna",
+    "exercise.iterateOutro":
+      "Varje prompt bygger vidare på det som redan finns. Så växer riktiga projekt.",
 
     // Strategist exercise
     "strategist.exercise.title": "60-sekunders ROI-test",
@@ -358,13 +391,19 @@ export const translations = {
     // Ready
     "ready.title": "Grattis!",
     "ready.subtitle": "Claude Code är igång. Du är redo att bygga.",
+    "ready.lookBack": "Se vad du just gjorde",
+    "ready.lookBackBody":
+      "Du installerade ett verktyg, beskrev vad du ville ha på vanlig svenska, och levererade en fungerande app — allt från terminalen. Det är hela Claude Code-arbetsflödet. Härifrån är det bara större projekt.",
     "ready.loggedIn": "✓ Inloggad",
     "ready.welcome": "Välkommen till Claude Code!",
     "ready.typeMessage": "Skriv ett meddelande för att starta en konversation.",
-    "ready.whatsNext": "Vad händer nu?",
-    "ready.tip1": "Prova att be Claude skapa ett enkelt projekt åt dig",
+    "ready.whatsNext": "Vad ska du bygga härnäst",
+    "ready.tip1":
+      "Bygg en anteckningsapp i markdown som sparar till lokala filer",
     "ready.tip2": "Utforska snedstreckskommandon — skriv",
     "ready.tip3": "-fil för att ge Claude kontext om ditt projekt",
+    "ready.tip4":
+      "Skapa ett REST API med Express som serverar en att göra-lista",
     "ready.createA": "Skapa en",
 
     // Navigator — Landing
