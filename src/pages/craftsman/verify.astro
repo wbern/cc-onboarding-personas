@@ -1,0 +1,102 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="Verify the Output"
+  currentStep={3}
+  totalSteps={3}
+  prevHref={`${base}craftsman/exercise`}
+  nextHref={null}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Check the work</h1>
+  <p class="text-slate-400 mb-8">
+    You've seen Claude Code analyze real code. Now evaluate what you got.
+  </p>
+
+  <div class="space-y-8">
+    <!-- Evaluation criteria -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">How to judge the output</h2>
+      <ul class="space-y-3 text-sm text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Did it find the real bugs?</strong>
+            Not style nits or theoretical issues &mdash; the actual logic errors
+            that would cause failures in production.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Were the explanations accurate?</strong>
+            Check the reasoning. A correct fix with wrong reasoning is a red flag.
+            A tool you can't audit is a tool you can't trust.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Were the proposed fixes sound?</strong>
+            Would you accept this diff in a code review? Would you need to rewrite
+            it, or is it close to what you'd write yourself?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Did it miss anything?</strong>
+            No tool is perfect. Note what it caught and what it didn't. That
+            calibration is the whole point of this exercise.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- What to try next -->
+    <div>
+      <h2 class="text-lg font-semibold text-white mb-3">If that was useful, try these next</h2>
+      <div class="space-y-3">
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">Explain unfamiliar code</p>
+          <TerminalMockup>
+            <p class="text-slate-300 text-xs">
+              <span class="text-emerald-400 select-none">$ </span>claude 'explain the request lifecycle in src/server/ — trace a request from entry to response'
+            </p>
+          </TerminalMockup>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">Review a diff critically</p>
+          <TerminalMockup>
+            <p class="text-slate-300 text-xs">
+              <span class="text-emerald-400 select-none">$ </span>git diff HEAD~1 | claude 'review this diff — focus on correctness, not style'
+            </p>
+          </TerminalMockup>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">Refactor with constraints</p>
+          <TerminalMockup>
+            <p class="text-slate-300 text-xs">
+              <span class="text-emerald-400 select-none">$ </span>claude 'refactor src/auth.ts — extract the token validation into a pure function, keep the same public API'
+            </p>
+          </TerminalMockup>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="p-6 rounded-xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20">
+      <h2 class="text-lg font-semibold text-white mb-2">Form your own opinion</h2>
+      <p class="text-slate-400 text-sm">
+        You've seen what Claude Code does, how it does it, and where it falls
+        short. The rest is up to you. Use it where it earns its place in your
+        workflow. Ignore it where it doesn't. That's the right approach.
+      </p>
+      <p class="text-slate-500 text-sm mt-3">
+        For reference:
+        <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">/help</code> lists
+        available commands,
+        <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">CLAUDE.md</code>
+        gives Claude Code context about your project, and
+        <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">Esc</code> cancels
+        any operation mid-flight.
+      </p>
+    </div>
+  </div>
+</WizardLayout>

@@ -1,0 +1,148 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+import CopyButton from '../../components/CopyButton.tsx';
+
+const buggyCode = `// task_queue.py — a priority task queue with a subtle bug
+import threading
+import heapq
+import time
+
+class TaskQueue:
+    def __init__(self, max_retries=3):
+        self.heap = []
+        self.lock = threading.Lock()
+        self.counter = 0
+        self.max_retries = max_retries
+        self.completed = []
+
+    def push(self, priority, task):
+        with self.lock:
+            heapq.heappush(self.heap, (priority, self.counter, task))
+            self.counter += 1
+
+    def pop(self):
+        with self.lock:
+            if not self.heap:
+                return None
+            return heapq.heappop(self.heap)[2]
+
+    def process_with_retry(self, task):
+        """Retry a failed task with exponentially increasing priority."""
+        attempts = 0
+        while attempts < self.max_retries:
+            try:
+                result = task["fn"]()
+                self.completed.append({"task": task["name"], "result": result})
+                return result
+            except Exception:
+                attempts += 1
+                new_priority = task["priority"] + (2 ** attempts)
+                self.push(new_priority, task)
+                time.sleep(0.01 * attempts)
+        return None
+
+    def drain(self):
+        """Process all tasks until the queue is empty."""
+        results = []
+        while True:
+            task = self.pop()
+            if task is None:
+                break
+            result = self.process_with_retry(task)
+            if result is not None:
+                results.append(result)
+        return results`;
+
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="The Exercise"
+  currentStep={2}
+  totalSteps={3}
+  prevHref={`${base}craftsman/why`}
+  nextHref={`${base}craftsman/verify`}
+  nextLabel="How to verify"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Debug this</h1>
+  <p class="text-slate-400 mb-6">
+    Below is a priority task queue with retry logic. It has at least two bugs
+    &mdash; one causes infinite loops under specific failure patterns, the other
+    is a concurrency issue. Copy the code, save it to a file, and ask Claude Code
+    to find the bugs.
+  </p>
+
+  <div class="space-y-6">
+    <!-- The buggy code -->
+    <div class="relative">
+      <TerminalMockup>
+        <pre class="text-slate-300 text-xs leading-relaxed overflow-x-auto"><code>{buggyCode}</code></pre>
+      </TerminalMockup>
+      <div class="absolute top-2.5 right-3">
+        <CopyButton text={buggyCode} client:load />
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">The exercise</h2>
+      <ol class="space-y-3 text-sm text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 font-mono">1.</span>
+          <span>Save the code above to a file:
+            <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">task_queue.py</code>
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 font-mono">2.</span>
+          <span>Open Claude Code in the same directory and ask:
+            <code class="block mt-1 px-2 py-1 bg-slate-800 rounded text-amber-300">
+              find the bugs in task_queue.py and explain each one
+            </code>
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 font-mono">3.</span>
+          <span>Read the analysis. Check whether it found the real issues
+            &mdash; not just surface-level style complaints.</span>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Hints (collapsed) -->
+    <details class="rounded-xl bg-slate-800/30 border border-slate-700">
+      <summary class="cursor-pointer px-5 py-3 text-sm text-slate-400 hover:text-slate-300">
+        What are the actual bugs? (verify after Claude Code responds)
+      </summary>
+      <div class="px-5 pb-4 space-y-3 text-sm text-slate-400">
+        <div>
+          <p class="text-white font-medium">Bug 1: Infinite retry loop</p>
+          <p>
+            When a task fails, <code class="px-1 bg-slate-800 rounded">process_with_retry</code>
+            pushes it back onto the queue with a new priority. But
+            <code class="px-1 bg-slate-800 rounded">drain()</code> keeps popping and retrying,
+            so a permanently-failing task gets re-queued and re-processed
+            indefinitely &mdash; the retry counter resets each time
+            <code class="px-1 bg-slate-800 rounded">drain</code> pops it as a "new" task.
+          </p>
+        </div>
+        <div>
+          <p class="text-white font-medium">Bug 2: Shared state without locking</p>
+          <p>
+            <code class="px-1 bg-slate-800 rounded">self.completed</code> is appended to
+            inside <code class="px-1 bg-slate-800 rounded">process_with_retry</code>
+            without holding the lock. If multiple threads call
+            <code class="px-1 bg-slate-800 rounded">drain()</code> concurrently, the list
+            can be corrupted.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <p class="text-sm text-slate-500">
+      The point isn't whether Claude Code gets it perfectly right. It's whether
+      the analysis is good enough to be useful &mdash; the kind of insight you'd
+      value from a sharp colleague reviewing your code.
+    </p>
+  </div>
+</WizardLayout>

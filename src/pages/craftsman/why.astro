@@ -1,0 +1,84 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="Why Claude Code"
+  currentStep={1}
+  totalSteps={3}
+  prevHref={`${base}`}
+  nextHref={`${base}craftsman/exercise`}
+  nextLabel="Try the exercise"
+>
+  <h1 class="text-3xl font-bold text-white mb-2">See it work before you trust it</h1>
+  <p class="text-slate-400 mb-8">
+    No hype. No "10x productivity" claims. Here's what actually happens when you
+    point Claude Code at a real problem.
+  </p>
+
+  <div class="space-y-8">
+    <!-- What CC actually does -->
+    <div>
+      <h2 class="text-lg font-semibold text-white mb-3">What happens under the hood</h2>
+      <p class="text-slate-400 text-sm mb-4">
+        When you ask Claude Code to debug something, it reads your files, traces
+        the logic, and proposes changes as diffs you review before applying.
+        Nothing is modified without your explicit approval.
+      </p>
+      <TerminalMockup command="claude 'find the bug in src/cache.ts'">
+        <div class="text-slate-400 mt-1 space-y-2">
+          <p><span class="text-slate-500">Reading</span> src/cache.ts</p>
+          <p><span class="text-slate-500">Reading</span> src/cache.test.ts</p>
+          <p><span class="text-slate-500">Reading</span> src/types.ts</p>
+          <p class="mt-2 text-white">Found the issue. The TTL comparison on line 47 uses
+<span class="text-amber-400">&lt;</span> instead of <span class="text-amber-400">&lt;=</span>,
+causing entries to expire one second early under
+high write concurrency.</p>
+          <p class="mt-2 text-slate-500">Proposed fix:</p>
+          <p class="text-red-400">- if (entry.expiresAt &lt; now) {'{'}</p>
+          <p class="text-emerald-400">+ if (entry.expiresAt &lt;= now) {'{'}</p>
+          <p class="mt-2 text-slate-500">Apply this change? <span class="text-white">[y/n]</span></p>
+        </div>
+      </TerminalMockup>
+    </div>
+
+    <!-- Transparency -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">What you can verify</h2>
+      <ul class="space-y-3 text-sm text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">1.</span>
+          <span><strong class="text-white">Every file it reads</strong> is listed in the output.
+            No hidden context. You see exactly what it saw.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">2.</span>
+          <span><strong class="text-white">Changes are shown as diffs</strong> before applying.
+            Same workflow you use for human code reviews.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">3.</span>
+          <span><strong class="text-white">You approve or reject</strong> every modification.
+            Nothing touches your codebase without explicit consent.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-amber-400 shrink-0 mt-0.5">4.</span>
+          <span><strong class="text-white">It works inside your existing tools</strong> &mdash;
+            Git, your terminal, your editor. No new ecosystem to buy into.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Honest limitations -->
+    <div class="p-5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+      <h2 class="text-lg font-semibold text-amber-300 mb-2">Where it falls short</h2>
+      <p class="text-slate-400 text-sm">
+        It can produce incorrect code. It doesn't always catch every edge case.
+        It works best when you treat its output the way you'd treat a pull request
+        from a colleague &mdash; read the diff, verify the logic, run the tests.
+        The goal isn't blind trust. It's informed evaluation.
+      </p>
+    </div>
+  </div>
+</WizardLayout>

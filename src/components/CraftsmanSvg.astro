@@ -1,0 +1,43 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+<svg
+  viewBox="0 0 120 140"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={['w-32 h-36', className]}
+  aria-label="The Craftsman — a figure examining code with a magnifying glass"
+  role="img"
+>
+  <!-- Head (circle) -->
+  <circle cx="48" cy="28" r="16" fill="#f59e0b" />
+
+  <!-- Body (rounded trapezoid) -->
+  <path
+    d="M32 52 C32 48, 64 48, 64 52 L68 110 C68 114, 28 114, 28 110 Z"
+    fill="#d97706"
+  />
+
+  <!-- Arm reaching out with magnifying glass -->
+  <path
+    d="M64 62 Q78 56, 86 48"
+    stroke="#d97706"
+    stroke-width="7"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Magnifying glass handle -->
+  <rect x="82" y="38" width="4" height="22" rx="2" fill="#94a3b8" transform="rotate(-30, 84, 49)" />
+
+  <!-- Magnifying glass lens -->
+  <circle cx="96" cy="28" r="14" stroke="#e2e8f0" stroke-width="4" fill="none" />
+  <circle cx="96" cy="28" r="10" fill="#fbbf2410" />
+
+  <!-- Base/feet (simple rounded rect) -->
+  <rect x="30" y="110" width="36" height="8" rx="4" fill="#b45309" />
+</svg>

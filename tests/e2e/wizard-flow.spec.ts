@@ -229,6 +229,91 @@ test.describe("Builder Onboarding Wizard — Swedish", () => {
   });
 });
 
+test.describe("Craftsman Onboarding Wizard", () => {
+  test("Landing page shows Craftsman persona card", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByText("The Craftsman")).toBeVisible();
+    await expect(
+      page.getByText("Earned every line. Evaluates every tool."),
+    ).toBeVisible();
+  });
+
+  test("Step 1: Why page shows transparency details", async ({ page }) => {
+    await page.goto("/craftsman/why");
+    await expect(
+      page.getByRole("heading", { name: "See it work before you trust it" }),
+    ).toBeVisible();
+    await expect(page.getByText("What happens under the hood")).toBeVisible();
+    await expect(page.getByText("Where it falls short")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-01-why.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 2: Exercise page shows buggy code", async ({ page }) => {
+    await page.goto("/craftsman/exercise");
+    await expect(
+      page.getByRole("heading", { name: "Debug this" }),
+    ).toBeVisible();
+    await expect(page.getByText("task_queue.py")).toBeVisible();
+    await expect(page.getByText("process_with_retry")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-02-exercise.png",
+      fullPage: true,
+    });
+  });
+
+  test("Step 2: Bug hints are collapsed by default", async ({ page }) => {
+    await page.goto("/craftsman/exercise");
+    const details = page.locator("details");
+    await expect(details).not.toHaveAttribute("open");
+    // Click to expand
+    await details.locator("summary").click();
+    await expect(page.getByText("Infinite retry loop")).toBeVisible();
+    await expect(page.getByText("Shared state without locking")).toBeVisible();
+  });
+
+  test("Step 3: Verify page shows evaluation criteria", async ({ page }) => {
+    await page.goto("/craftsman/verify");
+    await expect(
+      page.getByRole("heading", { name: "Check the work" }),
+    ).toBeVisible();
+    await expect(page.getByText("How to judge the output")).toBeVisible();
+    await expect(page.getByText("Form your own opinion")).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-03-verify.png",
+      fullPage: true,
+    });
+  });
+
+  test("Full craftsman flow — navigate forward through all steps", async ({
+    page,
+  }) => {
+    // Landing → click Craftsman card link
+    await page.goto("/");
+    const craftsmanCard = page.locator("a", {
+      hasText: "The Craftsman",
+    });
+    await craftsmanCard.click();
+    await page.waitForURL("**/craftsman/why");
+
+    // Why → click "Try the exercise"
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/craftsman/exercise");
+
+    // Exercise → click "How to verify"
+    await page.locator("#wizard-next").click();
+    await page.waitForURL("**/craftsman/verify");
+
+    await expect(page.locator("h1").first()).toBeVisible();
+    await page.screenshot({
+      path: "tests/e2e/screenshots/en/craftsman-full-flow-complete.png",
+      fullPage: true,
+    });
+  });
+});
+
 test.describe("Navigation", () => {
   test("Back button navigates to previous step", async ({ page }) => {
     await page.goto("/builder/install");

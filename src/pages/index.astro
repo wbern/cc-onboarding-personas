@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PersonaCard from '../components/PersonaCard.astro';
 import BuilderSvg from '../components/BuilderSvg.astro';
+import CraftsmanSvg from '../components/CraftsmanSvg.astro';
 ---
 <BaseLayout title="Choose Your Path">
   <div class="text-center mb-10">
@@ -27,6 +28,21 @@ import BuilderSvg from '../components/BuilderSvg.astro';
       available={true}
     >
       <BuilderSvg slot="illustration" />
+    </PersonaCard>
+
+    <PersonaCard
+      name="The Craftsman"
+      tagline="Earned every line. Evaluates every tool."
+      bullets={[
+        'Years of mastery — values quality over speed',
+        'Evaluates tools by what they cost, not just what they promise',
+        'Wants control, transparency, and the ability to verify',
+        'Looking for a force multiplier, not an autopilot',
+      ]}
+      href={`${import.meta.env.BASE_URL}craftsman/why`}
+      available={true}
+    >
+      <CraftsmanSvg slot="illustration" />
     </PersonaCard>
   </div>
 </BaseLayout>
