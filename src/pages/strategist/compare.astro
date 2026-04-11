@@ -1,0 +1,122 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+import CopyButton from '../../components/CopyButton.tsx';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="Evaluate the Output"
+  currentStep={2}
+  totalSteps={3}
+  prevHref={`${base}strategist/exercise`}
+  nextHref={`${base}strategist/result`}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Evaluate the output</h1>
+  <p class="text-slate-400 mb-8">
+    You ran a real task. Now measure what you got.
+  </p>
+
+  <div class="space-y-8">
+    <!-- Time comparison -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
+        <p class="text-sm text-slate-500 mb-1">Manual approach</p>
+        <p class="text-2xl font-bold text-slate-300" id="time-manual">~15 min</p>
+        <p class="text-xs text-slate-600 mt-1">Read files, trace imports, take notes</p>
+      </div>
+      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+        <p class="text-sm text-indigo-400 mb-1">Claude Code</p>
+        <p class="text-2xl font-bold text-white" id="time-claude">~30 sec</p>
+        <p class="text-xs text-slate-400 mt-1">Paste prompt, get structured answer</p>
+      </div>
+    </div>
+
+    <!-- Evaluation criteria — adapted from Craftsman's verify pattern -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">How to judge the output</h2>
+      <ul class="space-y-3 text-sm text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Was it accurate?</strong>
+            Compare the summary against what you already know about the project.
+            Did it identify the right stack, the right entry points?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Was it complete?</strong>
+            Did it catch the important parts, or did it miss key areas
+            you'd expect a team member to flag?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">Would you share it?</strong>
+            Could you send this summary to a new hire or stakeholder
+            as-is, or would it need heavy editing?</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- What else it saves time on -->
+    <div>
+      <h2 class="text-lg font-semibold text-white mb-3">Other high-ROI tasks</h2>
+      <p class="text-slate-400 text-sm mb-3">
+        The codebase summary is one data point. Here are tasks where teams
+        report the highest time savings:
+      </p>
+      <div class="space-y-3">
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">Code review prep</p>
+          <div class="relative">
+            <TerminalMockup>
+              <p class="text-slate-300 text-xs">
+                <span class="text-emerald-400 select-none">$ </span>git diff main | claude 'review this diff — flag bugs, security issues, and missing edge cases'
+              </p>
+            </TerminalMockup>
+            <div class="absolute top-2.5 right-3">
+              <CopyButton text="git diff main | claude 'review this diff — flag bugs, security issues, and missing edge cases'" client:load />
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">Documentation generation</p>
+          <div class="relative">
+            <TerminalMockup>
+              <p class="text-slate-300 text-xs">
+                <span class="text-emerald-400 select-none">$ </span>claude 'generate API documentation for the endpoints in src/api/'
+              </p>
+            </TerminalMockup>
+            <div class="absolute top-2.5 right-3">
+              <CopyButton text="claude 'generate API documentation for the endpoints in src/api/'" client:load />
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">Bug investigation</p>
+          <div class="relative">
+            <TerminalMockup>
+              <p class="text-slate-300 text-xs">
+                <span class="text-emerald-400 select-none">$ </span>claude 'find potential null pointer issues in src/services/'
+              </p>
+            </TerminalMockup>
+            <div class="absolute top-2.5 right-3">
+              <CopyButton text="claude 'find potential null pointer issues in src/services/'" client:load />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Honest limitations — adapted from Craftsman's "where it falls short" -->
+    <div class="p-5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+      <h2 class="text-lg font-semibold text-white mb-2">Where it won't help</h2>
+      <p class="text-slate-400 text-sm">
+        Claude Code works best on tasks with clear inputs and verifiable outputs.
+        It's less useful for architecture decisions that require business context,
+        or for code that depends on proprietary systems it can't see. The output
+        always needs human review — it's a force multiplier, not a replacement.
+      </p>
+    </div>
+  </div>
+</WizardLayout>

@@ -437,7 +437,7 @@ test.describe("Craftsman Onboarding Wizard — Swedish", () => {
   });
 });
 
-test.describe("Strategist Exercise — English", () => {
+test.describe("Strategist Flow — English", () => {
   test("Exercise page renders with title and prompt", async ({ page }) => {
     await page.goto("/strategist/exercise");
     await expect(
@@ -450,25 +450,7 @@ test.describe("Strategist Exercise — English", () => {
     });
   });
 
-  test("Exercise page shows time comparison", async ({ page }) => {
-    await page.goto("/strategist/exercise");
-    await expect(page.locator("#time-manual")).toHaveText("~15 min");
-    await expect(page.locator("#time-claude")).toHaveText("~30 sec");
-  });
-
-  test("Exercise page shows pricing tiers", async ({ page }) => {
-    await page.goto("/strategist/exercise");
-    await expect(page.getByText("Free tier")).toBeVisible();
-    await expect(page.getByText("Pro ($20/mo)")).toBeVisible();
-    await expect(page.getByText("Max ($100/mo or $200/mo)")).toBeVisible();
-  });
-
-  test("Exercise page shows copy button", async ({ page }) => {
-    await page.goto("/strategist/exercise");
-    await expect(page.getByRole("button", { name: "Copy" })).toBeVisible();
-  });
-
-  test("Exercise page shows terminal mockup with sample output", async ({
+  test("Exercise page shows numbered steps and sample output", async ({
     page,
   }) => {
     await page.goto("/strategist/exercise");
@@ -476,16 +458,62 @@ test.describe("Strategist Exercise — English", () => {
     await expect(page.getByText("src/app/layout.tsx")).toBeVisible();
   });
 
-  test("Exercise page shows next steps", async ({ page }) => {
+  test("Exercise page shows copy button", async ({ page }) => {
     await page.goto("/strategist/exercise");
+    await expect(page.getByRole("button", { name: "Copy" })).toBeVisible();
+  });
+
+  test("Compare page shows time comparison", async ({ page }) => {
+    await page.goto("/strategist/compare");
+    await expect(page.locator("#time-manual")).toHaveText("~15 min");
+    await expect(page.locator("#time-claude")).toHaveText("~30 sec");
+  });
+
+  test("Compare page shows evaluation criteria", async ({ page }) => {
+    await page.goto("/strategist/compare");
+    await expect(page.getByText("How to judge the output")).toBeVisible();
+    await expect(page.getByText("Was it accurate?")).toBeVisible();
+    await expect(page.getByText("Was it complete?")).toBeVisible();
+    await expect(page.getByText("Would you share it?")).toBeVisible();
+  });
+
+  test("Compare page shows limitations", async ({ page }) => {
+    await page.goto("/strategist/compare");
+    await expect(page.getByText("Where it won't help")).toBeVisible();
+  });
+
+  test("Result page shows pricing tiers", async ({ page }) => {
+    await page.goto("/strategist/result");
+    await expect(page.getByText("Free tier")).toBeVisible();
+    await expect(page.getByText("Pro ($20/mo)")).toBeVisible();
+    await expect(page.getByText("Max ($100/mo or $200/mo)")).toBeVisible();
+  });
+
+  test("Result page shows summary stats", async ({ page }) => {
+    await page.goto("/strategist/result");
+    await expect(page.getByText("1 prompt")).toBeVisible();
+    await expect(page.getByText("<60 sec")).toBeVisible();
+    await expect(page.getByText("$0")).toBeVisible();
+  });
+
+  test("Result page shows next steps", async ({ page }) => {
+    await page.goto("/strategist/result");
     await expect(page.getByText("Next steps")).toBeVisible();
     await expect(
-      page.getByText("Bookmark this page or share it with your team"),
+      page.getByText("Share this page with your team and compare results"),
     ).toBeVisible();
+  });
+
+  test("Full forward flow through all 3 steps", async ({ page }) => {
+    await page.goto("/strategist/exercise");
+    await page.getByRole("link", { name: "Next" }).click();
+    await page.waitForURL("**/strategist/compare");
+    await page.getByRole("link", { name: "Next" }).click();
+    await page.waitForURL("**/strategist/result");
   });
 });
 
-test.describe("Strategist Exercise — Swedish", () => {
+test.describe("Strategist Flow — Swedish", () => {
   test("Exercise page renders in Swedish", async ({ page }) => {
     await page.goto("/sv/strategist/exercise");
     await expect(
@@ -498,14 +526,14 @@ test.describe("Strategist Exercise — Swedish", () => {
     });
   });
 
-  test("Exercise page shows Swedish time comparison", async ({ page }) => {
-    await page.goto("/sv/strategist/exercise");
+  test("Compare page shows Swedish time comparison", async ({ page }) => {
+    await page.goto("/sv/strategist/compare");
     await expect(page.locator("#time-manual")).toHaveText("~15 min");
     await expect(page.locator("#time-claude")).toHaveText("~30 sek");
   });
 
-  test("Exercise page shows Swedish pricing tiers", async ({ page }) => {
-    await page.goto("/sv/strategist/exercise");
+  test("Result page shows Swedish pricing tiers", async ({ page }) => {
+    await page.goto("/sv/strategist/result");
     await expect(page.getByText("Gratis")).toBeVisible();
     await expect(page.getByText("Pro (200 kr/mån)")).toBeVisible();
   });

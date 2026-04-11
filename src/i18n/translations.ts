@@ -115,37 +115,75 @@ export const translations = {
     "strategist.exercise.title": "60-Second ROI Test",
     "strategist.exercise.subtitle":
       "One real task. Measurable result. You decide if it's worth it.",
-    "strategist.exercise.heading": "The exercise",
-    "strategist.exercise.instruction":
-      "Open your terminal in any project folder and start Claude Code. Then paste this prompt:",
-    "strategist.exercise.resultHeading": "What you'll get",
-    "strategist.exercise.resultDescription":
-      "Claude Code reads your project and responds with something like:",
+    "strategist.exercise.step1":
+      "Open your terminal in any project folder and start Claude Code:",
+    "strategist.exercise.step2Prefix": "At the",
+    "strategist.exercise.step2Suffix": "prompt, paste this:",
+    "strategist.exercise.step3": "Watch it work. You'll get something like:",
     "strategist.exercise.sampleTitle": "Project Summary",
     "strategist.exercise.entryPoints": "Entry points",
     "strategist.exercise.analyzed": "Analyzed 147 files in 28 seconds.",
-    "strategist.exercise.manualApproach": "Manual approach",
-    "strategist.exercise.manualDetail": "Read files, trace imports, take notes",
-    "strategist.exercise.claudeDetail": "Paste prompt, get structured answer",
-    "strategist.exercise.costHeading": "What this costs",
-    "strategist.exercise.freeTier": "Free tier",
-    "strategist.exercise.freeDescription":
+    "strategist.exercise.summary":
+      "That's a full codebase summary in under a minute. Hit Next to see how that compares to doing it manually.",
+
+    // Strategist compare
+    "strategist.compare.title": "Evaluate the Output",
+    "strategist.compare.heading": "Evaluate the output",
+    "strategist.compare.subtitle":
+      "You ran a real task. Now measure what you got.",
+    "strategist.compare.manualApproach": "Manual approach",
+    "strategist.compare.manualDetail": "Read files, trace imports, take notes",
+    "strategist.compare.claudeDetail": "Paste prompt, get structured answer",
+    "strategist.compare.judgeHeading": "How to judge the output",
+    "strategist.compare.judge1Title": "Was it accurate?",
+    "strategist.compare.judge1":
+      "Compare the summary against what you already know about the project. Did it identify the right stack, the right entry points?",
+    "strategist.compare.judge2Title": "Was it complete?",
+    "strategist.compare.judge2":
+      "Did it catch the important parts, or did it miss key areas you'd expect a team member to flag?",
+    "strategist.compare.judge3Title": "Would you share it?",
+    "strategist.compare.judge3":
+      "Could you send this summary to a new hire or stakeholder as-is, or would it need heavy editing?",
+    "strategist.compare.otherTasks": "Other high-ROI tasks",
+    "strategist.compare.otherTasksDescription":
+      "The codebase summary is one data point. Here are tasks where teams report the highest time savings:",
+    "strategist.compare.task1": "Code review prep",
+    "strategist.compare.task2": "Documentation generation",
+    "strategist.compare.task3": "Bug investigation",
+    "strategist.compare.limitationsHeading": "Where it won't help",
+    "strategist.compare.limitations":
+      "Claude Code works best on tasks with clear inputs and verifiable outputs. It's less useful for architecture decisions that require business context, or for code that depends on proprietary systems it can't see. The output always needs human review — it's a force multiplier, not a replacement.",
+
+    // Strategist result
+    "strategist.result.title": "What You Gained",
+    "strategist.result.heading": "Here's what you gained",
+    "strategist.result.subtitle":
+      "One exercise, three data points for your decision.",
+    "strategist.result.stat1": "1 prompt",
+    "strategist.result.stat1Detail": "Full project summary",
+    "strategist.result.stat2": "<60 sec",
+    "strategist.result.stat2Detail": "Time to first result",
+    "strategist.result.stat3": "$0",
+    "strategist.result.stat3Detail": "Cost of this test",
+    "strategist.result.costHeading": "What this costs at scale",
+    "strategist.result.freeTier": "Free tier",
+    "strategist.result.freeDescription":
       "enough uses daily to evaluate properly",
-    "strategist.exercise.proTier": "Pro ($20/mo)",
-    "strategist.exercise.proDescription":
+    "strategist.result.proTier": "Pro ($20/mo)",
+    "strategist.result.proDescription":
       "unlimited use, faster model, longer context window",
-    "strategist.exercise.maxTier": "Max ($100/mo or $200/mo)",
-    "strategist.exercise.maxDescription":
+    "strategist.result.maxTier": "Max ($100/mo or $200/mo)",
+    "strategist.result.maxDescription":
       "more usage, background agents, extended thinking",
-    "strategist.exercise.upgradeNote":
+    "strategist.result.upgradeNote":
       "You'll know when you need to upgrade — it's when you hit the limit mid-task, not before.",
-    "strategist.exercise.nextSteps": "Next steps",
-    "strategist.exercise.next1":
-      "Try the prompt above on your actual project right now",
-    "strategist.exercise.next2":
-      "Ask Claude Code to do something you'd normally spend 10+ minutes on",
-    "strategist.exercise.next3":
-      "Bookmark this page or share it with your team",
+    "strategist.result.nextSteps": "Next steps",
+    "strategist.result.next1": "Run the same test on your most complex project",
+    "strategist.result.next2": "Try a code review task",
+    "strategist.result.next3":
+      "Share this page with your team and compare results",
+    "strategist.result.closing":
+      "You've tested Claude Code on a real task and measured the result. That's enough data to decide whether it earns a place in your workflow.",
 
     // Ready
     "ready.title": "Congratulations!",
@@ -458,38 +496,75 @@ export const translations = {
     "strategist.exercise.title": "60-sekunders ROI-test",
     "strategist.exercise.subtitle":
       "En riktig uppgift. Mätbart resultat. Du bestämmer om det är värt det.",
-    "strategist.exercise.heading": "Övningen",
-    "strategist.exercise.instruction":
-      "Öppna din terminal i valfri projektmapp och starta Claude Code. Klistra sedan in den här prompten:",
-    "strategist.exercise.resultHeading": "Vad du får",
-    "strategist.exercise.resultDescription":
-      "Claude Code läser ditt projekt och svarar med något i stil med:",
+    "strategist.exercise.step1":
+      "Öppna din terminal i valfri projektmapp och starta Claude Code:",
+    "strategist.exercise.step2Prefix": "Vid",
+    "strategist.exercise.step2Suffix": "prompten, klistra in detta:",
+    "strategist.exercise.step3": "Se det fungera. Du får något i stil med:",
     "strategist.exercise.sampleTitle": "Projektsammanfattning",
     "strategist.exercise.entryPoints": "Ingångspunkter",
     "strategist.exercise.analyzed": "Analyserade 147 filer på 28 sekunder.",
-    "strategist.exercise.manualApproach": "Manuell metod",
-    "strategist.exercise.manualDetail": "Läs filer, spåra importer, anteckna",
-    "strategist.exercise.claudeDetail":
+    "strategist.exercise.summary":
+      "Det är en fullständig sammanfattning av kodbasen på under en minut. Tryck Nästa för att se hur det jämförs med att göra det manuellt.",
+
+    // Strategist compare
+    "strategist.compare.title": "Utvärdera resultatet",
+    "strategist.compare.heading": "Utvärdera resultatet",
+    "strategist.compare.subtitle":
+      "Du körde en riktig uppgift. Mät nu vad du fick.",
+    "strategist.compare.manualApproach": "Manuell metod",
+    "strategist.compare.manualDetail": "Läs filer, spåra importer, anteckna",
+    "strategist.compare.claudeDetail":
       "Klistra in prompt, få strukturerat svar",
-    "strategist.exercise.costHeading": "Vad det kostar",
-    "strategist.exercise.freeTier": "Gratis",
-    "strategist.exercise.freeDescription":
+    "strategist.compare.judgeHeading": "Hur du bedömer resultatet",
+    "strategist.compare.judge1Title": "Var det korrekt?",
+    "strategist.compare.judge1":
+      "Jämför sammanfattningen med vad du redan vet om projektet. Identifierade den rätt stack, rätt ingångspunkter?",
+    "strategist.compare.judge2Title": "Var det komplett?",
+    "strategist.compare.judge2":
+      "Fångade den de viktiga delarna, eller missade den saker som en teammedlem skulle ha flaggat?",
+    "strategist.compare.judge3Title": "Skulle du dela det?",
+    "strategist.compare.judge3":
+      "Kunde du skicka den här sammanfattningen till en nyanställd eller intressent som den är, eller skulle den behöva redigeras?",
+    "strategist.compare.otherTasks": "Andra uppgifter med hög ROI",
+    "strategist.compare.otherTasksDescription":
+      "Sammanfattningen av kodbasen är en datapunkt. Här är uppgifter där team rapporterar störst tidsbesparing:",
+    "strategist.compare.task1": "Förberedelse för kodgranskning",
+    "strategist.compare.task2": "Dokumentationsgenerering",
+    "strategist.compare.task3": "Buggutredning",
+    "strategist.compare.limitationsHeading": "Där det inte hjälper",
+    "strategist.compare.limitations":
+      "Claude Code fungerar bäst på uppgifter med tydliga indata och verifierbara resultat. Det är mindre användbart för arkitekturbeslut som kräver affärskontext, eller för kod som beror på proprietära system det inte kan se. Resultatet behöver alltid mänsklig granskning — det är en kraftmultiplikator, inte en ersättning.",
+
+    // Strategist result
+    "strategist.result.title": "Vad du fick",
+    "strategist.result.heading": "Här är vad du fick",
+    "strategist.result.subtitle": "En övning, tre datapunkter för ditt beslut.",
+    "strategist.result.stat1": "1 prompt",
+    "strategist.result.stat1Detail": "Fullständig projektsammanfattning",
+    "strategist.result.stat2": "<60 sek",
+    "strategist.result.stat2Detail": "Tid till första resultat",
+    "strategist.result.stat3": "0 kr",
+    "strategist.result.stat3Detail": "Kostnad för detta test",
+    "strategist.result.costHeading": "Vad det kostar i stor skala",
+    "strategist.result.freeTier": "Gratis",
+    "strategist.result.freeDescription":
       "tillräckligt med daglig användning för att utvärdera ordentligt",
-    "strategist.exercise.proTier": "Pro (200 kr/mån)",
-    "strategist.exercise.proDescription":
+    "strategist.result.proTier": "Pro (200 kr/mån)",
+    "strategist.result.proDescription":
       "obegränsad användning, snabbare modell, längre kontextfönster",
-    "strategist.exercise.maxTier": "Max (1 000 kr/mån eller 2 000 kr/mån)",
-    "strategist.exercise.maxDescription":
+    "strategist.result.maxTier": "Max (1 000 kr/mån eller 2 000 kr/mån)",
+    "strategist.result.maxDescription":
       "mer användning, bakgrundsagenter, utökat tänkande",
-    "strategist.exercise.upgradeNote":
+    "strategist.result.upgradeNote":
       "Du vet när du behöver uppgradera — det är när du når gränsen mitt i en uppgift, inte innan.",
-    "strategist.exercise.nextSteps": "Nästa steg",
-    "strategist.exercise.next1":
-      "Testa prompten ovan på ditt riktiga projekt nu",
-    "strategist.exercise.next2":
-      "Be Claude Code göra något du normalt lägger 10+ minuter på",
-    "strategist.exercise.next3":
-      "Bokmärk den här sidan eller dela den med ditt team",
+    "strategist.result.nextSteps": "Nästa steg",
+    "strategist.result.next1": "Kör samma test på ditt mest komplexa projekt",
+    "strategist.result.next2": "Testa en kodgranskningsuppgift",
+    "strategist.result.next3":
+      "Dela den här sidan med ditt team och jämför resultat",
+    "strategist.result.closing":
+      "Du har testat Claude Code på en riktig uppgift och mätt resultatet. Det räcker som underlag för att avgöra om det förtjänar en plats i ditt arbetsflöde.",
 
     // Ready
     "ready.title": "Grattis!",

@@ -1,0 +1,87 @@
+---
+import WizardLayout from '../../layouts/WizardLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title="What You Gained"
+  currentStep={3}
+  totalSteps={3}
+  prevHref={`${base}strategist/compare`}
+  nextHref={null}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">Here's what you gained</h1>
+  <p class="text-slate-400 mb-8">
+    One exercise, three data points for your decision.
+  </p>
+
+  <div class="space-y-8">
+    <!-- Summary of what they accomplished -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+        <p class="text-2xl font-bold text-white">1 prompt</p>
+        <p class="text-xs text-slate-400 mt-1">Full project summary</p>
+      </div>
+      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+        <p class="text-2xl font-bold text-white">&lt;60 sec</p>
+        <p class="text-xs text-slate-400 mt-1">Time to first result</p>
+      </div>
+      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+        <p class="text-2xl font-bold text-white">$0</p>
+        <p class="text-xs text-slate-400 mt-1">Cost of this test</p>
+      </div>
+    </div>
+
+    <!-- Pricing — make the business case -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">What this costs at scale</h2>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-start gap-2 text-slate-300">
+          <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+          <span><strong class="text-white">Free tier</strong> — enough uses daily to evaluate properly</span>
+        </li>
+        <li class="flex items-start gap-2 text-slate-300">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#10148;</span>
+          <span><strong class="text-white">Pro ($20/mo)</strong> — unlimited use, faster model, longer context window</span>
+        </li>
+        <li class="flex items-start gap-2 text-slate-300">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#10148;</span>
+          <span><strong class="text-white">Max ($100/mo or $200/mo)</strong> — more usage, background agents, extended thinking</span>
+        </li>
+      </ul>
+      <p class="text-xs text-slate-500 mt-3">
+        You'll know when you need to upgrade — it's when you hit the limit mid-task, not before.
+      </p>
+    </div>
+
+    <!-- Next steps -->
+    <div class="p-6 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
+      <h2 class="text-lg font-semibold text-white mb-3">Next steps</h2>
+      <ul class="space-y-2 text-slate-300 text-sm">
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Run the same test on your most complex project</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Try a code review task — <code class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-300">git diff main | claude</code></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Share this page with your team and compare results</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Closing — no-fluff summary -->
+    <div class="p-5 rounded-xl bg-slate-800 border border-slate-700">
+      <p class="text-slate-300 text-sm">
+        You've tested Claude Code on a real task and measured the result. That's enough
+        data to decide whether it earns a place in your workflow. For reference:
+        <code class="px-1.5 py-0.5 bg-slate-700 rounded text-slate-300 text-xs">/help</code> lists
+        all commands, and
+        <code class="px-1.5 py-0.5 bg-slate-700 rounded text-slate-300 text-xs">CLAUDE.md</code>
+        gives Claude context about your project.
+      </p>
+    </div>
+  </div>
+</WizardLayout>

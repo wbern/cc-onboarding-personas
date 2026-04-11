@@ -10,9 +10,9 @@ const base = import.meta.env.BASE_URL;
 <WizardLayout
   title="60-Second ROI Test"
   currentStep={1}
-  totalSteps={1}
+  totalSteps={3}
   prevHref={null}
-  nextHref={null}
+  nextHref={`${base}strategist/compare`}
 >
   <div class="flex items-center gap-4 mb-6">
     <StrategistSvg class="w-16 h-18 shrink-0" />
@@ -24,22 +24,33 @@ const base = import.meta.env.BASE_URL;
     </div>
   </div>
 
-  <div class="space-y-8">
-    <!-- The exercise -->
-    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
-      <h2 class="text-lg font-semibold text-white mb-2">The exercise</h2>
-      <p class="text-slate-300 text-sm mb-3">
-        Open your terminal in any project folder and start Claude Code.
-        Then paste this prompt:
-      </p>
+  <div class="space-y-6">
+    <!-- Step 1: Open terminal in a project -->
+    <div>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">1.</span>
+        <p class="text-slate-300">Open your terminal in any project folder and start Claude Code:</p>
+      </div>
+      <div class="relative">
+        <TerminalMockup command="cd ~/your-project && claude" />
+        <div class="absolute top-2.5 right-3">
+          <CopyButton text="cd ~/your-project && claude" client:load />
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Paste the prompt -->
+    <div>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">2.</span>
+        <p class="text-slate-300">
+          At the <code class="px-1.5 py-0.5 bg-slate-800 rounded text-indigo-400">claude&gt;</code> prompt, paste this:
+        </p>
+      </div>
       <div class="relative">
         <TerminalMockup>
           <div class="text-slate-400">
-            <div class="flex gap-2">
-              <span class="text-emerald-400 select-none">$</span>
-              <span class="text-slate-200">claude</span>
-            </div>
-            <p class="mt-2">
+            <p>
               <span class="text-indigo-400">claude&gt;</span>
               <span class="text-white ml-1" id="exercise-prompt">{prompt}</span>
             </p>
@@ -51,10 +62,12 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
 
-    <!-- What you'll see -->
+    <!-- Step 3: See the result -->
     <div>
-      <h2 class="text-lg font-semibold text-white mb-2">What you'll get</h2>
-      <p class="text-sm text-slate-500 mb-2">Claude Code reads your project and responds with something like:</p>
+      <div class="flex items-start gap-3 mb-3">
+        <span class="text-indigo-400 mt-0.5 text-lg font-bold">3.</span>
+        <p class="text-slate-300">Watch it work. You'll get something like:</p>
+      </div>
       <TerminalMockup>
         <div class="text-slate-400">
           <p class="text-white font-medium">Project Summary</p>
@@ -70,59 +83,10 @@ const base = import.meta.env.BASE_URL;
       </TerminalMockup>
     </div>
 
-    <!-- Time comparison -->
-    <div class="grid grid-cols-2 gap-4">
-      <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
-        <p class="text-sm text-slate-500 mb-1">Manual approach</p>
-        <p class="text-2xl font-bold text-slate-300" id="time-manual">~15 min</p>
-        <p class="text-xs text-slate-600 mt-1">Read files, trace imports, take notes</p>
-      </div>
-      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
-        <p class="text-sm text-indigo-400 mb-1">Claude Code</p>
-        <p class="text-2xl font-bold text-white" id="time-claude">~30 sec</p>
-        <p class="text-xs text-slate-400 mt-1">Paste prompt, get structured answer</p>
-      </div>
-    </div>
-
-    <!-- Free vs paid -->
     <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
-      <h2 class="text-lg font-semibold text-white mb-3">What this costs</h2>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-start gap-2 text-slate-300">
-          <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
-          <span><strong class="text-white">Free tier</strong> — enough uses daily to evaluate properly</span>
-        </li>
-        <li class="flex items-start gap-2 text-slate-300">
-          <span class="text-indigo-400 shrink-0 mt-0.5">&#10148;</span>
-          <span><strong class="text-white">Pro ($20/mo)</strong> — unlimited use, faster model, longer context window</span>
-        </li>
-        <li class="flex items-start gap-2 text-slate-300">
-          <span class="text-indigo-400 shrink-0 mt-0.5">&#10148;</span>
-          <span><strong class="text-white">Max ($100/mo or $200/mo)</strong> — more usage, background agents, extended thinking</span>
-        </li>
-      </ul>
-      <p class="text-xs text-slate-500 mt-3">
-        You'll know when you need to upgrade — it's when you hit the limit mid-task, not before.
+      <p class="text-slate-300">
+        That's a full codebase summary in under a minute. Hit <strong class="text-white">Next</strong> to see how that compares to doing it manually.
       </p>
-    </div>
-
-    <!-- Next steps -->
-    <div class="p-6 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
-      <h2 class="text-lg font-semibold text-white mb-3">Next steps</h2>
-      <ul class="space-y-2 text-slate-300 text-sm">
-        <li class="flex items-start gap-2">
-          <span class="text-indigo-400 shrink-0">&#10148;</span>
-          <span>Try the prompt above on your actual project right now</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-indigo-400 shrink-0">&#10148;</span>
-          <span>Ask Claude Code to do something you'd normally spend 10+ minutes on</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-indigo-400 shrink-0">&#10148;</span>
-          <span>Bookmark this page or share it with your team</span>
-        </li>
-      </ul>
     </div>
   </div>
 </WizardLayout>

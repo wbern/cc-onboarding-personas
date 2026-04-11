@@ -1,0 +1,140 @@
+---
+import WizardLayout from '../../../layouts/WizardLayout.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
+import { t } from '../../../i18n/translations';
+
+const locale = 'sv';
+const base = import.meta.env.BASE_URL;
+---
+<WizardLayout
+  title={t(locale, 'strategist.compare.title')}
+  currentStep={2}
+  totalSteps={3}
+  prevHref={`${base}sv/strategist/exercise`}
+  nextHref={`${base}sv/strategist/result`}
+  stepLabel={t(locale, 'nav.stepOf').replace('{current}', '2').replace('{total}', '3')}
+  backLabel={t(locale, 'nav.back')}
+  nextLabel={t(locale, 'nav.next')}
+  lang={locale}
+>
+  <h1 class="text-3xl font-bold text-white mb-2">{t(locale, 'strategist.compare.heading')}</h1>
+  <p class="text-slate-400 mb-8">
+    {t(locale, 'strategist.compare.subtitle')}
+  </p>
+
+  <div class="space-y-8">
+    <!-- Time comparison -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700 text-center">
+        <p class="text-sm text-slate-500 mb-1">{t(locale, 'strategist.compare.manualApproach')}</p>
+        <p class="text-2xl font-bold text-slate-300" id="time-manual">~15 min</p>
+        <p class="text-xs text-slate-600 mt-1">{t(locale, 'strategist.compare.manualDetail')}</p>
+      </div>
+      <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+        <p class="text-sm text-indigo-400 mb-1">Claude Code</p>
+        <p class="text-2xl font-bold text-white" id="time-claude">~30 sek</p>
+        <p class="text-xs text-slate-400 mt-1">{t(locale, 'strategist.compare.claudeDetail')}</p>
+      </div>
+    </div>
+
+    <!-- Evaluation criteria -->
+    <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'strategist.compare.judgeHeading')}</h2>
+      <ul class="space-y-3 text-sm text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">{t(locale, 'strategist.compare.judge1Title')}</strong>
+            {t(locale, 'strategist.compare.judge1')}</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">{t(locale, 'strategist.compare.judge2Title')}</strong>
+            {t(locale, 'strategist.compare.judge2')}</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-indigo-400 shrink-0 mt-0.5">&#9670;</span>
+          <span><strong class="text-white">{t(locale, 'strategist.compare.judge3Title')}</strong>
+            {t(locale, 'strategist.compare.judge3')}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Other high-ROI tasks -->
+    <div>
+      <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'strategist.compare.otherTasks')}</h2>
+      <p class="text-slate-400 text-sm mb-3">
+        {t(locale, 'strategist.compare.otherTasksDescription')}
+      </p>
+      <div class="space-y-3">
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">{t(locale, 'strategist.compare.task1')}</p>
+          <div class="relative">
+            <TerminalMockup>
+              <p class="text-slate-300 text-xs">
+                <span class="text-emerald-400 select-none">$ </span>git diff main | claude 'review this diff — flag bugs, security issues, and missing edge cases'
+              </p>
+            </TerminalMockup>
+            <div class="absolute top-2.5 right-3">
+              <CopyButton
+                text="git diff main | claude 'review this diff — flag bugs, security issues, and missing edge cases'"
+                copyLabel={t(locale, 'copy.button')}
+                copiedLabel={t(locale, 'copy.copied')}
+                fallbackLabel={t(locale, 'copy.fallback')}
+                client:load
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">{t(locale, 'strategist.compare.task2')}</p>
+          <div class="relative">
+            <TerminalMockup>
+              <p class="text-slate-300 text-xs">
+                <span class="text-emerald-400 select-none">$ </span>claude 'generate API documentation for the endpoints in src/api/'
+              </p>
+            </TerminalMockup>
+            <div class="absolute top-2.5 right-3">
+              <CopyButton
+                text="claude 'generate API documentation for the endpoints in src/api/'"
+                copyLabel={t(locale, 'copy.button')}
+                copiedLabel={t(locale, 'copy.copied')}
+                fallbackLabel={t(locale, 'copy.fallback')}
+                client:load
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-slate-800/30 border border-slate-700">
+          <p class="text-white text-sm font-medium mb-1">{t(locale, 'strategist.compare.task3')}</p>
+          <div class="relative">
+            <TerminalMockup>
+              <p class="text-slate-300 text-xs">
+                <span class="text-emerald-400 select-none">$ </span>claude 'find potential null pointer issues in src/services/'
+              </p>
+            </TerminalMockup>
+            <div class="absolute top-2.5 right-3">
+              <CopyButton
+                text="claude 'find potential null pointer issues in src/services/'"
+                copyLabel={t(locale, 'copy.button')}
+                copiedLabel={t(locale, 'copy.copied')}
+                fallbackLabel={t(locale, 'copy.fallback')}
+                client:load
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Honest limitations -->
+    <div class="p-5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+      <h2 class="text-lg font-semibold text-white mb-2">{t(locale, 'strategist.compare.limitationsHeading')}</h2>
+      <p class="text-slate-400 text-sm">
+        {t(locale, 'strategist.compare.limitations')}
+      </p>
+    </div>
+  </div>
+</WizardLayout>
