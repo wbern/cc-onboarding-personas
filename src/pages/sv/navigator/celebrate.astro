@@ -1,8 +1,12 @@
 ---
 import WizardLayout from '../../../layouts/WizardLayout.astro';
+import NavigatorSvg from '../../../components/NavigatorSvg.astro';
+import TerminalMockup from '../../../components/TerminalMockup.astro';
+import CopyButton from '../../../components/CopyButton.tsx';
 import { t } from '../../../i18n/translations';
 
 const locale = 'sv';
+const personalizePrompt = 'Change the background color of my webpage to light blue and add my name instead of the placeholder text';
 const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
@@ -13,12 +17,49 @@ const base = import.meta.env.BASE_URL;
   stepLabel="Steg 6 av 6" backLabel={t(locale, 'nav.back')} lang={locale}
 >
   <div class="text-center mb-8">
-    <div class="text-5xl mb-4" aria-hidden="true">&#127775;</div>
+    <div class="flex justify-center mb-4">
+      <NavigatorSvg class="w-16 h-20" />
+    </div>
     <h1 class="text-4xl font-bold text-white mb-3">{t(locale, 'navigator.celebrate.title')}</h1>
     <p class="text-lg text-slate-300">{t(locale, 'navigator.celebrate.subtitle')}</p>
   </div>
 
-  <div class="p-6 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6">
+  <div class="p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6">
+    <h2 class="text-sm font-semibold text-white mb-2">{t(locale, 'navigator.celebrate.accomplishTitle')}</h2>
+    <ul class="space-y-2 text-sm text-slate-300">
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+        <span>{t(locale, 'navigator.celebrate.accomplishStep1')}</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+        <span>{t(locale, 'navigator.celebrate.accomplishStep2')}</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+        <span>{t(locale, 'navigator.celebrate.accomplishStep3')}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 mb-6">
+    <h2 class="text-sm font-semibold text-white mb-2">{t(locale, 'navigator.celebrate.personalizeTitle')}</h2>
+    <p class="text-slate-300 text-sm mb-3">{t(locale, 'navigator.celebrate.personalizeBody')}</p>
+    <div class="relative">
+      <TerminalMockup>
+        <div>
+          <span class="text-indigo-400">you&gt;</span>
+          <span class="text-slate-200 ml-2">{personalizePrompt}</span>
+        </div>
+      </TerminalMockup>
+      <div class="absolute top-2.5 right-3">
+        <CopyButton text={personalizePrompt} copyLabel={t(locale, 'copy.button')} copiedLabel={t(locale, 'copy.copied')} fallbackLabel={t(locale, 'copy.fallback')} client:load />
+      </div>
+    </div>
+    <p class="text-xs text-slate-500 mt-2">{t(locale, 'navigator.celebrate.personalizeHint')}</p>
+  </div>
+
+  <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700 mb-6">
     <h2 class="text-lg font-semibold text-white mb-3">{t(locale, 'navigator.celebrate.moreTitle')}</h2>
     <p class="text-slate-300 text-sm mb-4">{t(locale, 'navigator.celebrate.moreBody')}</p>
     <ul class="space-y-3 text-sm">

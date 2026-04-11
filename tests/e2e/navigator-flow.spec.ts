@@ -13,13 +13,21 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     });
   });
 
-  test("Step 1: Welcome page celebrates installation", async ({ page }) => {
+  test("Step 1: Welcome page celebrates installation with SVG", async ({
+    page,
+  }) => {
     await page.goto("/navigator/welcome");
     await expect(
       page.getByRole("heading", { name: "You did it!" }),
     ).toBeVisible();
     await expect(page.getByText("everything from here is easy")).toBeVisible();
     await expect(page.getByText("Here's what we'll do together")).toBeVisible();
+    // Navigator SVG illustration is present
+    await expect(
+      page.locator(
+        'svg[aria-label="The Navigator — a figure holding a compass"]',
+      ),
+    ).toBeVisible();
     await page.screenshot({
       path: "tests/e2e/screenshots/en/navigator-01-welcome.png",
       fullPage: true,
@@ -62,12 +70,21 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     });
   });
 
-  test("Step 4: Watch page has pre-emptive error framing", async ({ page }) => {
+  test("Step 4: Watch page has transparency and error framing", async ({
+    page,
+  }) => {
     await page.goto("/navigator/watch");
     await expect(
       page.getByRole("heading", {
         name: "Claude is building your webpage",
       }),
+    ).toBeVisible();
+    // Transparency section (Craftsman-inspired)
+    await expect(
+      page.getByText("What Claude is doing right now"),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Reading your request and understanding what you want"),
     ).toBeVisible();
     // Pre-emptive error framing
     await expect(
@@ -94,15 +111,33 @@ test.describe("Navigator Onboarding Exercise — English", () => {
     });
   });
 
-  test("Step 6: Celebrate page shows warm completion", async ({ page }) => {
+  test("Step 6: Celebrate page shows accomplishments and personalization", async ({
+    page,
+  }) => {
     await page.goto("/navigator/celebrate");
     await expect(
       page.getByRole("heading", {
         name: "You just built a webpage!",
       }),
     ).toBeVisible();
+    // Navigator SVG illustration
+    await expect(
+      page.locator(
+        'svg[aria-label="The Navigator — a figure holding a compass"]',
+      ),
+    ).toBeVisible();
+    // Accomplishment framing (Strategist-inspired)
+    await expect(
+      page.getByText("Look what you just accomplished"),
+    ).toBeVisible();
+    await expect(
+      page.getByText("You gave an instruction in plain English"),
+    ).toBeVisible();
+    // Personalization micro-exercise (Builder-inspired)
+    await expect(page.getByText("Make it yours")).toBeVisible();
+    await expect(page.getByText("Change the background color")).toBeVisible();
+    // Next step ideas still present
     await expect(page.getByText("Want to try more?")).toBeVisible();
-    // Next step ideas are present
     await expect(page.getByText("Write a thank-you email")).toBeVisible();
     await page.screenshot({
       path: "tests/e2e/screenshots/en/navigator-06-celebrate.png",

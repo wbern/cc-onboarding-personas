@@ -1,5 +1,6 @@
 ---
 import WizardLayout from '../../layouts/WizardLayout.astro';
+import NavigatorSvg from '../../components/NavigatorSvg.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
@@ -11,7 +12,9 @@ const base = import.meta.env.BASE_URL;
   nextLabel="Let's go"
 >
   <div class="text-center mb-8">
-    <div class="text-5xl mb-4" aria-hidden="true">&#127881;</div>
+    <div class="flex justify-center mb-4">
+      <NavigatorSvg class="w-20 h-24" />
+    </div>
     <h1 class="text-3xl font-bold text-white mb-3">You did it!</h1>
     <p class="text-lg text-slate-300">
       Claude Code is installed on your computer. That was the hardest part

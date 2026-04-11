@@ -208,6 +208,13 @@ export const translations = {
       "If you see a question asking for permission — that's Claude being polite. It's asking if it's okay to create the file.",
     "navigator.watch.errorTip":
       "If you see red or yellow text — this happens sometimes and it's not a problem. Claude often figures things out on its own. Wait for it to finish.",
+    "navigator.watch.transparencyTitle": "What Claude is doing right now",
+    "navigator.watch.transparencyStep1":
+      "Reading your request and understanding what you want",
+    "navigator.watch.transparencyStep2":
+      "Writing the webpage code for you — you don't need to understand it",
+    "navigator.watch.transparencyStep3":
+      "Saving the result as a file on your computer",
     "navigator.watch.doneNote":
       "When Claude says it's done creating the file, move to the next step. This usually takes less than 30 seconds.",
 
@@ -225,6 +232,17 @@ export const translations = {
     "navigator.celebrate.title": "You just built a webpage!",
     "navigator.celebrate.subtitle":
       "No coding. No complicated setup. Just you and Claude, working together.",
+    "navigator.celebrate.accomplishTitle": "Look what you just accomplished",
+    "navigator.celebrate.accomplishStep1":
+      "You gave an instruction in plain English",
+    "navigator.celebrate.accomplishStep2": "Claude wrote all the code for you",
+    "navigator.celebrate.accomplishStep3":
+      "You have a real webpage you can open anytime",
+    "navigator.celebrate.personalizeTitle": "Make it yours",
+    "navigator.celebrate.personalizeBody":
+      "Want to personalize your webpage? Paste this into Claude Code:",
+    "navigator.celebrate.personalizeHint":
+      "Then run open index.html again to see the changes.",
     "navigator.celebrate.moreTitle": "Want to try more?",
     "navigator.celebrate.moreBody":
       "You can ask Claude to do all kinds of things. Here are some ideas to paste into Claude Code:",
@@ -452,6 +470,13 @@ export const translations = {
       "Om du ser en fråga om tillåtelse — det är Claude som är artig. Den frågar om det är okej att skapa filen.",
     "navigator.watch.errorTip":
       "Om du ser röd eller gul text — det händer ibland och det är inget problem. Claude löser ofta saker på egen hand. Vänta tills den är klar.",
+    "navigator.watch.transparencyTitle": "Vad Claude gör just nu",
+    "navigator.watch.transparencyStep1":
+      "Läser din förfrågan och förstår vad du vill ha",
+    "navigator.watch.transparencyStep2":
+      "Skriver webbsidans kod åt dig — du behöver inte förstå den",
+    "navigator.watch.transparencyStep3":
+      "Sparar resultatet som en fil på din dator",
     "navigator.watch.doneNote":
       "När Claude säger att filen är skapad, gå till nästa steg. Det tar vanligtvis mindre än 30 sekunder.",
 
@@ -469,6 +494,17 @@ export const translations = {
     "navigator.celebrate.title": "Du har precis byggt en webbsida!",
     "navigator.celebrate.subtitle":
       "Ingen kodning. Ingen komplicerad installation. Bara du och Claude, som arbetar tillsammans.",
+    "navigator.celebrate.accomplishTitle": "Se vad du just åstadkom",
+    "navigator.celebrate.accomplishStep1":
+      "Du gav en instruktion på vanlig svenska",
+    "navigator.celebrate.accomplishStep2": "Claude skrev all kod åt dig",
+    "navigator.celebrate.accomplishStep3":
+      "Du har en riktig webbsida du kan öppna när som helst",
+    "navigator.celebrate.personalizeTitle": "Gör den till din egen",
+    "navigator.celebrate.personalizeBody":
+      "Vill du anpassa din webbsida? Klistra in detta i Claude Code:",
+    "navigator.celebrate.personalizeHint":
+      "Kör sedan open index.html igen för att se ändringarna.",
     "navigator.celebrate.moreTitle": "Vill du prova mer?",
     "navigator.celebrate.moreBody":
       "Du kan be Claude göra alla möjliga saker. Här är några idéer att klistra in i Claude Code:",

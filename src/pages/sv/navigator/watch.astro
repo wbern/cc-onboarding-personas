@@ -26,6 +26,24 @@ const base = import.meta.env.BASE_URL;
   </TerminalMockup>
 
   <div class="mt-6 space-y-4">
+    <div class="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+      <h2 class="text-sm font-semibold text-white mb-2">{t(locale, 'navigator.watch.transparencyTitle')}</h2>
+      <ul class="space-y-2 text-sm text-slate-300">
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+          <span>{t(locale, 'navigator.watch.transparencyStep1')}</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+          <span>{t(locale, 'navigator.watch.transparencyStep2')}</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+          <span>{t(locale, 'navigator.watch.transparencyStep3')}</span>
+        </li>
+      </ul>
+    </div>
+
     <div class="p-4 rounded-lg bg-slate-800 border border-slate-700">
       <p class="text-sm text-slate-300">
         <strong class="text-amber-400">{t(locale, 'navigator.watch.permissionTip')}</strong>

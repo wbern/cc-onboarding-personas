@@ -1,5 +1,10 @@
 ---
 import WizardLayout from '../../layouts/WizardLayout.astro';
+import NavigatorSvg from '../../components/NavigatorSvg.astro';
+import TerminalMockup from '../../components/TerminalMockup.astro';
+import CopyButton from '../../components/CopyButton.tsx';
+
+const personalizePrompt = 'Change the background color of my webpage to light blue and add my name instead of the placeholder text';
 const base = import.meta.env.BASE_URL;
 ---
 <WizardLayout
@@ -10,14 +15,55 @@ const base = import.meta.env.BASE_URL;
   nextHref={null}
 >
   <div class="text-center mb-8">
-    <div class="text-5xl mb-4" aria-hidden="true">&#127775;</div>
+    <div class="flex justify-center mb-4">
+      <NavigatorSvg class="w-16 h-20" />
+    </div>
     <h1 class="text-4xl font-bold text-white mb-3">You just built a webpage!</h1>
     <p class="text-lg text-slate-300">
       No coding. No complicated setup. Just you and Claude, working together.
     </p>
   </div>
 
-  <div class="p-6 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6">
+  <div class="p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6">
+    <h2 class="text-sm font-semibold text-white mb-2">Look what you just accomplished</h2>
+    <ul class="space-y-2 text-sm text-slate-300">
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+        <span>You gave an instruction in plain English</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+        <span>Claude wrote all the code for you</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-emerald-400 shrink-0 mt-0.5">&#10003;</span>
+        <span>You have a real webpage you can open anytime</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 mb-6">
+    <h2 class="text-sm font-semibold text-white mb-2">Make it yours</h2>
+    <p class="text-slate-300 text-sm mb-3">
+      Want to personalize your webpage? Paste this into Claude Code:
+    </p>
+    <div class="relative">
+      <TerminalMockup>
+        <div>
+          <span class="text-indigo-400">you&gt;</span>
+          <span class="text-slate-200 ml-2">{personalizePrompt}</span>
+        </div>
+      </TerminalMockup>
+      <div class="absolute top-2.5 right-3">
+        <CopyButton text={personalizePrompt} client:load />
+      </div>
+    </div>
+    <p class="text-xs text-slate-500 mt-2">
+      Then run <code class="px-1 py-0.5 rounded bg-slate-700 text-xs text-white">open index.html</code> again to see the changes.
+    </p>
+  </div>
+
+  <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700 mb-6">
     <h2 class="text-lg font-semibold text-white mb-3">Want to try more?</h2>
     <p class="text-slate-300 text-sm mb-4">
       You can ask Claude to do all kinds of things. Here are some ideas
