@@ -18,3 +18,9 @@ tests/e2e/test-results/
 tests/e2e/report/
 tests/e2e/screenshots/
 coverage/
+
+# Gas Town (added by gt)
+CLAUDE.md
+
+# Private onboarding scratch
+scratch/
