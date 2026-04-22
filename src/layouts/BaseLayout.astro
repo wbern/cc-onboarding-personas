@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description?: string;
   lang?: Locale;
+  noindex?: boolean;
 }
 
-const { title, description = 'Learn to build with Claude Code — an interactive onboarding guide for agentic AI products.', lang = 'en' } = Astro.props;
+const { title, description = 'Learn to build with Claude Code — an interactive onboarding guide for agentic AI products.', lang = 'en', noindex = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 <html lang={lang}>
@@ -17,6 +18,7 @@ const base = import.meta.env.BASE_URL;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
   <title>{title} | Agentic Onboarding</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>

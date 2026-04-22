@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const prompt = `Hej Claude! Jag är Jon, COO. Innan vi börjar jobba
+vill jag att vi tillsammans säkerställer att du kan se de verktyg
+jag använder. Vi tar ETT verktyg i taget.
+
+Mina verktyg, i den ordning jag vill koppla dem:
+1. Gmail
+2. Google Calendar
+3. Google Drive (avtal + CV ligger här)
+4. HubSpot CRM (gratisversionen — osäker på om det funkar)
+5. GetAccept (signerade avtal hamnar i Drive, så kanske räcker det?)
+
+Så här vill jag att du guidar mig:
+
+För varje verktyg:
+  a) Säg exakt vad jag ska klicka på i Claude-appen för att koppla det
+  b) Vänta på att jag säger "klart"
+  c) Gör EN liten testfråga mot verktyget för att bevisa att du ser det
+     (t.ex. "visa rubriken på det senaste mailet" eller "vad står i
+     min kalender imorgon")
+  d) När jag bekräftat att det stämmer — gå vidare till nästa
+
+Regler:
+- Hoppa aldrig över testet i steg c. Jag vill SE att det funkar.
+- Om något inte går att koppla, säg det rakt ut och föreslå ett
+  alternativ (t.ex. "klistra in manuellt").
+- Inga tekniska termer jag inte behöver. Förklara som för en COO,
+  inte en utvecklare.
+
+Börja med Gmail. Vad ska jag klicka på?`;
+---
+<BaseLayout title="Startprompt — Jon" lang="sv" noindex={true}>
+  <div class="w-full max-w-2xl">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-white mb-3">Din startprompt</h1>
+      <p class="text-slate-300 text-base leading-relaxed">
+        Det här är det första du säger till Claude i vårt möte. Kopiera den, klistra
+        in, tryck enter. Sen guidar Claude dig verktyg för verktyg.
+      </p>
+    </div>
+
+    <section class="mb-8 p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide mb-4">
+        Innan du klistrar in
+      </h2>
+      <ol class="space-y-3 text-sm text-slate-300">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-xs flex items-center justify-center font-semibold">1</span>
+          <span>
+            Öppna <strong class="text-white">Claude-appen på datorn</strong>
+            (inte i webbläsaren). Ladda ner från
+            <a class="text-indigo-300 underline" href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai/download</a>
+            om den saknas.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-xs flex items-center justify-center font-semibold">2</span>
+          <span>
+            Logga in med ditt jobbmail.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-xs flex items-center justify-center font-semibold">3</span>
+          <span>
+            Starta en <strong class="text-white">ny konversation</strong>. William hjälper
+            dig hitta knappen om det behövs.
+          </span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="mb-8">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide">Prompten</h2>
+        <button
+          id="copyBtn"
+          class="text-xs px-3 py-1.5 rounded-md bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition"
+        >
+          Kopiera
+        </button>
+      </div>
+      <pre
+        id="promptText"
+        class="p-5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto"
+      >{prompt}</pre>
+      <p class="text-xs text-slate-500 mt-2">
+        Tryck på <em>Kopiera</em>, öppna Claude-appen, klistra in i rutan, tryck enter.
+      </p>
+    </section>
+
+    <section class="mb-8 p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+      <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide mb-3">
+        Om något krånglar
+      </h2>
+      <ul class="space-y-2 text-sm text-slate-300">
+        <li class="flex gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>William sitter bredvid. Säg till när du kör fast.</span>
+        </li>
+        <li class="flex gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Hittar Claude inte ett verktyg — hoppa över det, vi tar det senare.</span>
+        </li>
+        <li class="flex gap-2">
+          <span class="text-indigo-400 shrink-0">&#10148;</span>
+          <span>Ingen stress. Vi har tid.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide mb-3">
+        När allt är uppkopplat — prova dessa
+      </h2>
+      <p class="text-sm text-slate-400 mb-4">
+        Tre prompter att ta med sig till nästa gång du öppnar Claude ensam.
+      </p>
+      <div class="space-y-3">
+        <div class="p-4 rounded-lg bg-slate-900 border border-slate-700">
+          <p class="text-xs text-slate-500 mb-2 uppercase tracking-wide">Mötesförberedelse</p>
+          <p class="text-sm text-slate-200 italic leading-relaxed">
+            "Titta i min kalender på nästa veckas externa möten och gör en 5-radersbrief
+            per möte — vem jag träffar, senaste mailkonversationen, relaterat avtal i
+            Drive, och vad jag borde förbereda."
+          </p>
+        </div>
+        <div class="p-4 rounded-lg bg-slate-900 border border-slate-700">
+          <p class="text-xs text-slate-500 mb-2 uppercase tracking-wide">Rekrytering</p>
+          <p class="text-sm text-slate-200 italic leading-relaxed">
+            "Dra ut alla CV:n från förra veckans mail och sammanfatta kandidaterna i en
+            tabell."
+          </p>
+        </div>
+        <div class="p-4 rounded-lg bg-slate-900 border border-slate-700">
+          <p class="text-xs text-slate-500 mb-2 uppercase tracking-wide">Sälj</p>
+          <p class="text-sm text-slate-200 italic leading-relaxed">
+            "Vilka HubSpot-deals har stått still i mer än 14 dagar baserat på senaste
+            mailaktivitet i Gmail?"
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const btn = document.getElementById('copyBtn');
+    const pre = document.getElementById('promptText');
+    if (btn && pre) {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(pre.textContent ?? '');
+          const original = btn.textContent;
+          btn.textContent = 'Kopierad ✓';
+          setTimeout(() => { btn.textContent = original; }, 1600);
+        } catch {
+          btn.textContent = 'Fel vid kopiering';
+        }
+      });
+    }
+  </script>
+</BaseLayout>
