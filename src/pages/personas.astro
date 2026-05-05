@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-type Trait = { name: string; tier: 'I' | 'II' | 'III'; note: string; sources: number[] };
+type Trait = { name: string; tier: 'I' | 'II' | 'III'; glyph: string; note: string; sources: number[] };
 type Subclass = { name: string; glyph: string; tagline: string; sources: number[]; traits: Trait[] };
 type ClassKey = 'builder' | 'craftsman' | 'navigator' | 'strategist';
 type BaseClass = {
@@ -28,9 +28,9 @@ const tree: BaseClass[] = [
         tagline: 'The bricoleur — composes from materials at hand',
         sources: [8, 9, 10],
         traits: [
-          { name: 'Reverse-engineer', tier: 'I',   note: 'Takes systems apart to understand them', sources: [9, 10] },
-          { name: 'Debug instinct',   tier: 'II',  note: 'Locates the broken thing faster than spec-readers', sources: [9] },
-          { name: 'Toolkit fluency',  tier: 'III', note: 'Curates a small, sharp kit of dependable tools', sources: [8, 10] },
+          { name: 'Reverse-engineer', tier: 'I',   glyph: '⌬', note: 'Takes systems apart to understand them', sources: [9, 10] },
+          { name: 'Debug instinct',   tier: 'II',  glyph: '⌕', note: 'Locates the broken thing faster than spec-readers', sources: [9] },
+          { name: 'Toolkit fluency',  tier: 'III', glyph: '⛏', note: 'Curates a small, sharp kit of dependable tools', sources: [8, 10] },
         ],
       },
       {
@@ -38,9 +38,9 @@ const tree: BaseClass[] = [
         tagline: 'The Creator archetype — generative, prototype-driven',
         sources: [11, 12, 13, 14],
         traits: [
-          { name: 'Prototype reflex', tier: 'I',   note: 'Idea to working artifact in one sitting', sources: [3, 5] },
-          { name: 'Generative play',  tier: 'II',  note: 'Explores without a goal; lets surprise teach', sources: [11, 12] },
-          { name: 'World-build',      tier: 'III', note: 'Constructs whole systems from first principles', sources: [13, 14] },
+          { name: 'Prototype reflex', tier: 'I',   glyph: '⚡', note: 'Idea to working artifact in one sitting', sources: [3, 5] },
+          { name: 'Generative play',  tier: 'II',  glyph: '⚘', note: 'Explores without a goal; lets surprise teach', sources: [11, 12] },
+          { name: 'World-build',      tier: 'III', glyph: '◉', note: 'Constructs whole systems from first principles', sources: [13, 14] },
         ],
       },
       {
@@ -48,9 +48,9 @@ const tree: BaseClass[] = [
         tagline: 'Finds the unintended path through the system',
         sources: [15, 16, 17, 18],
         traits: [
-          { name: 'Lateral leap',     tier: 'I',   note: 'Sidesteps the framing of the problem', sources: [15, 17] },
-          { name: 'Constraint-eater', tier: 'II',  note: 'Treats limits as the most interesting input', sources: [18] },
-          { name: 'System bend',      tier: 'III', note: 'Composes tools in ways nobody documented', sources: [15, 16] },
+          { name: 'Lateral leap',     tier: 'I',   glyph: '⇲', note: 'Sidesteps the framing of the problem', sources: [15, 17] },
+          { name: 'Constraint-eater', tier: 'II',  glyph: '⌧', note: 'Treats limits as the most interesting input', sources: [18] },
+          { name: 'System bend',      tier: 'III', glyph: '⇌', note: 'Composes tools in ways nobody documented', sources: [15, 16] },
         ],
       },
     ],
@@ -68,9 +68,9 @@ const tree: BaseClass[] = [
         tagline: 'Pirsig’s pursuit of "Quality"',
         sources: [20, 25, 26],
         traits: [
-          { name: 'Refactor sight',  tier: 'I',   note: 'Sees the cleaner shape under the working code', sources: [25] },
-          { name: 'Aesthetic ear',   tier: 'II',  note: 'Form, naming, and rhythm carry weight', sources: [20, 22] },
-          { name: 'Standards keep',  tier: 'III', note: 'Holds the line on conventions that scale', sources: [26, 33] },
+          { name: 'Refactor sight',  tier: 'I',   glyph: '☯', note: 'Sees the cleaner shape under the working code', sources: [25] },
+          { name: 'Aesthetic ear',   tier: 'II',  glyph: '❀', note: 'Form, naming, and rhythm carry weight', sources: [20, 22] },
+          { name: 'Standards keep',  tier: 'III', glyph: '⚖', note: 'Holds the line on conventions that scale', sources: [26, 33] },
         ],
       },
       {
@@ -78,9 +78,9 @@ const tree: BaseClass[] = [
         tagline: 'Sennett: craft is transmitted, not just performed',
         sources: [19, 27, 28, 29],
         traits: [
-          { name: 'Diff teach',       tier: 'I',   note: 'Reads diffs as a teaching surface', sources: [27, 28] },
-          { name: 'Tacit→explicit',   tier: 'II',  note: 'Encodes hidden skill into shareable guidance', sources: [29, 30] },
-          { name: 'Apprentice grow',  tier: 'III', note: 'Grows the person, not just the patch', sources: [19, 30] },
+          { name: 'Diff teach',       tier: 'I',   glyph: '✎', note: 'Reads diffs as a teaching surface', sources: [27, 28] },
+          { name: 'Tacit→explicit',   tier: 'II',  glyph: '⮕', note: 'Encodes hidden skill into shareable guidance', sources: [29, 30] },
+          { name: 'Apprentice grow',  tier: 'III', glyph: '⚘', note: 'Grows the person, not just the patch', sources: [19, 30] },
         ],
       },
       {
@@ -88,9 +88,9 @@ const tree: BaseClass[] = [
         tagline: 'Discriminating taste — Bourdieu’s habitus',
         sources: [31, 32, 33],
         traits: [
-          { name: 'Tool weigh',     tier: 'I',   note: 'Knows what a tool costs you before adopting it', sources: [33] },
-          { name: 'Pattern canon',  tier: 'II',  note: 'Internal canon of shapes that have aged well', sources: [31, 32] },
-          { name: 'Refuse',         tier: 'III', note: 'Says no to scope that erodes coherence', sources: [19, 33] },
+          { name: 'Tool weigh',     tier: 'I',   glyph: '⊰', note: 'Knows what a tool costs you before adopting it', sources: [33] },
+          { name: 'Pattern canon',  tier: 'II',  glyph: '❖', note: 'Internal canon of shapes that have aged well', sources: [31, 32] },
+          { name: 'Refuse',         tier: 'III', glyph: '⊘', note: 'Says no to scope that erodes coherence', sources: [19, 33] },
         ],
       },
     ],
@@ -108,9 +108,9 @@ const tree: BaseClass[] = [
         tagline: 'Goal-directed steering — closed-loop control',
         sources: [38, 39],
         traits: [
-          { name: 'Done-criteria', tier: 'I',   note: 'Knows what "done" looks like before starting', sources: [38] },
-          { name: 'Tight loop',    tier: 'II',  note: 'Short cycles, frequent course-checks', sources: [39] },
-          { name: 'Re-vector',     tier: 'III', note: 'Updates the plan when reality disagrees', sources: [39] },
+          { name: 'Done-criteria', tier: 'I',   glyph: '✓', note: 'Knows what "done" looks like before starting', sources: [38] },
+          { name: 'Tight loop',    tier: 'II',  glyph: '↻', note: 'Short cycles, frequent course-checks', sources: [39] },
+          { name: 'Re-vector',     tier: 'III', glyph: '⤺', note: 'Updates the plan when reality disagrees', sources: [39] },
         ],
       },
       {
@@ -118,9 +118,9 @@ const tree: BaseClass[] = [
         tagline: 'Klein & Weick: sensemaking in unfamiliar terrain',
         sources: [40, 41, 42],
         traits: [
-          { name: 'Map terrain',  tier: 'I',   note: 'Sketches the territory before walking it', sources: [40, 41] },
-          { name: 'Reframe',      tier: 'II',  note: 'Reshapes vague asks into answerable ones', sources: [41] },
-          { name: 'Recon',        tier: 'III', note: 'Uses the AI to scout, not to commit', sources: [40, 42] },
+          { name: 'Map terrain',  tier: 'I',   glyph: '⛰', note: 'Sketches the territory before walking it', sources: [40, 41] },
+          { name: 'Reframe',      tier: 'II',  glyph: '⌘', note: 'Reshapes vague asks into answerable ones', sources: [41] },
+          { name: 'Recon',        tier: 'III', glyph: '⌖', note: 'Uses the AI to scout, not to commit', sources: [40, 42] },
         ],
       },
       {
@@ -128,9 +128,9 @@ const tree: BaseClass[] = [
         tagline: 'Orchestrates the AI as crew, not as tool',
         sources: [43, 44],
         traits: [
-          { name: 'Delegate',      tier: 'I',   note: 'Hands off whole tasks, not just keystrokes', sources: [43, 44] },
-          { name: 'Quality gate',  tier: 'II',  note: 'Decides what must be checked vs. trusted', sources: [43] },
-          { name: 'Translate',     tier: 'III', note: 'Speaks both AI and human fluently', sources: [41, 44] },
+          { name: 'Delegate',      tier: 'I',   glyph: '⇶', note: 'Hands off whole tasks, not just keystrokes', sources: [43, 44] },
+          { name: 'Quality gate',  tier: 'II',  glyph: '⛨', note: 'Decides what must be checked vs. trusted', sources: [43] },
+          { name: 'Translate',     tier: 'III', glyph: '⇆', note: 'Speaks both AI and human fluently', sources: [41, 44] },
         ],
       },
     ],
@@ -148,9 +148,9 @@ const tree: BaseClass[] = [
         tagline: 'Kahneman’s System 2 — deliberate, evidence-led',
         sources: [52, 53, 54, 55],
         traits: [
-          { name: 'Frame trade',     tier: 'I',   note: 'Quantifies the trade before the trade is made', sources: [52, 47] },
-          { name: 'Read benchmark',  tier: 'II',  note: 'Reads numbers without being seduced by them', sources: [54, 55] },
-          { name: 'Surface cost',    tier: 'III', note: 'Makes the invisible costs visible', sources: [52, 53] },
+          { name: 'Frame trade',     tier: 'I',   glyph: '⊞', note: 'Quantifies the trade before the trade is made', sources: [52, 47] },
+          { name: 'Read benchmark',  tier: 'II',  glyph: '☷', note: 'Reads numbers without being seduced by them', sources: [54, 55] },
+          { name: 'Surface cost',    tier: 'III', glyph: '⛁', note: 'Makes the invisible costs visible', sources: [52, 53] },
         ],
       },
       {
@@ -158,9 +158,9 @@ const tree: BaseClass[] = [
         tagline: 'Goldratt: throughput is set by the bottleneck',
         sources: [49, 50, 51],
         traits: [
-          { name: 'Spot bottleneck', tier: 'I',   note: 'Names the constraint others work around', sources: [49, 50] },
-          { name: 'Token budget',    tier: 'II',  note: 'Treats context window as a budget, not a quota', sources: [47, 51] },
-          { name: 'Tune flow',       tier: 'III', note: 'Removes the slowest step before adding new ones', sources: [50, 51] },
+          { name: 'Spot bottleneck', tier: 'I',   glyph: '⏃', note: 'Names the constraint others work around', sources: [49, 50] },
+          { name: 'Token budget',    tier: 'II',  glyph: '⌧', note: 'Treats context window as a budget, not a quota', sources: [47, 51] },
+          { name: 'Tune flow',       tier: 'III', glyph: '≋', note: 'Removes the slowest step before adding new ones', sources: [50, 51] },
         ],
       },
       {
@@ -168,9 +168,9 @@ const tree: BaseClass[] = [
         tagline: 'Mintzberg’s "umbrella strategy" — direction over plan',
         sources: [46, 56, 57],
         traits: [
-          { name: 'Roadmap',         tier: 'I',   note: 'Sequences bets so each one earns the next', sources: [46] },
-          { name: 'Scenario hold',   tier: 'II',  note: 'Holds multiple futures without committing early', sources: [56, 57] },
-          { name: 'Trend read',      tier: 'III', note: 'Distinguishes the durable shift from the cycle', sources: [36, 37] },
+          { name: 'Roadmap',         tier: 'I',   glyph: '⛢', note: 'Sequences bets so each one earns the next', sources: [46] },
+          { name: 'Scenario hold',   tier: 'II',  glyph: '◌', note: 'Holds multiple futures without committing early', sources: [56, 57] },
+          { name: 'Trend read',      tier: 'III', glyph: '↗', note: 'Distinguishes the durable shift from the cycle', sources: [36, 37] },
         ],
       },
     ],
@@ -300,8 +300,8 @@ const kindColor: Record<string, string> = {
         <div class="text-[10px] tracking-[0.4em] uppercase text-slate-400 mt-2">v0 · evidence-annotated</div>
       </div>
       <p class="text-slate-400 leading-relaxed text-sm mt-5 max-w-2xl mx-auto">
-        Four classes, twelve specializations, thirty-six leveled skills. Hover any node
-        for the read-out and sources. Dashed arcs trace cross-class synergies.
+        Four classes, twelve specializations, thirty-six leveled skills. Hover a trait
+        to see its read-out, sources, and any cross-class synergy.
       </p>
     </header>
 
@@ -341,14 +341,18 @@ const kindColor: Record<string, string> = {
       </svg>
       <div
         class="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-4 px-4 pb-4
-               lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:snap-none lg:mx-0 lg:px-4 relative z-10"
+               lg:grid lg:grid-cols-4 lg:gap-10 lg:overflow-visible lg:snap-none lg:mx-0 lg:px-6 relative z-10"
       >
-        {tree.map((cls) => {
+        {tree.map((cls, ci) => {
           const c = colorOf[cls.key];
+          // Stagger class columns vertically — break the grid feel
+          const colOffsets = [0, 28, 12, 36];
+          const colOffset = colOffsets[ci] ?? 0;
           return (
             <div
-              class="snap-center shrink-0 w-[calc(100vw-2rem)] lg:w-auto lg:shrink class-tree"
+              class="snap-center shrink-0 w-[calc(100vw-2rem)] lg:w-auto lg:shrink class-tree lg:translate-y-[var(--col-offset)]"
               data-cls-key={cls.key}
+              style={`--col-offset: ${colOffset}px`}
             >
               <!-- CLASS CARD -->
               <div
@@ -375,20 +379,23 @@ const kindColor: Record<string, string> = {
               </div>
 
               <!-- Visual stem from class to subclasses -->
-              <div class="flex justify-around px-4">
+              <div class="flex justify-around px-4 mt-5">
                 {cls.subclasses.map(() => (
-                  <div class="w-px h-3" style={`background: linear-gradient(180deg, ${c.stroke}, ${c.dim})`}></div>
+                  <div class="w-px h-6" style={`background: linear-gradient(180deg, ${c.stroke}, ${c.dim})`}></div>
                 ))}
               </div>
 
               <!-- SUBCLASS COLUMNS -->
-              <div class="grid grid-cols-3 gap-1.5">
+              <div class="grid grid-cols-3 gap-3">
                 {cls.subclasses.map((sub, si) => {
+                  // Stagger subclass branches — middle column dips, edges lift
+                  const subOffsets = [0, 18, 6];
+                  const subOffset = subOffsets[si] ?? 0;
                   return (
-                    <div class="flex flex-col gap-1.5">
+                    <div class="flex flex-col gap-3" style={`transform: translateY(${subOffset}px)`}>
                       <!-- SUBCLASS CARD -->
                       <div
-                        class={`skill-node subclass-card cls-${cls.key} relative rounded-lg border p-2 cursor-help`}
+                        class={`skill-node subclass-card cls-${cls.key} relative rounded-lg border p-3 cursor-help`}
                         tabindex="0"
                         data-cls={cls.key}
                         data-sub-id={`${cls.key}.${si}`}
@@ -396,38 +403,51 @@ const kindColor: Record<string, string> = {
                         data-tip={JSON.stringify({ name: sub.name, tagline: sub.tagline, sources: sub.sources })}
                         style={`border-color: ${c.dim}; background: linear-gradient(180deg, ${c.fill}, rgba(2,6,23,0.7))`}
                       >
-                        <div class="flex items-center gap-1.5">
-                          <span class="text-base leading-none" style={`color: ${c.text}; font-family: Georgia, serif; text-shadow: 0 0 8px ${c.dim}`}>{sub.glyph}</span>
-                          <span class="text-[11px] font-bold text-white truncate flex-1">{sub.name}</span>
+                        <div class="flex flex-col items-center gap-1.5 text-center">
+                          <span class="text-2xl leading-none" style={`color: ${c.text}; font-family: Georgia, serif; text-shadow: 0 0 10px ${c.dim}`}>{sub.glyph}</span>
+                          <span class="font-display text-[12px] font-bold tracking-[0.08em] text-white uppercase">{sub.name}</span>
                         </div>
                       </div>
 
                       <!-- Stem to traits -->
                       <div class="flex justify-center">
-                        <div class="w-px h-2" style={`background: ${c.dim}`}></div>
+                        <div class="w-px h-4" style={`background: ${c.dim}`}></div>
                       </div>
 
                       <!-- TRAIT CARDS -->
                       {sub.traits.map((trait, ti) => {
                         const cur = curFor(cls.key, ti);
                         const max = maxFor(cls.key, ti);
-                        const locked = max < 10 && cur === 0;
                         const traitId = `${cls.key}.${si}.${ti}`;
+                        const strength = cur >= 7 ? 'strong' : cur >= 4 ? 'active' : cur >= 1 ? 'faint' : 'passive';
+                        const borderRgba =
+                          strength === 'strong' ? `${c.stroke}` :
+                          strength === 'active' ? `${c.dim}` :
+                          strength === 'faint'  ? `${c.dim}66` :
+                                                  `rgba(148,163,184,0.35)`;
+                        const cardStyle =
+                          strength === 'strong'
+                            ? `--card-border: ${c.stroke}cc; background: linear-gradient(180deg, ${c.tint}, rgba(2,6,23,0.95)); box-shadow: 0 0 18px -2px ${c.stroke}66, 0 4px 14px -6px ${c.stroke}`
+                            : strength === 'active'
+                            ? `--card-border: ${borderRgba}; background: linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.95)); box-shadow: 0 0 8px -3px ${c.dim}`
+                            : strength === 'faint'
+                            ? `--card-border: ${borderRgba}; background: linear-gradient(180deg, rgba(2,6,23,0.7), rgba(2,6,23,0.95)); filter: saturate(0.7)`
+                            : `--card-border: ${borderRgba}; background: linear-gradient(180deg, rgba(15,23,42,0.6), rgba(2,6,23,0.85)); filter: saturate(0.25)`;
                         return (
                           <div
-                            class={`skill-node trait-card cls-${cls.key} relative rounded-md border p-2 cursor-help${locked ? ' is-locked' : ''}${cur === max && cur > 0 ? ' is-maxed' : ''}`}
+                            class={`skill-node trait-card cls-${cls.key} trait-${strength} relative cursor-help`}
                             tabindex="0"
                             data-cls={cls.key}
                             data-trait-id={traitId}
                             data-tip-kind="trait"
                             data-tip={JSON.stringify({ name: trait.name, tier: trait.tier, note: trait.note, sources: trait.sources, level: cur, max })}
-                            style={`border-color: ${c.dim}99; background: rgba(2,6,23,0.85); box-shadow: 0 0 0 1px rgba(0,0,0,0.6) inset${cur === max && cur > 0 ? `, 0 0 12px -2px ${c.stroke}` : ''}`}
+                            style={cardStyle}
                           >
-                            <div class="flex items-center gap-1.5">
-                              <span class="text-[8px] tracking-[0.25em] font-bold font-mono px-1 py-0.5 rounded-sm" style={`color: ${c.text}; background: ${c.deep}80; box-shadow: 0 0 0 1px ${c.dim}`}>{trait.tier}</span>
-                              <span class="text-[10px] font-semibold text-white leading-tight flex-1">{trait.name}</span>
-                              <span class="text-[9px] font-mono tracking-wider whitespace-nowrap" style={`color: ${c.text}`}>{cur}/{max}</span>
+                            <div class="flex flex-col items-center text-center px-2 pt-3.5 pb-3 gap-1.5">
+                              <span class="trait-glyph leading-none" style={`color: ${strength === 'passive' ? '#cbd5e1' : c.text}; font-family: Georgia, serif; ${strength === 'strong' ? `text-shadow: 0 0 16px ${c.stroke}, 0 0 6px ${c.dim}` : strength === 'active' ? `text-shadow: 0 0 8px ${c.dim}` : ''}`}>{trait.glyph}</span>
+                              <span class={`font-display text-[11px] font-semibold tracking-[0.05em] leading-tight uppercase ${strength === 'passive' ? 'text-slate-300' : 'text-white'}`}>{trait.name}</span>
                             </div>
+                            <span class="trait-lv font-display" style={`color: ${strength === 'passive' ? '#94a3b8' : c.text}; background: ${strength === 'passive' ? 'rgba(30,41,59,0.85)' : `${c.deep}cc`}; box-shadow: 0 0 0 1px ${strength === 'passive' ? 'rgba(148,163,184,0.3)' : c.dim}${strength === 'strong' ? `, 0 0 8px -1px ${c.stroke}` : ''}`}>LV {cur}</span>
                           </div>
                         );
                       })}
@@ -525,6 +545,31 @@ const kindColor: Record<string, string> = {
     transition: all 200ms ease;
     outline: none;
   }
+  .trait-glyph {
+    font-size: 30px;
+    display: block;
+    line-height: 1;
+  }
+
+  /* Trait cards: uniform clean border, no per-card variation */
+  .trait-card {
+    border: 1px solid var(--card-border, rgba(148,163,184,0.4));
+    border-radius: 10px;
+  }
+
+  /* Dog-ear level badge in bottom-right of trait card */
+  .trait-lv {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 2px 7px 2px 8px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 7px;
+    line-height: 1.4;
+  }
   .skill-node:hover,
   .skill-node:focus {
     transform: translateY(-1px);
@@ -560,14 +605,14 @@ const kindColor: Record<string, string> = {
   .trait-card.cls-navigator.is-cross-target  { --c-cross: #bae6fd; }
   .trait-card.cls-strategist.is-cross-target { --c-cross: #ddd6fe; }
 
-  /* Locked trait dim */
-  .trait-card.is-locked {
-    opacity: 0.55;
-    filter: saturate(0.6);
+  /* Hover overrides on faint/passive — restore presence */
+  .trait-card.trait-faint:hover,
+  .trait-card.trait-faint:focus {
+    filter: saturate(1) brightness(1.15);
   }
-  .trait-card.is-locked:hover {
-    opacity: 0.85;
-    filter: saturate(0.9);
+  .trait-card.trait-passive:hover,
+  .trait-card.trait-passive:focus {
+    filter: saturate(0.8) brightness(1.2);
   }
 
   .skill-tt {
@@ -708,7 +753,7 @@ const kindColor: Record<string, string> = {
       <div class="rounded-lg border bg-slate-950/95 p-3 shadow-2xl text-left w-64" style="${borderStyle}">
         <div class="flex items-baseline justify-between mb-1.5">
           <div class="text-sm font-bold text-white">${p.name}</div>
-          <div class="text-[10px] font-mono" style="color:${color}">TIER ${p.tier} · ${p.level}/${max}</div>
+          <div class="text-[10px] font-mono" style="color:${color}">${p.level}/${max}</div>
         </div>
         <div class="text-xs text-slate-300 mb-2">${p.note}</div>
         <div class="text-[10px] text-slate-500 tracking-wider uppercase">Sources</div>
@@ -737,132 +782,73 @@ const kindColor: Record<string, string> = {
   const arcSvg = document.getElementById('cross-arcs') as SVGSVGElement | null;
   const treeWrap = document.querySelector<HTMLElement>('.tree-wrap');
 
-  function drawArcs(): void {
-    if (!arcSvg || !treeWrap) return;
-    if (window.innerWidth < 1024) {
-      arcSvg.innerHTML = arcSvg.querySelector('defs')?.outerHTML ?? '';
-      return;
-    }
-    const wrapRect = treeWrap.getBoundingClientRect();
-    arcSvg.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
-    arcSvg.setAttribute('width', String(wrapRect.width));
-    arcSvg.setAttribute('height', String(wrapRect.height));
-
+  function clearArcs(): void {
+    if (!arcSvg) return;
     const defs = arcSvg.querySelector('defs');
     while (arcSvg.lastChild && arcSvg.lastChild !== defs) {
       arcSvg.removeChild(arcSvg.lastChild);
     }
-
-    const colorMap2: Record<string, string> = { builder: '#fbbf24', craftsman: '#34d399', navigator: '#38bdf8', strategist: '#a78bfa' };
-
-    crossLinks.forEach((link, i) => {
-      const a = document.querySelector<HTMLElement>(`[data-trait-id="${link.from}"]`);
-      const b = document.querySelector<HTMLElement>(`[data-trait-id="${link.to}"]`);
-      if (!a || !b) return;
-      const ar = a.getBoundingClientRect();
-      const br = b.getBoundingClientRect();
-      const goingRight = br.left > ar.left;
-      // Anchor at horizontal edges, vertical center
-      const ax = (goingRight ? ar.right : ar.left) - wrapRect.left;
-      const ay = ar.top + ar.height / 2 - wrapRect.top;
-      const bx = (goingRight ? br.left : br.right) - wrapRect.left;
-      const by = br.top + br.height / 2 - wrapRect.top;
-      const aClsKey = link.from.split('.')[0];
-      const bClsKey = link.to.split('.')[0];
-
-      // Alternate bow direction up/down, scaled by distance — creates visual variety
-      const dx = bx - ax;
-      const dy = by - ay;
-      const dist = Math.hypot(dx, dy);
-      const bowDir = i % 2 === 0 ? -1 : 1;          // -1 = above, 1 = below
-      const lift = Math.min(110, 40 + dist * 0.18) * bowDir;
-
-      // Quadratic bezier with control point at midpoint, offset perpendicular to chord
-      const mx = (ax + bx) / 2;
-      const my = (ay + by) / 2 + lift;
-      const d = `M ${ax} ${ay} Q ${mx} ${my}, ${bx} ${by}`;
-
-      // Outer glow
-      const glow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      glow.setAttribute('d', d);
-      glow.setAttribute('fill', 'none');
-      glow.setAttribute('stroke', `url(#grad-${aClsKey}-${bClsKey})`);
-      glow.setAttribute('stroke-width', '8');
-      glow.setAttribute('stroke-linecap', 'round');
-      glow.setAttribute('opacity', '0.25');
-      glow.setAttribute('filter', 'blur(3px)');
-      arcSvg.appendChild(glow);
-
-      // Inner line (dashed)
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      line.setAttribute('d', d);
-      line.setAttribute('fill', 'none');
-      line.setAttribute('stroke', `url(#grad-${aClsKey}-${bClsKey})`);
-      line.setAttribute('stroke-width', '1.5');
-      line.setAttribute('stroke-linecap', 'round');
-      line.setAttribute('stroke-dasharray', '5 4');
-      line.setAttribute('opacity', '0.95');
-      arcSvg.appendChild(line);
-
-      // Endpoint dots with halo
-      ([[ax, ay, aClsKey], [bx, by, bClsKey]] as const).forEach(([px, py, key]) => {
-        const halo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        halo.setAttribute('cx', String(px));
-        halo.setAttribute('cy', String(py));
-        halo.setAttribute('r', '6');
-        halo.setAttribute('fill', colorMap2[key] ?? '#fff');
-        halo.setAttribute('opacity', '0.25');
-        halo.setAttribute('filter', 'blur(2px)');
-        arcSvg.appendChild(halo);
-        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dot.setAttribute('cx', String(px));
-        dot.setAttribute('cy', String(py));
-        dot.setAttribute('r', '3');
-        dot.setAttribute('fill', colorMap2[key] ?? '#fff');
-        dot.setAttribute('stroke', 'rgba(2,6,23,0.95)');
-        dot.setAttribute('stroke-width', '1.5');
-        arcSvg.appendChild(dot);
-      });
-
-      // Midpoint label at curve apex (t=0.5 on quadratic bezier)
-      const apexX = 0.25 * ax + 0.5 * mx + 0.25 * bx;
-      const apexY = 0.25 * ay + 0.5 * my + 0.25 * by;
-      const lblWidth = link.label.length * 5.6 + 16;
-      const lblBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      lblBg.setAttribute('x', String(apexX - lblWidth / 2));
-      lblBg.setAttribute('y', String(apexY - 7));
-      lblBg.setAttribute('width', String(lblWidth));
-      lblBg.setAttribute('height', '14');
-      lblBg.setAttribute('rx', '7');
-      lblBg.setAttribute('fill', 'rgba(2,6,23,0.96)');
-      lblBg.setAttribute('stroke', 'rgba(255,255,255,0.18)');
-      lblBg.setAttribute('stroke-width', '0.5');
-      arcSvg.appendChild(lblBg);
-      const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      lbl.setAttribute('x', String(apexX));
-      lbl.setAttribute('y', String(apexY + 3));
-      lbl.setAttribute('text-anchor', 'middle');
-      lbl.setAttribute('fill', '#e2e8f0');
-      lbl.setAttribute('font-size', '8.5');
-      lbl.setAttribute('font-family', 'Cinzel, ui-serif, serif');
-      lbl.setAttribute('font-weight', '600');
-      lbl.setAttribute('letter-spacing', '0.08em');
-      lbl.textContent = link.label.toUpperCase();
-      arcSvg.appendChild(lbl);
-    });
   }
 
-  let arcRaf = 0;
-  function scheduleArcs(): void {
-    if (arcRaf) cancelAnimationFrame(arcRaf);
-    arcRaf = requestAnimationFrame(() => { arcRaf = 0; drawArcs(); });
+  function sizeArcSvg(): void {
+    if (!arcSvg || !treeWrap) return;
+    const wrapRect = treeWrap.getBoundingClientRect();
+    arcSvg.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
+    arcSvg.setAttribute('width', String(wrapRect.width));
+    arcSvg.setAttribute('height', String(wrapRect.height));
   }
-  window.addEventListener('load', scheduleArcs);
-  window.addEventListener('resize', scheduleArcs);
-  if (document.fonts?.ready) document.fonts.ready.then(scheduleArcs);
-  // re-run after layout settles
-  setTimeout(scheduleArcs, 100);
-  setTimeout(scheduleArcs, 400);
+
+  // Draw a single arc on demand (hover) connecting two trait cards.
+  function drawArcFor(fromId: string, toId: string): void {
+    if (!arcSvg || !treeWrap) return;
+    if (window.innerWidth < 1024) return;
+    sizeArcSvg();
+    clearArcs();
+
+    const wrapRect = treeWrap.getBoundingClientRect();
+    const a = document.querySelector<HTMLElement>(`[data-trait-id="${fromId}"]`);
+    const b = document.querySelector<HTMLElement>(`[data-trait-id="${toId}"]`);
+    if (!a || !b) return;
+    const ar = a.getBoundingClientRect();
+    const br = b.getBoundingClientRect();
+    const goingRight = br.left > ar.left;
+    const ax = (goingRight ? ar.right : ar.left) - wrapRect.left;
+    const ay = ar.top + ar.height / 2 - wrapRect.top;
+    const bx = (goingRight ? br.left : br.right) - wrapRect.left;
+    const by = br.top + br.height / 2 - wrapRect.top;
+    const aClsKey = fromId.split('.')[0];
+    const bClsKey = toId.split('.')[0];
+
+    const dx = bx - ax;
+    const dist = Math.hypot(dx, by - ay);
+    const lift = Math.min(80, 30 + dist * 0.12) * -1;
+    const mx = (ax + bx) / 2;
+    const my = (ay + by) / 2 + lift;
+    const d = `M ${ax} ${ay} Q ${mx} ${my}, ${bx} ${by}`;
+
+    const glow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    glow.setAttribute('d', d);
+    glow.setAttribute('fill', 'none');
+    glow.setAttribute('stroke', `url(#grad-${aClsKey}-${bClsKey})`);
+    glow.setAttribute('stroke-width', '6');
+    glow.setAttribute('stroke-linecap', 'round');
+    glow.setAttribute('opacity', '0.35');
+    glow.setAttribute('filter', 'blur(2.5px)');
+    arcSvg.appendChild(glow);
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    line.setAttribute('d', d);
+    line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', `url(#grad-${aClsKey}-${bClsKey})`);
+    line.setAttribute('stroke-width', '1.25');
+    line.setAttribute('stroke-linecap', 'round');
+    line.setAttribute('opacity', '0.95');
+    arcSvg.appendChild(line);
+  }
+
+  window.addEventListener('resize', sizeArcSvg);
+  if (document.fonts?.ready) document.fonts.ready.then(sizeArcSvg);
+  setTimeout(sizeArcSvg, 100);
 
   // ---- Mobile tab nav ----
   const carousel = treeWrap?.querySelector<HTMLElement>(':scope > div.flex');
@@ -908,16 +894,19 @@ const kindColor: Record<string, string> = {
       tip.innerHTML = render(kind, payload, color);
       tip.classList.add('show');
       requestAnimationFrame(() => position(node.getBoundingClientRect()));
-      // Cross-link partner highlight
+      // Cross-link partner highlight + draw connecting arc
       const traitId = node.getAttribute('data-trait-id');
       if (traitId && crossPartner[traitId]) {
-        const partner = document.querySelector<HTMLElement>(`[data-trait-id="${crossPartner[traitId]}"]`);
+        const partnerId = crossPartner[traitId];
+        const partner = document.querySelector<HTMLElement>(`[data-trait-id="${partnerId}"]`);
         partner?.classList.add('is-cross-target');
+        drawArcFor(traitId, partnerId);
       }
     };
     const hide = () => {
       tip.classList.remove('show');
       document.querySelectorAll('.is-cross-target').forEach((n) => n.classList.remove('is-cross-target'));
+      clearArcs();
     };
     node.addEventListener('mouseenter', show);
     node.addEventListener('focus', show);
