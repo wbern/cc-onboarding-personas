@@ -1,0 +1,1099 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+type Trait = { name: string; tier: 'I' | 'II' | 'III'; note: string; sources: number[] };
+type Subclass = { name: string; glyph: string; tagline: string; sources: number[]; traits: Trait[] };
+type Stats = { craft: number; vision: number; poise: number; voice: number; edge: number };
+type ClassKey = 'builder' | 'craftsman' | 'navigator' | 'strategist';
+type BaseClass = {
+  key: ClassKey;
+  name: string;
+  glyph: string;
+  tagline: string;
+  flavor: string;
+  stats: Stats;
+  sources: number[];
+  subclasses: Subclass[];
+};
+
+const tree: BaseClass[] = [
+  {
+    key: 'builder',
+    name: 'Builder',
+    glyph: '⚒',
+    tagline: 'Learns by making. Trusts what they can take apart.',
+    flavor: 'Forges understanding through hands and tools.',
+    stats: { craft: 8, vision: 7, poise: 4, voice: 5, edge: 5 },
+    sources: [1, 2, 3, 4, 5, 6],
+    subclasses: [
+      {
+        name: 'Tinkerer', glyph: '⚙',
+        tagline: 'The bricoleur — composes from materials at hand',
+        sources: [8, 9, 10],
+        traits: [
+          { name: 'Reverse-engineer', tier: 'I',   note: 'Takes systems apart to understand them', sources: [9, 10] },
+          { name: 'Debug instinct',   tier: 'II',  note: 'Locates the broken thing faster than spec-readers', sources: [9] },
+          { name: 'Toolkit fluency',  tier: 'III', note: 'Curates a small, sharp kit of dependable tools', sources: [8, 10] },
+        ],
+      },
+      {
+        name: 'Inventor', glyph: '✦',
+        tagline: 'The Creator archetype — generative, prototype-driven',
+        sources: [11, 12, 13, 14],
+        traits: [
+          { name: 'Prototype reflex', tier: 'I',   note: 'Idea to working artifact in one sitting', sources: [3, 5] },
+          { name: 'Generative play',  tier: 'II',  note: 'Explores without a goal; lets surprise teach', sources: [11, 12] },
+          { name: 'World-build',      tier: 'III', note: 'Constructs whole systems from first principles', sources: [13, 14] },
+        ],
+      },
+      {
+        name: 'Hacker', glyph: '⚡',
+        tagline: 'Finds the unintended path through the system',
+        sources: [15, 16, 17, 18],
+        traits: [
+          { name: 'Lateral leap',     tier: 'I',   note: 'Sidesteps the framing of the problem', sources: [15, 17] },
+          { name: 'Constraint-eater', tier: 'II',  note: 'Treats limits as the most interesting input', sources: [18] },
+          { name: 'System bend',      tier: 'III', note: 'Composes tools in ways nobody documented', sources: [15, 16] },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'craftsman',
+    name: 'Craftsman',
+    glyph: '⚜',
+    tagline: 'Quality is non-negotiable. Mastery is the long game.',
+    flavor: 'Carries the standard down a long apprenticeship road.',
+    stats: { craft: 9, vision: 5, poise: 9, voice: 6, edge: 4 },
+    sources: [19, 20, 21, 22, 23, 24],
+    subclasses: [
+      {
+        name: 'Purist', glyph: '✺',
+        tagline: 'Pirsig’s pursuit of "Quality"',
+        sources: [20, 25, 26],
+        traits: [
+          { name: 'Refactor sight',  tier: 'I',   note: 'Sees the cleaner shape under the working code', sources: [25] },
+          { name: 'Aesthetic ear',   tier: 'II',  note: 'Form, naming, and rhythm carry weight', sources: [20, 22] },
+          { name: 'Standards keep',  tier: 'III', note: 'Holds the line on conventions that scale', sources: [26, 33] },
+        ],
+      },
+      {
+        name: 'Mentor', glyph: '☉',
+        tagline: 'Sennett: craft is transmitted, not just performed',
+        sources: [19, 27, 28, 29],
+        traits: [
+          { name: 'Diff teach',       tier: 'I',   note: 'Reads diffs as a teaching surface', sources: [27, 28] },
+          { name: 'Tacit→explicit',   tier: 'II',  note: 'Encodes hidden skill into shareable guidance', sources: [29, 30] },
+          { name: 'Apprentice grow',  tier: 'III', note: 'Grows the person, not just the patch', sources: [19, 30] },
+        ],
+      },
+      {
+        name: 'Curator', glyph: '❖',
+        tagline: 'Discriminating taste — Bourdieu’s habitus',
+        sources: [31, 32, 33],
+        traits: [
+          { name: 'Tool weigh',     tier: 'I',   note: 'Knows what a tool costs you before adopting it', sources: [33] },
+          { name: 'Pattern canon',  tier: 'II',  note: 'Internal canon of shapes that have aged well', sources: [31, 32] },
+          { name: 'Refuse',         tier: 'III', note: 'Says no to scope that erodes coherence', sources: [19, 33] },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'navigator',
+    name: 'Navigator',
+    glyph: '⚓',
+    tagline: 'Outcome-first. Tech is a vehicle, not a destination.',
+    flavor: 'Steers crew and craft toward a chosen shore.',
+    stats: { craft: 5, vision: 6, poise: 6, voice: 9, edge: 7 },
+    sources: [34, 35, 36, 37, 38],
+    subclasses: [
+      {
+        name: 'Pilot', glyph: '⌖',
+        tagline: 'Goal-directed steering — closed-loop control',
+        sources: [38, 39],
+        traits: [
+          { name: 'Done-criteria', tier: 'I',   note: 'Knows what "done" looks like before starting', sources: [38] },
+          { name: 'Tight loop',    tier: 'II',  note: 'Short cycles, frequent course-checks', sources: [39] },
+          { name: 'Re-vector',     tier: 'III', note: 'Updates the plan when reality disagrees', sources: [39] },
+        ],
+      },
+      {
+        name: 'Cartographer', glyph: '✥',
+        tagline: 'Klein & Weick: sensemaking in unfamiliar terrain',
+        sources: [40, 41, 42],
+        traits: [
+          { name: 'Map terrain',  tier: 'I',   note: 'Sketches the territory before walking it', sources: [40, 41] },
+          { name: 'Reframe',      tier: 'II',  note: 'Reshapes vague asks into answerable ones', sources: [41] },
+          { name: 'Recon',        tier: 'III', note: 'Uses the AI to scout, not to commit', sources: [40, 42] },
+        ],
+      },
+      {
+        name: 'Captain', glyph: '☸',
+        tagline: 'Orchestrates the AI as crew, not as tool',
+        sources: [43, 44],
+        traits: [
+          { name: 'Delegate',      tier: 'I',   note: 'Hands off whole tasks, not just keystrokes', sources: [43, 44] },
+          { name: 'Quality gate',  tier: 'II',  note: 'Decides what must be checked vs. trusted', sources: [43] },
+          { name: 'Translate',     tier: 'III', note: 'Speaks both AI and human fluently', sources: [41, 44] },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'strategist',
+    name: 'Strategist',
+    glyph: '✧',
+    tagline: 'Optimizes the meta-game. Plays the board, not the piece.',
+    flavor: 'Reads the long arc; spends moves with intention.',
+    stats: { craft: 5, vision: 9, poise: 7, voice: 6, edge: 9 },
+    sources: [45, 46, 47, 48, 49, 52],
+    subclasses: [
+      {
+        name: 'Analyst', glyph: '⚖',
+        tagline: 'Kahneman’s System 2 — deliberate, evidence-led',
+        sources: [52, 53, 54, 55],
+        traits: [
+          { name: 'Frame trade',     tier: 'I',   note: 'Quantifies the trade before the trade is made', sources: [52, 47] },
+          { name: 'Read benchmark',  tier: 'II',  note: 'Reads numbers without being seduced by them', sources: [54, 55] },
+          { name: 'Surface cost',    tier: 'III', note: 'Makes the invisible costs visible', sources: [52, 53] },
+        ],
+      },
+      {
+        name: 'Optimizer', glyph: '⌬',
+        tagline: 'Goldratt: throughput is set by the bottleneck',
+        sources: [49, 50, 51],
+        traits: [
+          { name: 'Spot bottleneck', tier: 'I',   note: 'Names the constraint others work around', sources: [49, 50] },
+          { name: 'Token budget',    tier: 'II',  note: 'Treats context window as a budget, not a quota', sources: [47, 51] },
+          { name: 'Tune flow',       tier: 'III', note: 'Removes the slowest step before adding new ones', sources: [50, 51] },
+        ],
+      },
+      {
+        name: 'Visionary', glyph: '☼',
+        tagline: 'Mintzberg’s "umbrella strategy" — direction over plan',
+        sources: [46, 56, 57],
+        traits: [
+          { name: 'Roadmap',         tier: 'I',   note: 'Sequences bets so each one earns the next', sources: [46] },
+          { name: 'Scenario hold',   tier: 'II',  note: 'Holds multiple futures without committing early', sources: [56, 57] },
+          { name: 'Trend read',      tier: 'III', note: 'Distinguishes the durable shift from the cycle', sources: [36, 37] },
+        ],
+      },
+    ],
+  },
+];
+
+const sources: { id: number; cite: string; kind: string }[] = [
+  { id: 1, kind: 'book', cite: 'Mark, M. & Pearson, C. (2001). The Hero and the Outlaw. McGraw-Hill.' },
+  { id: 2, kind: 'theory', cite: 'Jung, C. G. (1968). The Archetypes and the Collective Unconscious. Princeton UP.' },
+  { id: 3, kind: 'book', cite: 'Holland, J. L. (1997). Making Vocational Choices (3rd ed.). PAR. — RIASEC.' },
+  { id: 4, kind: 'book', cite: 'Anderson, C. (2012). Makers: The New Industrial Revolution. Crown Business.' },
+  { id: 5, kind: 'empirical', cite: 'von Hippel, E. (2005). Democratizing Innovation. MIT Press. — empirical surveys of user-innovators.' },
+  { id: 6, kind: 'review', cite: 'Deci, E. L. & Ryan, R. M. (2000). The "what" and "why" of goal pursuits. Psychological Inquiry, 11(4), 227–268.' },
+  { id: 7, kind: 'book', cite: 'Csikszentmihalyi, M. (1990). Flow. Harper & Row.' },
+  { id: 8, kind: 'theory', cite: 'Lévi-Strauss, C. (1962). La Pensée sauvage. Plon. — bricoleur vs. engineer.' },
+  { id: 9, kind: 'empirical', cite: 'Turkle, S. & Papert, S. (1990). Epistemological pluralism. Signs, 16(1), 128–157.' },
+  { id: 10, kind: 'ethnography', cite: 'Knorr Cetina, K. (1981). The Manufacture of Knowledge. Pergamon. — ethnography of tinkering.' },
+  { id: 11, kind: 'empirical', cite: 'Csikszentmihalyi, M. (1996). Creativity. HarperCollins. — interviews with 91 eminent creators.' },
+  { id: 12, kind: 'theory', cite: 'Amabile, T. M. (1996). Creativity in Context. Westview Press.' },
+  { id: 13, kind: 'review', cite: 'Sawyer, R. K. (2012). Explaining Creativity (2nd ed.). Oxford UP.' },
+  { id: 14, kind: 'theory', cite: 'Kaufman, J. C. & Beghetto, R. A. (2009). Beyond big and little: The four C model of creativity. Review of General Psychology, 13(1), 1–12.' },
+  { id: 15, kind: 'history', cite: 'Levy, S. (1984). Hackers: Heroes of the Computer Revolution. Anchor Press.' },
+  { id: 16, kind: 'essay', cite: 'Raymond, E. S. (1999). The Cathedral and the Bazaar. O’Reilly.' },
+  { id: 17, kind: 'ethnography', cite: 'Coleman, E. G. (2013). Coding Freedom. Princeton UP.' },
+  { id: 18, kind: 'empirical', cite: 'Lakhani, K. R. & Wolf, R. G. (2005). Why hackers do what they do. MIT Press. — survey of 684 OSS contributors.' },
+  { id: 19, kind: 'book', cite: 'Sennett, R. (2008). The Craftsman. Yale UP.' },
+  { id: 20, kind: 'book', cite: 'Pirsig, R. M. (1974). Zen and the Art of Motorcycle Maintenance. William Morrow.' },
+  { id: 21, kind: 'book', cite: 'McBreen, P. (2002). Software Craftsmanship. Addison-Wesley.' },
+  { id: 22, kind: 'book', cite: 'Crawford, M. B. (2009). Shop Class as Soulcraft. Penguin.' },
+  { id: 23, kind: 'empirical', cite: 'Ericsson, K. A., Krampe, R. T. & Tesch-Römer, C. (1993). The role of deliberate practice. Psychological Review, 100(3), 363–406.' },
+  { id: 24, kind: 'meta-analysis', cite: 'Macnamara, B. N., Hambrick, D. Z. & Oswald, F. L. (2014). Deliberate practice and performance: A meta-analysis. Psychological Science, 25(8), 1608–1618.' },
+  { id: 25, kind: 'book', cite: 'Fowler, M. (2018). Refactoring (2nd ed.). Addison-Wesley.' },
+  { id: 26, kind: 'book', cite: 'Martin, R. C. (2008). Clean Code. Prentice Hall.' },
+  { id: 27, kind: 'theory', cite: 'Lave, J. & Wenger, E. (1991). Situated Learning. Cambridge UP.' },
+  { id: 28, kind: 'theory', cite: 'Collins, A., Brown, J. S. & Newman, S. E. (1989). Cognitive apprenticeship. In Knowing, Learning, and Instruction. Erlbaum.' },
+  { id: 29, kind: 'meta-analysis', cite: 'Allen, T. D. et al. (2004). Career benefits associated with mentoring. J. Applied Psychology, 89(1), 127–136.' },
+  { id: 30, kind: 'meta-analysis', cite: 'Eby, L. T. et al. (2008). Does mentoring matter? J. Vocational Behavior, 72(2), 254–267.' },
+  { id: 31, kind: 'theory', cite: 'Bourdieu, P. (1984). Distinction. Harvard UP.' },
+  { id: 32, kind: 'book', cite: 'Norman, D. A. (2004). Emotional Design. Basic Books.' },
+  { id: 33, kind: 'book', cite: 'Hunt, A. & Thomas, D. (1999). The Pragmatic Programmer. Addison-Wesley.' },
+  { id: 34, kind: 'theory', cite: 'Sarasvathy, S. D. (2001). Causation and effectuation. Academy of Management Review, 26(2), 243–263.' },
+  { id: 35, kind: 'meta-analysis', cite: 'Read, S., Song, M. & Smit, W. (2009). A meta-analytic review of effectuation and venture performance. J. Business Venturing, 24(6), 573–587.' },
+  { id: 36, kind: 'review', cite: 'Rogers, E. M. (2003). Diffusion of Innovations (5th ed.). Free Press.' },
+  { id: 37, kind: 'book', cite: 'Moore, G. A. (1991). Crossing the Chasm. HarperBusiness.' },
+  { id: 38, kind: 'review', cite: 'Locke, E. A. & Latham, G. P. (2002). Building a practically useful theory of goal setting. American Psychologist, 57(9), 705–717.' },
+  { id: 39, kind: 'book', cite: 'Carver, C. S. & Scheier, M. F. (1998). On the Self-Regulation of Behavior. Cambridge UP.' },
+  { id: 40, kind: 'book', cite: 'Klein, G. (1999). Sources of Power. MIT Press.' },
+  { id: 41, kind: 'book', cite: 'Weick, K. E. (1995). Sensemaking in Organizations. Sage.' },
+  { id: 42, kind: 'paper', cite: 'Snowden, D. J. & Boone, M. E. (2007). A leader’s framework for decision making. HBR, 85(11), 68–76. — Cynefin.' },
+  { id: 43, kind: 'book', cite: 'Edmondson, A. C. (2012). Teaming. Jossey-Bass.' },
+  { id: 44, kind: 'book', cite: 'Malone, T. W. (2018). Superminds. Little, Brown.' },
+  { id: 45, kind: 'book', cite: 'Mintzberg, H., Ahlstrand, B. & Lampel, J. (1998). Strategy Safari. Free Press.' },
+  { id: 46, kind: 'paper', cite: 'Mintzberg, H. (1987). Crafting strategy. HBR, 65(4), 66–75.' },
+  { id: 47, kind: 'paper', cite: 'Simon, H. A. (1955). A behavioral model of rational choice. QJE, 69(1), 99–118.' },
+  { id: 48, kind: 'book', cite: 'Schwartz, B. (2004). The Paradox of Choice. Ecco.' },
+  { id: 49, kind: 'book', cite: 'Goldratt, E. M. (1984). The Goal. North River Press.' },
+  { id: 50, kind: 'empirical', cite: 'Mabin, V. J. & Balderstone, S. J. (2003). The performance of the theory of constraints methodology. IJOPM, 23(6), 568–595.' },
+  { id: 51, kind: 'book', cite: 'Reinertsen, D. G. (2009). The Principles of Product Development Flow. Celeritas.' },
+  { id: 52, kind: 'book', cite: 'Kahneman, D. (2011). Thinking, Fast and Slow. FSG.' },
+  { id: 53, kind: 'paper', cite: 'Stanovich, K. E. & West, R. F. (2000). Individual differences in reasoning. BBS, 23(5), 645–665.' },
+  { id: 54, kind: 'empirical', cite: 'Tetlock, P. E. (2005). Expert Political Judgment. Princeton UP.' },
+  { id: 55, kind: 'book', cite: 'Tetlock, P. E. & Gardner, D. (2015). Superforecasting. Crown.' },
+  { id: 56, kind: 'paper', cite: 'Wack, P. (1985). Scenarios: Uncharted waters ahead. HBR, 63(5), 73–89.' },
+  { id: 57, kind: 'paper', cite: 'Schoemaker, P. J. H. (1995). Scenario planning. Sloan Management Review, 36(2), 25–40.' },
+  { id: 58, kind: 'empirical', cite: 'Capretz, L. F. (2003). Personality types in software engineering. Int. J. HCS, 58(2), 207–214.' },
+  { id: 59, kind: 'mapping study', cite: 'Cruz, S., da Silva, F. Q. B. & Capretz, L. F. (2015). Forty years of research on personality in software engineering. Computers in Human Behavior, 46, 94–113.' },
+];
+
+const colorOf: Record<ClassKey, { stroke: string; fill: string; tint: string; text: string; dim: string; deep: string }> = {
+  builder:    { stroke: '#fbbf24', fill: '#1a140a', tint: 'rgba(251,191,36,0.18)', text: '#fde68a', dim: 'rgba(251,191,36,0.45)', deep: '#78350f' },
+  craftsman:  { stroke: '#34d399', fill: '#0a1813', tint: 'rgba(52,211,153,0.18)', text: '#a7f3d0', dim: 'rgba(52,211,153,0.45)', deep: '#064e3b' },
+  navigator:  { stroke: '#38bdf8', fill: '#0a1620', tint: 'rgba(56,189,248,0.18)', text: '#bae6fd', dim: 'rgba(56,189,248,0.45)', deep: '#0c4a6e' },
+  strategist: { stroke: '#a78bfa', fill: '#130b22', tint: 'rgba(167,139,250,0.18)', text: '#ddd6fe', dim: 'rgba(167,139,250,0.45)', deep: '#4c1d95' },
+};
+
+// Investment profile per class — how a "specced" player of that class looks.
+// [maxLevel, invested] per tier — some max levels are locked higher tiers,
+// invested is what the player has currently spent points on.
+// Total invested points per class are visible as the SKILL POINTS spent.
+const investment: Record<ClassKey, [number, number][]> = {
+  builder:    [[10, 9], [10, 5], [8,  2]],   // front-loaded: tier I maxed, tier III barely opened
+  craftsman:  [[10, 7], [10, 7], [10, 8]],   // even deepening across tiers
+  navigator:  [[10, 8], [10, 6], [9,  4]],   // strong I, exploring II/III
+  strategist: [[10, 4], [10, 6], [10, 9]],   // late-bloomer: tier III nearly maxed
+};
+
+function maxFor(classKey: ClassKey, traitIdx: number): number {
+  return investment[classKey][traitIdx][0];
+}
+function curFor(classKey: ClassKey, traitIdx: number): number {
+  return investment[classKey][traitIdx][1];
+}
+function pointsSpent(classKey: ClassKey): number {
+  return investment[classKey].reduce((a, [, c]) => a + c, 0);
+}
+function pointsCap(classKey: ClassKey): number {
+  return investment[classKey].reduce((a, [m]) => a + m, 0);
+}
+
+// Cross-class skill links — pairs of trait IDs that connect across classes.
+// Trait id format: `${classKey}.${subclassIdx}.${traitIdx}` — e.g., "builder.0.0" = Tinkerer/Reverse-engineer.
+type CrossLink = { from: string; to: string; label: string };
+const crossLinks: CrossLink[] = [
+  { from: 'builder.0.0',    to: 'craftsman.0.0',  label: 'Hands-on read' },     // Reverse-engineer ↔ Refactor sight
+  { from: 'builder.2.2',    to: 'strategist.1.0', label: 'Find leverage' },     // System bend ↔ Spot bottleneck
+  { from: 'craftsman.1.0',  to: 'navigator.1.1',  label: 'Make it teachable' }, // Diff teach ↔ Reframe
+  { from: 'navigator.2.0',  to: 'strategist.2.0', label: 'Orchestrate' },       // Delegate ↔ Roadmap
+  { from: 'craftsman.2.0',  to: 'strategist.0.2', label: 'Cost discipline' },   // Tool weigh ↔ Surface cost
+  { from: 'builder.1.1',    to: 'navigator.1.0',  label: 'Explore the unknown' }, // Generative play ↔ Map terrain
+];
+
+const PIPS = 10;
+
+const kindColor: Record<string, string> = {
+  'meta-analysis': 'bg-emerald-500/15 text-emerald-200 border-emerald-500/30',
+  'empirical': 'bg-sky-500/15 text-sky-200 border-sky-500/30',
+  'ethnography': 'bg-sky-500/15 text-sky-200 border-sky-500/30',
+  'mapping study': 'bg-emerald-500/15 text-emerald-200 border-emerald-500/30',
+  'review': 'bg-emerald-500/15 text-emerald-200 border-emerald-500/30',
+  'theory': 'bg-violet-500/15 text-violet-200 border-violet-500/30',
+  'book': 'bg-slate-700/40 text-slate-300 border-slate-600/40',
+  'paper': 'bg-slate-700/40 text-slate-300 border-slate-600/40',
+  'essay': 'bg-slate-700/40 text-slate-300 border-slate-600/40',
+  'history': 'bg-slate-700/40 text-slate-300 border-slate-600/40',
+};
+
+const statKeys: { k: keyof Stats; label: string; glyph: string }[] = [
+  { k: 'craft',  label: 'CRAFT',  glyph: '⚒' },
+  { k: 'vision', label: 'VISION', glyph: '✦' },
+  { k: 'poise',  label: 'POISE',  glyph: '⚖' },
+  { k: 'voice',  label: 'VOICE',  glyph: '☉' },
+  { k: 'edge',   label: 'EDGE',   glyph: '⚡' },
+];
+---
+<BaseLayout title="Persona Skill Tree (v0)" noindex={true}>
+  <div class="w-full max-w-[1900px] mx-auto">
+    <header class="text-center mb-8 max-w-4xl mx-auto px-4 relative">
+      <div class="hero-banner relative inline-block px-12 py-5">
+        <span class="banner-flourish banner-flourish-l" aria-hidden="true"></span>
+        <span class="banner-flourish banner-flourish-r" aria-hidden="true"></span>
+        <div class="text-[10px] tracking-[0.55em] uppercase text-amber-200/70 mb-2">⚜ The Codex of Practice ⚜</div>
+        <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight font-display leading-none">Persona Skill Tree</h1>
+        <div class="text-[10px] tracking-[0.4em] uppercase text-slate-400 mt-2">v0 · evidence-annotated</div>
+      </div>
+      <p class="text-slate-400 leading-relaxed text-sm mt-5 max-w-2xl mx-auto">
+        Four classes, twelve specializations, thirty-six leveled skills. Hover any node
+        for the read-out and sources. Dashed arcs trace cross-class synergies.
+      </p>
+    </header>
+
+    <!-- Symbol legend -->
+    <section class="mb-8 max-w-4xl mx-auto rounded-xl border border-slate-700 bg-slate-900/60 px-5 py-3">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="text-amber-300 text-sm" style="text-shadow: 0 0 6px rgba(251,191,36,0.6)">◆</span>
+          <span class="tracking-wider">Skill points spent / cap</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[8px] tracking-[0.25em] font-bold font-mono px-1 py-0.5 rounded-sm text-amber-200 border border-amber-500/40 bg-amber-900/40">II</span>
+          <span class="tracking-wider">Tier — ascending depth</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="flex gap-px">
+            {[1,1,1,1,1,1,0,0,0,0].map((on) => (
+              <span class="inline-block w-1 h-2 rounded-[1px]" style={on ? 'background:#fbbf24;box-shadow:0 0 3px #fbbf24' : 'background:rgba(255,255,255,0.06)'}></span>
+            ))}
+          </div>
+          <span class="tracking-wider">Level pips · invested / max</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[8px] font-mono font-bold tracking-wider text-amber-300" style="text-shadow:0 0 4px rgba(251,191,36,0.6)">MAX</span>
+          <span class="tracking-wider">Maxed trait — pulses</span>
+        </div>
+        <div class="hidden lg:flex items-center gap-2">
+          <svg width="32" height="10" aria-hidden="true">
+            <line x1="0" y1="5" x2="32" y2="5" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="5 4" />
+          </svg>
+          <span class="tracking-wider">Cross-class link</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-slate-500">
+          {statKeys.map((s) => (
+            <span class="px-1.5 py-0.5 rounded border border-slate-700 text-[9px] tracking-wider">{s.label}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile-only class tab nav -->
+    <nav class="lg:hidden mb-4 mx-4 flex items-center justify-between gap-2 rounded-xl border border-slate-700 bg-slate-900/60 p-2" aria-label="Class navigation">
+      {tree.map((cls, i) => {
+        const c = colorOf[cls.key];
+        return (
+          <button
+            type="button"
+            class="class-tab flex-1 rounded-md px-2 py-1.5 text-[10px] font-bold tracking-[0.18em] uppercase text-center transition"
+            data-tab-target={cls.key}
+            data-tab-idx={i}
+            style={`color: ${c.text}; background: rgba(2,6,23,0.6); box-shadow: 0 0 0 1px ${c.dim} inset`}
+          >
+            <span class="mr-1" aria-hidden="true" style="font-family: Georgia, serif">{cls.glyph}</span>
+            {cls.name}
+          </button>
+        );
+      })}
+    </nav>
+
+    <!-- Skill tree: flex carousel on small, grid on lg+ -->
+    <div class="tree-wrap relative">
+      <!-- Cross-class arc overlay (desktop only) -->
+      <svg id="cross-arcs" class="hidden lg:block absolute inset-0 pointer-events-none z-30" width="100%" height="100%" aria-hidden="true" style="overflow: visible;">
+        <defs>
+          {(['builder', 'craftsman', 'navigator', 'strategist'] as const).map((aKey) =>
+            (['builder', 'craftsman', 'navigator', 'strategist'] as const).map((bKey) => (
+              <linearGradient id={`grad-${aKey}-${bKey}`} x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color={colorOf[aKey].stroke} stop-opacity="0.9" />
+                <stop offset="100%" stop-color={colorOf[bKey].stroke} stop-opacity="0.9" />
+              </linearGradient>
+            ))
+          )}
+        </defs>
+      </svg>
+      <div
+        class="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-4 px-4 pb-4
+               lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:snap-none lg:mx-0 lg:px-4 relative z-10"
+      >
+        {tree.map((cls) => {
+          const c = colorOf[cls.key];
+          return (
+            <div
+              class="snap-center shrink-0 w-[calc(100vw-2rem)] lg:w-auto lg:shrink class-tree"
+              data-cls-key={cls.key}
+            >
+              <!-- CLASS CARD -->
+              <div
+                class={`skill-node class-card cls-${cls.key} relative rounded-xl border-2 p-4 cursor-help group`}
+                tabindex="0"
+                data-cls={cls.key}
+                data-tip-kind="class"
+                data-tip={JSON.stringify({ name: `The ${cls.name}`, tagline: cls.tagline, flavor: cls.flavor, sources: cls.sources, stats: cls.stats })}
+                style={`border-color: ${c.stroke}; background: linear-gradient(165deg, ${c.tint} 0%, ${c.fill} 75%, transparent 100%); box-shadow: 0 0 0 1px ${c.dim} inset, 0 6px 20px -6px ${c.dim}`}
+              >
+                <!-- Corner ornaments -->
+                <span aria-hidden="true" class="corner-orn corner-tl" style={`color: ${c.stroke}`}></span>
+                <span aria-hidden="true" class="corner-orn corner-tr" style={`color: ${c.stroke}`}></span>
+                <span aria-hidden="true" class="corner-orn corner-bl" style={`color: ${c.stroke}`}></span>
+                <span aria-hidden="true" class="corner-orn corner-br" style={`color: ${c.stroke}`}></span>
+                <div class="absolute -top-2 left-3 px-2 py-0.5 text-[9px] tracking-[0.35em] font-bold rounded uppercase" style={`background: ${c.deep}; color: ${c.text}; box-shadow: 0 0 0 1px ${c.dim}`}>Class</div>
+                <div class="absolute -top-2 right-3 px-2 py-0.5 text-[9px] tracking-[0.2em] font-mono font-bold rounded uppercase flex items-center gap-1" style={`background: rgba(2,6,23,0.95); color: ${c.text}; box-shadow: 0 0 0 1px ${c.dim}`}>
+                  <span style={`color: ${c.stroke}; text-shadow: 0 0 4px ${c.stroke}`}>◆</span>
+                  <span>{pointsSpent(cls.key)}/{pointsCap(cls.key)} pts</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="text-5xl leading-none" style={`color: ${c.text}; font-family: Georgia, serif; text-shadow: 0 0 12px ${c.dim}`}>{cls.glyph}</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-2xl font-black tracking-tight text-white uppercase font-display leading-none mt-1">{cls.name}</div>
+                    <div class="text-[10px] text-slate-400 italic mt-1.5 leading-tight">{cls.tagline}</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-5 gap-1.5 mt-3 pt-3 border-t border-white/5">
+                  {statKeys.map((s) => {
+                    const v = cls.stats[s.k];
+                    return (
+                      <div>
+                        <div class="text-[8px] tracking-wider text-slate-500 mb-0.5 text-center">{s.label}</div>
+                        <div class="h-1 bg-black/40 rounded-sm overflow-hidden">
+                          <div class="h-full" style={`width: ${v * 10}%; background: ${c.stroke}; box-shadow: 0 0 4px ${c.stroke}`}></div>
+                        </div>
+                        <div class="text-[9px] font-mono mt-0.5 text-center" style={`color: ${c.text}`}>{v}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <!-- Visual stem from class to subclasses -->
+              <div class="flex justify-around px-4">
+                {cls.subclasses.map(() => (
+                  <div class="w-px h-3" style={`background: linear-gradient(180deg, ${c.stroke}, ${c.dim})`}></div>
+                ))}
+              </div>
+
+              <!-- SUBCLASS COLUMNS -->
+              <div class="grid grid-cols-3 gap-1.5">
+                {cls.subclasses.map((sub, si) => {
+                  const traitCur = sub.traits.map((_, ti) => curFor(cls.key, ti));
+                  const traitMax = sub.traits.map((_, ti) => maxFor(cls.key, ti));
+                  const mastery = Math.round(traitCur.reduce((a, b) => a + b, 0) / traitCur.length);
+                  const masteryMax = Math.round(traitMax.reduce((a, b) => a + b, 0) / traitMax.length);
+                  return (
+                    <div class="flex flex-col gap-1.5">
+                      <!-- SUBCLASS CARD -->
+                      <div
+                        class={`skill-node subclass-card cls-${cls.key} relative rounded-lg border p-2 cursor-help`}
+                        tabindex="0"
+                        data-cls={cls.key}
+                        data-sub-id={`${cls.key}.${si}`}
+                        data-tip-kind="subclass"
+                        data-tip={JSON.stringify({ name: sub.name, tagline: sub.tagline, sources: sub.sources, mastery, masteryMax })}
+                        style={`border-color: ${c.dim}; background: linear-gradient(180deg, ${c.fill}, rgba(2,6,23,0.7))`}
+                      >
+                        <div class="flex items-center gap-1.5 mb-1">
+                          <span class="text-base leading-none" style={`color: ${c.text}; font-family: Georgia, serif; text-shadow: 0 0 8px ${c.dim}`}>{sub.glyph}</span>
+                          <span class="text-[11px] font-bold text-white truncate flex-1">{sub.name}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-[8px] tracking-wider mb-0.5">
+                          <span class="text-slate-500">MASTERY</span>
+                          <span class="font-mono" style={`color: ${c.text}`}>{mastery}/{masteryMax}</span>
+                        </div>
+                        <div class="relative h-1 bg-black/50 rounded-sm overflow-hidden">
+                          <div class="absolute inset-y-0 left-0" style={`width: ${(masteryMax / 10) * 100}%; background: ${c.dim}; opacity: 0.35`}></div>
+                          <div class="absolute inset-y-0 left-0" style={`width: ${mastery * 10}%; background: linear-gradient(90deg, ${c.deep}, ${c.stroke}); box-shadow: 0 0 6px ${c.stroke}`}></div>
+                        </div>
+                      </div>
+
+                      <!-- Stem to traits -->
+                      <div class="flex justify-center">
+                        <div class="w-px h-2" style={`background: ${c.dim}`}></div>
+                      </div>
+
+                      <!-- TRAIT CARDS -->
+                      {sub.traits.map((trait, ti) => {
+                        const cur = curFor(cls.key, ti);
+                        const max = maxFor(cls.key, ti);
+                        const locked = max < 10 && cur === 0;
+                        const traitId = `${cls.key}.${si}.${ti}`;
+                        return (
+                          <div
+                            class={`skill-node trait-card cls-${cls.key} relative rounded-md border p-2 cursor-help${locked ? ' is-locked' : ''}${cur === max && cur > 0 ? ' is-maxed' : ''}`}
+                            tabindex="0"
+                            data-cls={cls.key}
+                            data-trait-id={traitId}
+                            data-tip-kind="trait"
+                            data-tip={JSON.stringify({ name: trait.name, tier: trait.tier, note: trait.note, sources: trait.sources, level: cur, max })}
+                            style={`border-color: ${c.dim}99; background: rgba(2,6,23,0.85); box-shadow: 0 0 0 1px rgba(0,0,0,0.6) inset${cur === max && cur > 0 ? `, 0 0 12px -2px ${c.stroke}` : ''}`}
+                          >
+                            <div class="flex items-center gap-1.5 mb-1.5">
+                              <span class="text-[8px] tracking-[0.25em] font-bold font-mono px-1 py-0.5 rounded-sm" style={`color: ${c.text}; background: ${c.deep}80; box-shadow: 0 0 0 1px ${c.dim}`}>{trait.tier}</span>
+                              <span class="text-[10px] font-semibold text-white leading-tight flex-1">{trait.name}</span>
+                              {cur === max && cur > 0 && (
+                                <span class="text-[8px] font-mono font-bold tracking-wider" style={`color: ${c.stroke}; text-shadow: 0 0 4px ${c.stroke}`}>MAX</span>
+                              )}
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                              <div class="flex gap-px flex-1">
+                                {Array.from({ length: PIPS }).map((_, i) => {
+                                  const filled = i < cur;
+                                  const available = i < max;
+                                  return (
+                                    <div
+                                      class="h-2 flex-1 rounded-[1px] pip"
+                                      style={filled
+                                        ? `background: ${c.stroke}; box-shadow: 0 0 3px ${c.stroke}`
+                                        : available
+                                          ? `background: rgba(255,255,255,0.08); box-shadow: 0 0 0 1px ${c.dim}55 inset`
+                                          : `background: rgba(0,0,0,0.5); box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset`}
+                                    ></div>
+                                  );
+                                })}
+                              </div>
+                              <span class="text-[8px] font-mono tracking-wider" style={`color: ${c.text}`}>{cur}/{max}</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Cross-class link payload for JS arc renderer -->
+      <script id="cross-link-data" type="application/json" set:html={JSON.stringify(crossLinks)}></script>
+
+      <!-- Mobile-only cross-link list (arcs hidden below lg) -->
+      <section class="lg:hidden mt-6 mx-4 rounded-xl border border-slate-700 bg-slate-900/40 p-4">
+        <h3 class="text-[10px] tracking-[0.3em] uppercase text-slate-400 mb-3 text-center">Cross-class synergies</h3>
+        <div class="grid grid-cols-1 gap-2 text-xs">
+          {crossLinks.map((link) => {
+            const [aCls] = link.from.split('.');
+            const [bCls] = link.to.split('.');
+            const ca = colorOf[aCls as ClassKey];
+            const cb = colorOf[bCls as ClassKey];
+            return (
+              <div class="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2">
+                <span class="w-2 h-2 rounded-full" style={`background: ${ca.stroke}; box-shadow: 0 0 6px ${ca.stroke}`}></span>
+                <span class="text-slate-300 italic flex-1">{link.label}</span>
+                <span class="w-2 h-2 rounded-full" style={`background: ${cb.stroke}; box-shadow: 0 0 6px ${cb.stroke}`}></span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </div>
+
+    <!-- Tooltip overlay -->
+    <div id="skill-tooltip" class="skill-tt fixed z-50 opacity-0 transition-opacity duration-150 pointer-events-none" style="left:0;top:0"></div>
+
+    <!-- Sources -->
+    <section class="mt-12 pt-8 border-t border-slate-800 max-w-6xl mx-auto px-4">
+      <div class="flex items-baseline justify-between flex-wrap gap-3 mb-4">
+        <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide">Sources ({sources.length})</h2>
+        <div class="flex gap-2 flex-wrap text-[10px] uppercase tracking-wider">
+          <span class="px-2 py-0.5 rounded border bg-emerald-500/15 text-emerald-200 border-emerald-500/30">meta-analysis / review</span>
+          <span class="px-2 py-0.5 rounded border bg-sky-500/15 text-sky-200 border-sky-500/30">empirical / ethnography</span>
+          <span class="px-2 py-0.5 rounded border bg-violet-500/15 text-violet-200 border-violet-500/30">theory</span>
+          <span class="px-2 py-0.5 rounded border bg-slate-700/40 text-slate-300 border-slate-600/40">book / essay</span>
+        </div>
+      </div>
+      <ol class="text-xs text-slate-400 space-y-2 leading-relaxed columns-1 md:columns-2 gap-x-8">
+        {sources.map((s) => (
+          <li class="break-inside-avoid">
+            <span class="text-slate-500 font-mono mr-1">[{s.id}]</span>
+            <span class={`inline-block text-[9px] uppercase tracking-wider px-1.5 py-0.5 mr-1.5 rounded border ${kindColor[s.kind] ?? kindColor['book']}`}>{s.kind}</span>
+            {s.cite}
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Limitations -->
+    <section class="mt-12 max-w-3xl mx-auto px-4 rounded-xl border border-slate-700/70 bg-slate-900/40 p-5 text-sm text-slate-300 leading-relaxed mb-12">
+      <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide mb-3">Limitations &amp; open questions</h2>
+      <ul class="space-y-2 list-disc pl-5">
+        <li><strong class="text-white">Levels are illustrative.</strong> The 1-10 values per trait reflect a stylized "progression profile" per class, not psychometric measurements.</li>
+        <li><strong class="text-white">Builder vs. Craftsman overlap.</strong> Tinkerer and Purist both prize hands-on engagement. Holland’s Realistic type<sup>3</sup> covers both; the split here is cultural (maker vs. guild).</li>
+        <li><strong class="text-white">Strategist as type vs. mode.</strong> Mintzberg<sup>45,46</sup> and Simon<sup>47</sup> describe strategic <em>thinking</em>, which any persona can adopt situationally.</li>
+        <li><strong class="text-white">Deliberate-practice caveat.</strong> The Craftsman base leans on Ericsson<sup>23</sup>, but Macnamara et al. 2014<sup>24</sup> shows practice explains less variance than originally claimed.</li>
+        <li><strong class="text-white">Software-engineer personality data is thin.</strong> Cruz, da Silva &amp; Capretz<sup>59</sup> map 40 years of research and find most studies use the contested MBTI instrument.</li>
+        <li><strong class="text-white">AI-pair-programming traits are extrapolation.</strong> They draw on the cited literature but are not direct empirical findings about working with AI assistants.</li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700;900&display=swap');
+
+  :global(body) {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(251,191,36,0.05), transparent 50%),
+      radial-gradient(ellipse at 50% 0%, rgba(52,211,153,0.04), transparent 50%),
+      radial-gradient(ellipse at 80% 0%, rgba(167,139,250,0.05), transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(56,189,248,0.04), transparent 50%),
+      #0a0e1a;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', Georgia, serif;
+  }
+
+  .skill-node {
+    cursor: pointer;
+    transition: all 200ms ease;
+    outline: none;
+  }
+  .skill-node:hover,
+  .skill-node:focus {
+    transform: translateY(-1px);
+    filter: brightness(1.15);
+  }
+  .skill-node.class-card:hover,
+  .skill-node.class-card:focus {
+    transform: translateY(-2px);
+  }
+
+  .pip {
+    transition: filter 150ms ease;
+  }
+  .skill-node:hover .pip,
+  .skill-node:focus .pip {
+    filter: brightness(1.3);
+  }
+
+  /* Maxed-trait pulse */
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(0,0,0,0.6) inset, 0 0 8px -2px var(--c, #fff); }
+    50%      { box-shadow: 0 0 0 1px rgba(0,0,0,0.6) inset, 0 0 18px -2px var(--c, #fff); }
+  }
+  .trait-card.is-maxed.cls-builder    { --c: #fbbf24; animation: pulseGlow 3.2s ease-in-out infinite; }
+  .trait-card.is-maxed.cls-craftsman  { --c: #34d399; animation: pulseGlow 3.6s ease-in-out infinite; }
+  .trait-card.is-maxed.cls-navigator  { --c: #38bdf8; animation: pulseGlow 3.4s ease-in-out infinite; }
+  .trait-card.is-maxed.cls-strategist { --c: #a78bfa; animation: pulseGlow 3.8s ease-in-out infinite; }
+
+  /* Cross-link partner highlight (set by JS on hover) */
+  .trait-card.is-cross-target {
+    transform: translateY(-2px);
+    filter: brightness(1.35);
+  }
+  .trait-card.is-cross-target::after {
+    content: '↔';
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    background: rgba(2,6,23,0.95);
+    border: 1px solid currentColor;
+    color: var(--c-cross, #fde68a);
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .trait-card.cls-builder.is-cross-target    { --c-cross: #fde68a; }
+  .trait-card.cls-craftsman.is-cross-target  { --c-cross: #a7f3d0; }
+  .trait-card.cls-navigator.is-cross-target  { --c-cross: #bae6fd; }
+  .trait-card.cls-strategist.is-cross-target { --c-cross: #ddd6fe; }
+
+  /* Locked trait dim */
+  .trait-card.is-locked {
+    opacity: 0.55;
+    filter: saturate(0.6);
+  }
+  .trait-card.is-locked:hover {
+    opacity: 0.85;
+    filter: saturate(0.9);
+  }
+
+  .skill-tt {
+    transition: opacity 150ms ease;
+  }
+  .skill-tt.show {
+    opacity: 1;
+  }
+
+  /* Mobile carousel */
+  .tree-wrap > div::-webkit-scrollbar {
+    display: none;
+  }
+  .tree-wrap > div {
+    scrollbar-width: none;
+  }
+  .class-tree {
+    scroll-snap-stop: always;
+  }
+  .class-tab {
+    transition: filter 150ms ease, transform 150ms ease;
+  }
+  .class-tab.is-active {
+    filter: brightness(1.4);
+    transform: translateY(-1px);
+    box-shadow:
+      0 0 0 1px currentColor inset,
+      0 0 12px -2px currentColor !important;
+  }
+
+  /* Hero banner ornaments */
+  .hero-banner {
+    border-top: 1px solid rgba(251, 191, 36, 0.25);
+    border-bottom: 1px solid rgba(251, 191, 36, 0.25);
+  }
+  .hero-banner::before,
+  .hero-banner::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(251,191,36,0.5) 30%, rgba(251,191,36,0.5) 70%, transparent);
+  }
+  .hero-banner::before { top: 4px; }
+  .hero-banner::after  { bottom: 4px; }
+  .banner-flourish {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(251,191,36,0.6));
+  }
+  .banner-flourish::before {
+    content: '◆';
+    position: absolute;
+    top: -7px;
+    color: rgba(251,191,36,0.85);
+    font-size: 10px;
+    text-shadow: 0 0 8px rgba(251,191,36,0.6);
+  }
+  .banner-flourish-l { left: -40px; }
+  .banner-flourish-l::before { right: -8px; }
+  .banner-flourish-r { right: -40px; transform: scaleX(-1); }
+  .banner-flourish-r::before { right: -8px; }
+
+  /* Class-card corner ornaments — small angle brackets */
+  .corner-orn {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .corner-orn::before,
+  .corner-orn::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    box-shadow: 0 0 4px currentColor;
+  }
+  .corner-orn::before { width: 14px; height: 1px; }
+  .corner-orn::after  { width: 1px;  height: 14px; }
+  .corner-tl { top: 4px;    left: 4px; }
+  .corner-tl::before { top: 0; left: 0; }
+  .corner-tl::after  { top: 0; left: 0; }
+  .corner-tr { top: 4px;    right: 4px; }
+  .corner-tr::before { top: 0; right: 0; }
+  .corner-tr::after  { top: 0; right: 0; }
+  .corner-bl { bottom: 4px; left: 4px; }
+  .corner-bl::before { bottom: 0; left: 0; }
+  .corner-bl::after  { bottom: 0; left: 0; }
+  .corner-br { bottom: 4px; right: 4px; }
+  .corner-br::before { bottom: 0; right: 0; }
+  .corner-br::after  { bottom: 0; right: 0; }
+</style>
+
+<script>
+  type TipKind = 'class' | 'subclass' | 'trait';
+  const colorMap: Record<string, string> = {
+    'cls-builder':    '#fbbf24',
+    'cls-craftsman':  '#34d399',
+    'cls-navigator':  '#38bdf8',
+    'cls-strategist': '#a78bfa',
+  };
+  function colorFor(node: Element): string {
+    for (const cls of Array.from(node.classList)) {
+      if (colorMap[cls]) return colorMap[cls];
+    }
+    return '#fff';
+  }
+
+  const tip = document.getElementById('skill-tooltip')!;
+
+  function statBars(stats: Record<string, number>, color: string): string {
+    const rows: [string, number][] = [
+      ['CRAFT',  stats.craft],
+      ['VISION', stats.vision],
+      ['POISE',  stats.poise],
+      ['VOICE',  stats.voice],
+      ['EDGE',   stats.edge],
+    ];
+    return rows.map(([k, v]) => `
+      <div class="flex items-center gap-2 text-[10px]">
+        <span class="text-slate-400 w-12 tracking-wider">${k}</span>
+        <div class="flex-1 h-1 bg-slate-800 rounded overflow-hidden">
+          <div class="h-full" style="width:${v * 10}%; background:${color}; box-shadow:0 0 4px ${color}"></div>
+        </div>
+        <span class="text-slate-300 w-3 text-right font-mono">${v}</span>
+      </div>
+    `).join('');
+  }
+
+  function pipsHTML(level: number, max: number, color: string): string {
+    let html = '<div class="flex gap-px">';
+    for (let i = 0; i < 10; i++) {
+      const filled = i < level;
+      const available = i < max;
+      const style = filled
+        ? `background:${color};box-shadow:0 0 3px ${color}`
+        : available
+          ? `background:rgba(255,255,255,0.08);box-shadow:0 0 0 1px ${color}55 inset`
+          : `background:rgba(0,0,0,0.5);box-shadow:0 0 0 1px rgba(255,255,255,0.04) inset`;
+      html += `<span style="display:inline-block;width:5px;height:8px;border-radius:1px;${style}"></span>`;
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function render(kind: TipKind, p: any, color: string): string {
+    const borderStyle = `border-color:${color}66;box-shadow:0 0 30px -8px ${color}99,0 0 0 1px rgba(0,0,0,0.6) inset`;
+    if (kind === 'class') {
+      return `
+        <div class="rounded-lg border bg-slate-950/95 p-3.5 shadow-2xl text-left w-72" style="${borderStyle}">
+          <div class="text-base font-bold mb-1" style="color:${color}">${p.name}</div>
+          <div class="text-xs italic text-slate-300 mb-2">${p.tagline}</div>
+          <div class="text-xs text-slate-400 mb-3">${p.flavor}</div>
+          <div class="space-y-1 mb-3">${statBars(p.stats, color)}</div>
+          <div class="text-[10px] text-slate-500 tracking-wider uppercase">Sources</div>
+          <div class="text-[11px] text-slate-400 font-mono">[${p.sources.join(', ')}]</div>
+        </div>`;
+    }
+    if (kind === 'subclass') {
+      return `
+        <div class="rounded-lg border bg-slate-950/95 p-3 shadow-2xl text-left w-64" style="${borderStyle}">
+          <div class="flex items-baseline justify-between mb-1">
+            <div class="text-sm font-bold" style="color:${color}">${p.name}</div>
+            <div class="text-[10px] font-mono" style="color:${color}">MAS ${p.mastery}/${p.masteryMax ?? 10}</div>
+          </div>
+          <div class="text-xs italic text-slate-300 mb-2">${p.tagline}</div>
+          <div class="text-[10px] text-slate-500 tracking-wider uppercase">Sources</div>
+          <div class="text-[11px] text-slate-400 font-mono">[${p.sources.join(', ')}]</div>
+        </div>`;
+    }
+    const max = p.max ?? 10;
+    return `
+      <div class="rounded-lg border bg-slate-950/95 p-3 shadow-2xl text-left w-64" style="${borderStyle}">
+        <div class="flex items-baseline justify-between mb-1.5">
+          <div class="text-sm font-bold text-white">${p.name}</div>
+          <div class="text-[10px] font-mono" style="color:${color}">TIER ${p.tier}</div>
+        </div>
+        <div class="text-xs text-slate-300 mb-2">${p.note}</div>
+        <div class="flex items-center gap-2 mb-2">
+          ${pipsHTML(p.level, max, color)}
+          <span class="text-[10px] font-mono" style="color:${color}">LV ${p.level}/${max}</span>
+        </div>
+        ${max < 10 ? `<div class="text-[10px] text-slate-500 mb-2">Cap ${max} — full mastery requires another spec</div>` : ''}
+        <div class="text-[10px] text-slate-500 tracking-wider uppercase">Sources</div>
+        <div class="text-[11px] text-slate-400 font-mono">[${p.sources.join(', ')}]</div>
+      </div>`;
+  }
+
+  function position(targetRect: DOMRect): void {
+    const tipRect = tip.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+    const margin = 12;
+    let left = targetRect.left + targetRect.width / 2 - tipRect.width / 2;
+    left = Math.max(margin, Math.min(vw - tipRect.width - margin, left));
+    let top = targetRect.top - tipRect.height - 14;
+    if (top < margin) top = targetRect.bottom + 14;
+    if (top + tipRect.height > vh - margin) top = vh - tipRect.height - margin;
+    tip.style.left = `${left}px`;
+    tip.style.top = `${top}px`;
+  }
+
+  // ---- Cross-class arc renderer ----
+  const crossLinks: { from: string; to: string; label: string }[] = JSON.parse(
+    document.getElementById('cross-link-data')?.textContent ?? '[]'
+  );
+  const arcSvg = document.getElementById('cross-arcs') as SVGSVGElement | null;
+  const treeWrap = document.querySelector<HTMLElement>('.tree-wrap');
+
+  function drawArcs(): void {
+    if (!arcSvg || !treeWrap) return;
+    if (window.innerWidth < 1024) {
+      arcSvg.innerHTML = arcSvg.querySelector('defs')?.outerHTML ?? '';
+      return;
+    }
+    const wrapRect = treeWrap.getBoundingClientRect();
+    arcSvg.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
+    arcSvg.setAttribute('width', String(wrapRect.width));
+    arcSvg.setAttribute('height', String(wrapRect.height));
+
+    const defs = arcSvg.querySelector('defs');
+    while (arcSvg.lastChild && arcSvg.lastChild !== defs) {
+      arcSvg.removeChild(arcSvg.lastChild);
+    }
+
+    const colorMap2: Record<string, string> = { builder: '#fbbf24', craftsman: '#34d399', navigator: '#38bdf8', strategist: '#a78bfa' };
+
+    crossLinks.forEach((link, i) => {
+      const a = document.querySelector<HTMLElement>(`[data-trait-id="${link.from}"]`);
+      const b = document.querySelector<HTMLElement>(`[data-trait-id="${link.to}"]`);
+      if (!a || !b) return;
+      const ar = a.getBoundingClientRect();
+      const br = b.getBoundingClientRect();
+      const goingRight = br.left > ar.left;
+      // Anchor at horizontal edges, vertical center
+      const ax = (goingRight ? ar.right : ar.left) - wrapRect.left;
+      const ay = ar.top + ar.height / 2 - wrapRect.top;
+      const bx = (goingRight ? br.left : br.right) - wrapRect.left;
+      const by = br.top + br.height / 2 - wrapRect.top;
+      const aClsKey = link.from.split('.')[0];
+      const bClsKey = link.to.split('.')[0];
+
+      // Alternate bow direction up/down, scaled by distance — creates visual variety
+      const dx = bx - ax;
+      const dy = by - ay;
+      const dist = Math.hypot(dx, dy);
+      const bowDir = i % 2 === 0 ? -1 : 1;          // -1 = above, 1 = below
+      const lift = Math.min(110, 40 + dist * 0.18) * bowDir;
+
+      // Quadratic bezier with control point at midpoint, offset perpendicular to chord
+      const mx = (ax + bx) / 2;
+      const my = (ay + by) / 2 + lift;
+      const d = `M ${ax} ${ay} Q ${mx} ${my}, ${bx} ${by}`;
+
+      // Outer glow
+      const glow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      glow.setAttribute('d', d);
+      glow.setAttribute('fill', 'none');
+      glow.setAttribute('stroke', `url(#grad-${aClsKey}-${bClsKey})`);
+      glow.setAttribute('stroke-width', '8');
+      glow.setAttribute('stroke-linecap', 'round');
+      glow.setAttribute('opacity', '0.25');
+      glow.setAttribute('filter', 'blur(3px)');
+      arcSvg.appendChild(glow);
+
+      // Inner line (dashed)
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      line.setAttribute('d', d);
+      line.setAttribute('fill', 'none');
+      line.setAttribute('stroke', `url(#grad-${aClsKey}-${bClsKey})`);
+      line.setAttribute('stroke-width', '1.5');
+      line.setAttribute('stroke-linecap', 'round');
+      line.setAttribute('stroke-dasharray', '5 4');
+      line.setAttribute('opacity', '0.95');
+      arcSvg.appendChild(line);
+
+      // Endpoint dots with halo
+      ([[ax, ay, aClsKey], [bx, by, bClsKey]] as const).forEach(([px, py, key]) => {
+        const halo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        halo.setAttribute('cx', String(px));
+        halo.setAttribute('cy', String(py));
+        halo.setAttribute('r', '6');
+        halo.setAttribute('fill', colorMap2[key] ?? '#fff');
+        halo.setAttribute('opacity', '0.25');
+        halo.setAttribute('filter', 'blur(2px)');
+        arcSvg.appendChild(halo);
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', String(px));
+        dot.setAttribute('cy', String(py));
+        dot.setAttribute('r', '3');
+        dot.setAttribute('fill', colorMap2[key] ?? '#fff');
+        dot.setAttribute('stroke', 'rgba(2,6,23,0.95)');
+        dot.setAttribute('stroke-width', '1.5');
+        arcSvg.appendChild(dot);
+      });
+
+      // Midpoint label at curve apex (t=0.5 on quadratic bezier)
+      const apexX = 0.25 * ax + 0.5 * mx + 0.25 * bx;
+      const apexY = 0.25 * ay + 0.5 * my + 0.25 * by;
+      const lblWidth = link.label.length * 5.6 + 16;
+      const lblBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      lblBg.setAttribute('x', String(apexX - lblWidth / 2));
+      lblBg.setAttribute('y', String(apexY - 7));
+      lblBg.setAttribute('width', String(lblWidth));
+      lblBg.setAttribute('height', '14');
+      lblBg.setAttribute('rx', '7');
+      lblBg.setAttribute('fill', 'rgba(2,6,23,0.96)');
+      lblBg.setAttribute('stroke', 'rgba(255,255,255,0.18)');
+      lblBg.setAttribute('stroke-width', '0.5');
+      arcSvg.appendChild(lblBg);
+      const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      lbl.setAttribute('x', String(apexX));
+      lbl.setAttribute('y', String(apexY + 3));
+      lbl.setAttribute('text-anchor', 'middle');
+      lbl.setAttribute('fill', '#e2e8f0');
+      lbl.setAttribute('font-size', '8.5');
+      lbl.setAttribute('font-family', 'Cinzel, ui-serif, serif');
+      lbl.setAttribute('font-weight', '600');
+      lbl.setAttribute('letter-spacing', '0.08em');
+      lbl.textContent = link.label.toUpperCase();
+      arcSvg.appendChild(lbl);
+    });
+  }
+
+  let arcRaf = 0;
+  function scheduleArcs(): void {
+    if (arcRaf) cancelAnimationFrame(arcRaf);
+    arcRaf = requestAnimationFrame(() => { arcRaf = 0; drawArcs(); });
+  }
+  window.addEventListener('load', scheduleArcs);
+  window.addEventListener('resize', scheduleArcs);
+  if (document.fonts?.ready) document.fonts.ready.then(scheduleArcs);
+  // re-run after layout settles
+  setTimeout(scheduleArcs, 100);
+  setTimeout(scheduleArcs, 400);
+
+  // ---- Mobile tab nav ----
+  const carousel = treeWrap?.querySelector<HTMLElement>(':scope > div.flex');
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.class-tab');
+  const cols = document.querySelectorAll<HTMLElement>('.class-tree');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.getAttribute('data-tab-target');
+      const target = document.querySelector<HTMLElement>(`.class-tree[data-cls-key="${key}"]`);
+      target?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+  });
+  if (carousel && cols.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        let best: { el: Element; ratio: number } | null = null;
+        for (const e of entries) {
+          if (!best || e.intersectionRatio > best.ratio) best = { el: e.target, ratio: e.intersectionRatio };
+        }
+        if (!best) return;
+        const key = (best.el as HTMLElement).getAttribute('data-cls-key');
+        tabs.forEach((t) => t.classList.toggle('is-active', t.getAttribute('data-tab-target') === key));
+      },
+      { root: carousel, threshold: [0.3, 0.6, 0.9] }
+    );
+    cols.forEach((c) => io.observe(c));
+    // Initial active
+    tabs[0]?.classList.add('is-active');
+  }
+
+  // Cross-link map: traitId -> partner traitId
+  const crossPartner: Record<string, string> = {};
+  for (const link of crossLinks) {
+    crossPartner[link.from] = link.to;
+    crossPartner[link.to] = link.from;
+  }
+
+  document.querySelectorAll<HTMLElement>('.skill-node').forEach((node) => {
+    const show = () => {
+      const kind = (node.getAttribute('data-tip-kind') as TipKind) ?? 'trait';
+      const payload = JSON.parse(node.getAttribute('data-tip') ?? '{}');
+      const color = colorFor(node);
+      tip.innerHTML = render(kind, payload, color);
+      tip.classList.add('show');
+      requestAnimationFrame(() => position(node.getBoundingClientRect()));
+      // Cross-link partner highlight
+      const traitId = node.getAttribute('data-trait-id');
+      if (traitId && crossPartner[traitId]) {
+        const partner = document.querySelector<HTMLElement>(`[data-trait-id="${crossPartner[traitId]}"]`);
+        partner?.classList.add('is-cross-target');
+      }
+    };
+    const hide = () => {
+      tip.classList.remove('show');
+      document.querySelectorAll('.is-cross-target').forEach((n) => n.classList.remove('is-cross-target'));
+    };
+    node.addEventListener('mouseenter', show);
+    node.addEventListener('focus', show);
+    node.addEventListener('mouseleave', hide);
+    node.addEventListener('blur', hide);
+  });
+</script>
